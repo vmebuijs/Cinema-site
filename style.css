@@ -23,9 +23,19 @@ p:hover{
 
 .films-slideshow{
     width: 90vw;
-    height: 100px;
+    height: 80vh;
     margin: 15vh auto 0px;
     display: grid;
     grid-template-columns: 1fr 10fr 1fr;
     text-align: center;
+}
+
+.films-slideshow__poster{
+    height: 100%;
+    width: 100%;
+    
+}
+
+button{
+    cursor: pointer;
 }
