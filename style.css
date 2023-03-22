@@ -1,0 +1,31 @@
+.navigation-bar{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    height: 10vh;
+    display: flex;
+    background-color: blueviolet;
+    justify-content: space-between;
+}
+
+p{
+    flex: 1;
+    text-align: center;
+    margin: 0px; 
+    height: 10vh;
+    cursor: pointer;
+}
+
+p:hover{
+    background-color: rgb(167, 106, 225);
+}
+
+.films-slideshow{
+    width: 90vw;
+    height: 100px;
+    margin: 15vh auto 0px;
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    text-align: center;
+}
