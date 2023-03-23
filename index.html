@@ -1,27 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <link rel="stylesheet" href="style.css">
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
+        <link rel="stylesheet" href="src/css/style.css">
     </head>
     <body>
-        <header class="navigation-bar">
+        <!-- <header class="navigation-bar">
             <p class="cinema-title">Cinema</p>
             <p class="films">Films</p>
             <p class="log-in">Log in</p>
+        </header> -->
+
+        <header class="header">
+            <div class="logo-container">
+                <a href="#">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                </a>
+            </div>
+
+            <nav class="nav">
+                <a href="#">Films</a>
+                <a href="#">Account</a>
+            </nav>
         </header>
+
+        <!-- mobile version -->
+        <header class="header-mobile">
+            <div class="logo-container">
+                <a href="#">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                </a>
+            </div>
+            <img class="menu-open" src="src/svg/open.svg">
+            <div class="menu-container closed">
+                <img class="menu-close" src="src/svg/close.svg">
+                <nav class="menu">
+                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                    <a class="menu__item" href="#">Home</a>
+                    <a class="menu__item" href="#">Films</a>
+                    <a class="menu__item" href="#">Account</a>
+                </nav>
+            </div>
+        </header>
+
         <article class="films-slideshow">
             <button>&lt;</button>
             <figure>
-                <img class="films-slideshow__poster" src="media/film-poster.png" alt="film-poster">
+                <img class="films-slideshow__poster" src="src/img/film-poster.png" alt="film-poster">
             </figure>
             <button>&gt;</button>
         </article>
         <article class="films-overview">
 
         </article>
+        <script src="src/js/menu.js"></script>
     </body>
 </html>
