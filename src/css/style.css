@@ -39,7 +39,7 @@ button{
     cursor: pointer;
     background-color: rgb(41, 30, 162);
     border: none;
-    border-radius: 50px;
+    border-radius: 75px;
 }
 
 body{
@@ -171,8 +171,6 @@ a{
     opacity: 0;
     animation: closeAnim 200ms ease-in-out;
 }
- 
-  /* animation  */
   
 @keyframes openAnim {
   0% {
