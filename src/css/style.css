@@ -15,7 +15,7 @@ a {
 }
 
 body{
-    background-color: rgb(19, 19, 83);
+    background-color: rgb(19, 34, 61);
 }
 
 /* header of page with navigation bar, desktop */
@@ -31,7 +31,7 @@ body{
     max-width: 2560px;
     height: 5vh;
     margin: 0 auto;
-    background-color: rgb(41, 30, 162);
+    background-color: rgb(32, 56, 100);
 }
 
 .logo-container{
@@ -56,6 +56,10 @@ body{
 }
 
 /* mobile header */
+.header--mobile .logo-container{
+    text-align: center;
+}
+
 .open-menu,
 .close-menu{
     width: 30px;
@@ -122,7 +126,7 @@ body{
 
 /* footer */
 .footer{
-    background-color: rgb(41, 30, 162);
+    background-color: rgb(32, 56, 100);
     margin-top: 100px;
     margin-bottom: 0;
     height: 10vh;
@@ -136,14 +140,15 @@ body{
     margin: 0px 35px;
 }
 
-/* dekstop specifications for header */
+/* media queries */
+/* dekstop specifications */
 @media screen and (min-width: 768px){
     .header--mobile{
         display: none;
     }
 }
 
-/* mobile specifications for header */
+/* mobile specifications */
 @media screen and (max-width: 767px){
     .header--desktop{
         display: none;
@@ -155,22 +160,40 @@ body{
 .films-slideshow{
     width: 90vw;
     height: 80vh;
-    margin: 15vh auto 100px;
+    margin: 7em auto 100px;
     display: grid;
     grid-template-columns: 1fr 10fr 1fr;
-    text-align: center;
+    align-items: center;
+    position: relative;
 }
 
 .films-slideshow__poster{
-    height: 100%;
-    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.films-slideshow__film-title{
+    color: white;
+    font-size: 36px;
+    text-shadow: #000 0px 0px 5px, #000 0px 0px 10px, #000 0px 0px 15px, #000 0px 0px 20px, #000 0px 0px 30px, #000 0px 0px 40px, #000 0px 0px 50px, #000 0px 0px 75px;
+    position: absolute;
+    left: 14%;
+    bottom: 6%;
 }
 
 .films-slideshow__button{
-    cursor: pointer;
-    background-color: rgb(41, 30, 162);
+    color: white;
+    font-size: 48px;
+    background-color: rgb(32, 56, 100);
     border: none;
     border-radius: 75px;
+    height: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s linear;
+}
+
+.films-slideshow__button:hover{
+    background-color: rgb(72, 61, 186);
 }
 
 .films-overview{
@@ -180,19 +203,22 @@ body{
 
 .films-overview__schedule{
     margin: 20px 0 50px;
+    padding-left: 25px;
 }
 
 .film-schedule{
     display: inline;
     color: white;
-    margin-right: 5vw;
-    cursor: pointer;
     text-decoration: underline overline;
     font-size: 25px;
+    line-height: 40px;
+    margin-right: 5vw;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
 }
 
-.film-schedule:first-child{
-    margin-left: 25px;
+.film-schedule:hover{
+    color: rgb(134, 134, 134);
 }
 
 .films-overview__films{
@@ -214,4 +240,27 @@ body{
     color: white;
     text-align: center;
     line-height: 35px;
+}
+
+/* media queries */
+/* dekstop specifications */
+@media screen and (min-width: 768px){
+    .films-overview__films{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+/* mobile specifications */
+@media screen and (max-width: 767px){
+    .film-schedule{
+        font-size: 22px;
+    }
+
+    .films-overview__films{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .films-slideshow{
+        margin-top: 2em;
+    }
 }
