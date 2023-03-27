@@ -305,6 +305,93 @@ body{
     text-align: start;
 }
 
+/* account page */
+/* general */
+.account-controls{
+    background-color: rgb(32, 56, 100);
+    position: fixed;
+    top: 7em;
+    left: 1em;
+    height: 35em;
+    width: 12em;
+    padding-top: 1em;
+}
+
+.account-controls__button{
+    display: block;
+    background-color: rgb(32, 56, 100);
+    border: none;
+    color: white;
+    font-size: 22px;
+    margin: 0 auto 2em;
+    cursor: pointer;
+}
+
+.account-controls__button:hover{
+    color: rgb(134, 134, 134);
+}
+
+.account-information,
+.order-history{
+    background-color: rgb(32, 56, 100);
+    color: white;
+    margin: 7em 1em 0 14em;
+    padding: 1em;
+}
+
+/* acoount information section on account page */
+.account-information{
+    display: none;
+    height: 34em;
+}
+
+.order-history{
+    
+}
+
+.account-information__data{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2em;
+}
+
+.user-data{
+    margin: 1em 0px;
+}
+
+.user-data__type{
+    font-size: 22px;
+}
+
+/* order history section on account page */
+.order-history{
+    height: fit-content;
+}
+
+.order{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: rgb(62, 91, 143);
+    border: none;
+    border-radius: 1em;
+    max-width: 50em;
+    margin: 1em auto;
+    padding: 1em;
+    justify-content: space-between;
+}
+
+.order__film-poster{
+    width: 100%;
+    min-width: 100px;
+}
+
+.order__data{
+    text-align: center;
+    font-size: 22px;
+    margin: auto 0;
+    line-height: 48px;
+}
+
 
 /* media queries */
 /* dekstop specifications */
