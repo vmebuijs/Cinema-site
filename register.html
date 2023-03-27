@@ -31,7 +31,7 @@
                     <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
                 </a>
             </div>
-            <img class="open-menu" src="src/svg/open.svg">
+            <img class="open-menu" src="src/svg/open.svg" alt="">
             <div class="menu-container closed">
                 <img class="close-menu" src="src/svg/close.svg">
                 <nav class="menu">
@@ -45,9 +45,27 @@
                 </nav>
             </div>
         </header>
+
+        <main>
+            <form class="login-container">
+                <img src="src/img/account.png" alt="" width="200px">
+                <div class="login">
+                    <p class="login__">Username</p>
+                    <input class="login__input-field" name="uname" type="text" placeholder="Enter your username" required>
+                    <p>Password</p>
+                    <input class="login__input-field" name="psw" type="password" placeholder="Enter your password" required>
+                    <button class="login__button">Login</button>
+                </div>
+
+                <div class="new-user">
+                    <hr>
+                    <p class="new-user__text">New here?</p>
+                    <button class="new-user__button">Create an account</button>
+                </div>
+            </form>
+        </main>
         
         <footer class="footer">
-            <a class="footer__link" href="#">Top of the page</a>
             <a class="footer__link" href="index.html">Home</a>
             <a class="footer__link" href="films.html">Films</a>
         </footer>
