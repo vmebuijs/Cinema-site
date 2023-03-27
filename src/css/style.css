@@ -55,6 +55,10 @@ body{
     color: rgb(134, 134, 134);
 }
 
+.header--desktop .user-image{
+    padding-left: 1em;
+}
+
 /* mobile header */
 .header--mobile .logo-container{
     text-align: center;
@@ -92,6 +96,7 @@ body{
 
 .menu__item{
     color: white;
+    text-decoration: none;
 }
 .menu__item:first-child{
     margin-bottom: 40px;
@@ -138,6 +143,7 @@ body{
 .footer__link{
     color: white;
     margin: 0px 35px;
+    text-decoration: none;
 }
 
 /* media queries */
