@@ -1,5 +1,5 @@
-var open = document.getElementsByClassName("menu-open")[0];
-var close = document.getElementsByClassName("menu-close")[0];
+var open = document.getElementsByClassName("open-menu")[0];
+var close = document.getElementsByClassName("close-menu")[0];
 
 var container = document.getElementsByClassName("menu-container")[0].classList;
 

@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="src/css/style.css">
     </head>
     <body>
-        <header class="header">
+        <header class="header--desktop">
             <div class="logo-container">
                 <a href="index.html">
                     <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
@@ -16,21 +16,21 @@
             </div>
 
             <nav class="nav">
-                <a href="films.html">Films</a>
-                <a href="#">Log in</a>
+                <a class="nav__link" href="films.html">Films</a>
+                <a class="nav__link" href="#">Log in</a>
             </nav>
         </header>
 
         <!-- mobile version -->
-        <header class="header-mobile">
+        <header class="header--mobile">
             <div class="logo-container">
                 <a href="#">
                     <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
                 </a>
             </div>
-            <img class="menu-open" src="src/svg/open.svg">
+            <img class="open-menu" src="src/svg/open.svg">
             <div class="menu-container closed">
-                <img class="menu-close" src="src/svg/close.svg">
+                <img class="close-menu" src="src/svg/close.svg">
                 <nav class="menu">
                     <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
                     <a class="menu__item" href="index.html">Home</a>
@@ -41,9 +41,9 @@
         </header>
         
         <footer class="footer">
-            <a href="#">Top of the page</a>
-            <a href="index.html">Home</a>
-            <a href="films.html">Films</a>
+            <a class="footer__link" href="#">Top of the page</a>
+            <a class="footer__link" href="index.html">Home</a>
+            <a class="footer__link" href="films.html">Films</a>
         </footer>
 
         <script src="src/js/menu.js"></script>
