@@ -321,17 +321,20 @@ body{
 .account-controls__button{
     display: block;
     background-color: rgb(32, 56, 100);
-    border: none;
     color: white;
     font-size: 22px;
     font-family: 'Times New Roman', Times, serif;
-    margin: 0 auto 2em;
+    border: none;
+    border-radius: 50px;
+    width: 80%;
+    margin: 0 auto 1em;
+    padding: 0.5em 0px;
     cursor: pointer;
-    transition: color 0.2s linear;
+    transition: background-color 0.2s linear;
 }
 
 .account-controls__button:hover{
-    color: rgb(134, 134, 134);
+    background-color: rgb(62, 91, 143);
 }
 
 .account-information,
@@ -363,6 +366,7 @@ body{
 
 /* order history section on account page */
 .order-history{
+    display: none;
     height: fit-content;
 }
 
@@ -401,6 +405,7 @@ body{
 
 /* mobile specifications */
 @media screen and (max-width: 767px){
+    /* index */
     .film-schedule{
         font-size: 22px;
     }
@@ -411,5 +416,28 @@ body{
 
     .films-slideshow{
         margin-top: 2em;
+    }
+
+    /* account */
+    .account-controls{
+        top: 5em;
+        left: 1em;
+        right: 1em;
+        height: fit-content;
+        width: auto;
+        text-align: center;
+        padding: 0.5em 0;
+    }
+
+    .account-controls__button{
+        display: inline-block;
+        width: 40%;
+        margin: 0px auto;
+    }
+
+    .account-information,
+    .order-history{
+        margin: 7.5em 1em;
+        padding: 1em;
     }
 }
