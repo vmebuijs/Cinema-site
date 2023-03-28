@@ -252,11 +252,13 @@ body{
 
 
 /* login page */
-.login-container{
+.login-container,
+.register-container{
     background-color: rgb(32, 56, 100);
     color: white;
     height: fit-content;
-    width: 26em;
+    max-width: 26em;
+    min-width: fit-content;
     margin: 7em auto 0px;
     padding: 1.5em 2em;
     border: none;
@@ -264,14 +266,16 @@ body{
     text-align: center;
 }
 
-.login{
+.login,
+.register{
     display: block;
     width: 15em;
     margin: 1em auto 0px;
     text-align: start;
 }
 
-.login__input-field{
+.login__input-field,
+.register__input-field{
     display: block;
     width: 224px;
     border: 2px solid rgb(32, 56, 100);
@@ -282,7 +286,8 @@ body{
 }
 
 .login__button,
-.new-user__button{
+.new-user__button,
+.register__submit-button{
     background-color: rgb(57, 87, 142);
     color: white;
     border: 2px solid white;
