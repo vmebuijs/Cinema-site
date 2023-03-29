@@ -1,17 +1,14 @@
-var open = document.querySelector(".menu-open");
-var close = document.querySelector(".menu-close");
+var open = document.getElementsByClassName("open-menu")[0];
+var close = document.getElementsByClassName("close-menu")[0];
 
-var wrapper = document.querySelector(".menu-container").classList;
-
-var open2 = document.getElementsByClassName(".menu-open")[0];
-var close2 = document.getElementsByClassName(".menu-close")[0];
+var container = document.getElementsByClassName("menu-container")[0].classList;
 
 open.addEventListener("click", () => {
-  wrapper.toggle("opened");
-  wrapper.toggle("closed");
+  container.toggle("opened");
+  container.toggle("closed");
 });
 
 close.addEventListener("click", () => {
-  wrapper.toggle("opened");
-  wrapper.toggle("closed");
+  container.toggle("opened");
+  container.toggle("closed");
 });
