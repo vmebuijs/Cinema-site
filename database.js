@@ -1,10 +1,20 @@
-const sqlite3 = require('sqlite3').verbose();
-let sql;
+// const sqlite3 = require('sqlite3').verbose();
 
-//connect db
-const db = new sqlite3.Database('./movie.db', sqlite3.OPEN_READWRITE, (err) => {
-    if(err) return console.error(err.message);
-});
+
+// //connect db
+// const db = new sqlite3.Database('./movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+//     if(err) return console.error(err.message);
+// });
+
+
+// sql = 'SELECT poster FROM Movies';
+// db.each(sql, [], (err, rows) => {
+//     if(err) return console.error(err.message);
+//             console.log(rows);
+// });
+
+// console.log(sql);
+
 
 
 // create table
@@ -27,19 +37,19 @@ const db = new sqlite3.Database('./movie.db', sqlite3.OPEN_READWRITE, (err) => {
 // });
 
 // update data
-// sql = 'UPDATE Movies SET poster = ? WHERE movie_ID = ?';
-// db.run(sql, ['./img/poster.png', 11111], (err) => {
+// sql = 'UPDATE Movies SET title = ? WHERE movie_ID = ?';
+// db.run(sql, ['Oceans ELeven', 13131], (err) => {
 //         if(err) return console.error(err.message); 
 // });
 
 // query the database
-sql = 'SELECT poster FROM Movies';
-db.all(sql, [], (err, rows) => {
-    if(err) return console.error(err.message);
-        rows.forEach(row => {
-            console.log(row);
-        });
-});
+// sql = 'SELECT poster FROM Movies';
+// db.all(sql, [], (err, rows) => {
+//     if(err) return console.error(err.message);
+//         rows.forEach(row => {
+//             console.log(row);
+//         });
+// });
 
 
 /*
