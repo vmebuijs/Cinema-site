@@ -37,10 +37,6 @@
 // });
 
 // update data
-// sql = 'UPDATE Movies SET title = ? WHERE movie_ID = ?';
-// db.run(sql, ['Oceans ELeven', 13131], (err) => {
-//         if(err) return console.error(err.message); 
-// });
 
 // query the database
 // sql = 'SELECT poster FROM Movies';

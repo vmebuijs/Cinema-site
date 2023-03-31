@@ -13,8 +13,21 @@ const db = new sqlite3.Database('./movie.sqlite', sqlite3.OPEN_READWRITE, (err) 
     if(err) return console.error(err.message);
 });
 
+// sql = 'UPDATE Movies SET poster = ? WHERE movie_ID = ?';
+// db.run(sql, ['src/img/harryPotterIMG.jpg', 23132], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
 app.use(express.static('src'));
 app.use(express.static('html'));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.get("/tp", function(req, res){
   sql = 'SELECT title, poster FROM Movies';
