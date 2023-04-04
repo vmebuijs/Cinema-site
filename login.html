@@ -47,13 +47,13 @@
         </header>
 
         <main>
-            <form class="login-container">
+            <form class="login-container" action="http://localhost:8026/loginInfo" method="post">
                 <img src="src/img/account.png" alt="" width="200px">
                 <div class="login">
-                    <p>Username</p>
-                    <input class="login__input-field" name="uname" type="text" placeholder="Enter your username" required>
-                    <p>Password</p>
-                    <input class="login__input-field" name="psw" type="password" placeholder="Enter your password" required>
+                    <label for="uname">Username</label>
+                    <input type="text" class="login__input-field" name="uname" type="text" placeholder="Enter your username" required>
+                    <label for="pws">Password</label>
+                    <input type="text" class="login__input-field" name="psw" type="password" placeholder="Enter your password" required>
                     <button class="login__button" type="submit">Login</button>
                 </div>
 

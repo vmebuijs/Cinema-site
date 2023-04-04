@@ -7,10 +7,25 @@ const db = new sqlite3.Database('./data.sqlite', sqlite3.OPEN_READWRITE, (err) =
 });
 
 
-sql = 'UPDATE Staff SET age = ? WHERE staff_ID = ?';
-db.run(sql, ['30', 10004], (err) => {
-        if(err) return console.error(err.message); 
-}); 
+// sql = 'UPDATE Staff SET age = ? WHERE staff_ID = ?';
+// db.run(sql, ['30', 10004], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// query the database
+sql = `SELECT duration, CAST(duration / 60.0 AS Decimal(5,2)) AS 'duration in hours'
+FROM Event;
+`;
+db.all(sql, [], (err, rows) => {
+    if(err) return console.error(err.message);
+        rows.forEach(row => {
+            console.log(row);
+        });
+});
+
+
+
+
 
 // insert data into table
 // sql = 'INSERT INTO Movies(movie_ID, title, genre, year, director, writers, stars, poster, trailer, plot, available_dates, available_times) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
