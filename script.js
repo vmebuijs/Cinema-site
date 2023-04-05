@@ -91,6 +91,9 @@ app.get("/m", (req, res) => {
       res.status(200).json(rows);  
   });
 })
+app.get("/index", (req, res) => {
+  res.status(200).send('index.html')
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -98,6 +101,15 @@ app.post("/loginInfo", (req, res) => {
   let username = req.body.uname;
   let password = req.body.psd;
   res.status(200).send(username + password);
+  isql = `SELECT password FROM Account WHERE username = ?`
+  udb.all(isql, [username], (err, row) => {
+    if(err) return console.error(err.message);
+    console.log(row);
+  if(row == password){
+    console.log('success');
+  }else{
+    console.log('fail');
+  }
 });
 
 // udb.run("INSERT INTO Account VALUES ('1001','Valérie','Valerie3@gmail.com', 'lasseslaan 45', '2203', 'ilovetayler_34', 'ebdiuefj!#')", (err) => {
@@ -112,15 +124,36 @@ app.post("/register", (req, res) => {
   let username = req.body.uname;
   let password = req.body.psw;
   usql = 'INSERT INTO Account(account_ID ,name , email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?,?)';
-  udb.run(usql, ['5245', name, email, address, creditcard, username, password], (err) => {
+  udb.run(usql, ['8240', name, email, address, creditcard, username, password], (err) => {
     if(err) return console.error(err.message);
   });
-  res.send(name, email, address, creditcard, username, password)
+  
 })
-// id moet nu elke keer aangepast worden
 
-// 1. ophalen gegevens
-// 2. store die gegevens in een database
+// app.post("/login", (req, res) =>{
+//   let username = req.body.uname;
+//   let password = req.body.psw;
+//   // usql = `SELECT account_ID FROM Account WHERE username = ?`
+//   // udb.run(sql, [username], (err) => {
+//   //   if(err) return console.error(err.message);
+//   // });
+//   isql = `SELECT password FROM Account WHERE username = ?`
+//   udb.run(isql, [username], (err) => {
+//     if(err) return console.error(err.message);
+//     //error data password or username incorrect is
+//   });
+
+  //username id vinden 
+  // bestaat die niet dan error message
+  //password bij dat id vinden 
+  // die twee passwords vergelijken 
+  // als ze niet matchen dan 
+});
+// id moet nu elke keer aangepast worden
+//ww niet meer in plain text
+//                                      
+// 1. ophalen gegevens                   
+// 2. store die gegevens in een database 
 // 3. kijk of ingevoerde gegevens overeenkomen met die in de database
 // console.log(sql);
 // npm run dev
