@@ -13,8 +13,7 @@ const db = new sqlite3.Database('./data.sqlite', sqlite3.OPEN_READWRITE, (err) =
 // }); 
 
 // query the database
-sql = `SELECT duration, CAST(duration / 60.0 AS Decimal(5,2)) AS 'duration in hours'
-FROM Event;
+sql = `SELECT name FROM Staff MINUS SELECT Staff_ID FROM Tour_staff, Event WHERE Event.event_ID = Tour_staff.event_ID AND Event.event_type = 'Concert';
 `;
 db.all(sql, [], (err, rows) => {
     if(err) return console.error(err.message);

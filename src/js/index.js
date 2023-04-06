@@ -1,7 +1,7 @@
 fetch('http://localhost:8026/tp')
     .then(res => res.json())
     .then(data => {
-
+        console.log(data);
         const nextButton = document.getElementsByClassName('films-slideshow__button')[1];
         const previousButton = document.getElementsByClassName('films-slideshow__button')[0];
         const slide = document.getElementsByClassName('films-slideshow__poster')[0];

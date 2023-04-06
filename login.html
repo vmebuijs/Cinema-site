@@ -47,13 +47,13 @@
         </header>
 
         <main>
-            <form class="login-container" action="http://localhost:8026/loginInfo" method="post">
+            <form class="login-container"  action="http://localhost:8026/login" method="post">
                 <img src="src/img/account.png" alt="" width="200px">
                 <div class="login">
                     <label for="uname">Username</label>
-                    <input type="text" class="login__input-field" name="uname" type="text" placeholder="Enter your username" required>
+                    <input class="login__input-field" name="uname" type="text" placeholder="Enter your username" required>
                     <label for="pws">Password</label>
-                    <input type="text" class="login__input-field" name="psw" type="password" placeholder="Enter your password" required>
+                    <input class="login__input-field" name="psw" type="password" placeholder="Enter your password" required>
                     <button class="login__button" type="submit">Login</button>
                 </div>
 
@@ -70,8 +70,8 @@
             <a class="footer__link" href="films.html">Films</a>
         </footer>
 
-        <script src="menu.js"></script>
-        <script src="index.js"></script>
+        <script src="src/js/menu.js"></script>
+        <script src="src/js/index.js"></script>
         <script src="src/js/login.js"></script>
     </body>
 </html>

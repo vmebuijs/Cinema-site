@@ -21,6 +21,7 @@
 const express = require('express');
 const app = express();
 const port = 8026;
+const cors = require('cors');
 
 var bodyParser = require("body-parser");
 const { json } = require('express');
@@ -43,32 +44,40 @@ const sqlite3 = require('sqlite3').verbose();
 //app.use(express.static('src'));
 //app.use(express.static('html'));
 
-const db = new sqlite3.Database('./movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+
+
+
+
+
+const db = new sqlite3.Database('src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+  if(err) return console.error(err.message); // html/ ervoor
+});
+
+const udb = new sqlite3.Database('src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message);
 });
 
-const udb = new sqlite3.Database('./users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
-  if(err) return console.error(err.message);
-});
+//drop table
+// udb.run('DROP TABLE Account');
 
-// const userSql = 'CREATE TABLE Account(account_ID INTEGER NOT NULL, name varchar(50) NOT NULL,email varchar(50) NOT NULL, adress varchar(50) NOT NULL, creditcard char(50) NOT NULL, username varchar(50) NOT NULL, password varchar(50) NOT NULL, CONSTRAINT Account_pk PRIMARY KEY(account_ID))';
+// const userSql = 'CREATE TABLE test(name varchar(50) NOT NULL,email varchar(50) NOT NULL, adress varchar(50) NOT NULL, creditcard char(50) NOT NULL, username varchar(50) NOT NULL, password varchar(50) NOT NULL, CONSTRAINT Account_pk PRIMARY KEY(username))';
 // udb.run(userSql);
 
 
 
      
 
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-  // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl/group26/");
-  // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors());
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+//   // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl/group26/");
+//   // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
 app.get("/tp", (req, res) => {
   sql = 'SELECT title, poster FROM Movies';
@@ -91,26 +100,28 @@ app.get("/m", (req, res) => {
       res.status(200).json(rows);  
   });
 })
-app.get("/index", (req, res) => {
-  res.status(200).send('index.html')
-});
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post("/loginInfo", (req, res) => {
+app.post("/login", (req, res) => {
   let username = req.body.uname;
   let password = req.body.psd;
-  res.status(200).send(username + password);
   isql = `SELECT password FROM Account WHERE username = ?`
-  udb.all(isql, [username], (err, row) => {
+  let row = udb.all(isql, [username], (err) => {
     if(err) return console.error(err.message);
-    console.log(row);
+  });
+  res.status(200).send(row);
   if(row == password){
     console.log('success');
+    res.status(200).send("succes");
   }else{
     console.log('fail');
+    res.status(200).send("fail");
   }
 });
+
+
 
 // udb.run("INSERT INTO Account VALUES ('1001','Valérie','Valerie3@gmail.com', 'lasseslaan 45', '2203', 'ilovetayler_34', 'ebdiuefj!#')", (err) => {
 //   if(err) return console.error(err.message);
@@ -123,32 +134,24 @@ app.post("/register", (req, res) => {
   let creditcard = req.body.credit;
   let username = req.body.uname;
   let password = req.body.psw;
-  usql = 'INSERT INTO Account(account_ID ,name , email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?,?)';
-  udb.run(usql, ['8240', name, email, address, creditcard, username, password], (err) => {
+  usql = 'INSERT INTO Account(name , email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
+  udb.run(usql, [name, email, address, creditcard, username, password], (err) => {
     if(err) return console.error(err.message);
+    res.status(200).send("hoi");
+  });
   });
   
-})
-
-// app.post("/login", (req, res) =>{
-//   let username = req.body.uname;
-//   let password = req.body.psw;
-//   // usql = `SELECT account_ID FROM Account WHERE username = ?`
-//   // udb.run(sql, [username], (err) => {
-//   //   if(err) return console.error(err.message);
-//   // });
-//   isql = `SELECT password FROM Account WHERE username = ?`
-//   udb.run(isql, [username], (err) => {
-//     if(err) return console.error(err.message);
-//     //error data password or username incorrect is
-//   });
-
-  //username id vinden 
+// });
+// app.get("/", (req, res) => {
+//   res.send("<p>halloo</p>");
+// });
+//username id vinden 
   // bestaat die niet dan error message
   //password bij dat id vinden 
   // die twee passwords vergelijken 
   // als ze niet matchen dan 
-});
+
+
 // id moet nu elke keer aangepast worden
 //ww niet meer in plain text
 //                                      
@@ -158,8 +161,14 @@ app.post("/register", (req, res) => {
 // console.log(sql);
 // npm run dev
 // node script.js
+
+// app.use((req, res) => {
+//   express.response.status(404).send("page not found");
+// })
+
 app.use(express.static('html'));
 app.use(express.static('src'));
+
 
 app.listen(port, () => {
   console.log('Example app listening on port ${port}')
@@ -175,6 +184,4 @@ app.listen(port, () => {
 
 // app.listen(port, () => {
 //   console.log('Example app listening on port ${port}')
-// });
-
-
+// })
