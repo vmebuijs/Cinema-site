@@ -22,6 +22,7 @@ const express = require('express');
 const app = express();
 const port = 8026;
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 
 var bodyParser = require("body-parser");
 const { json } = require('express');
@@ -104,21 +105,26 @@ app.get("/m", (req, res) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post("/login", (req, res) => {
+app.post("/login", (req, res) => {  //group26/login
   let username = req.body.uname;
-  let password = req.body.psd;
+  let password = req.body.psw;
   isql = `SELECT password FROM Account WHERE username = ?`
-  let row = udb.all(isql, [username], (err) => {
+  udb.all(isql, [username], (err, rij) => {
     if(err) return console.error(err.message);
+    console.log(rij); 
+    console.log(`[ { password: '${password}' } ]`);
+    res.status(200).send(rij);   
+
+    if(rij == `[ { password: '${password}' } ]`){
+      console.log('success');
+      res.status(200).send("succes");
+    }else{
+      console.log('fail');
+      res.status(200).send("fail");
+    }
   });
-  res.status(200).send(row);
-  if(row == password){
-    console.log('success');
-    res.status(200).send("succes");
-  }else{
-    console.log('fail');
-    res.status(200).send("fail");
-  }
+ 
+  
 });
 
 
@@ -127,18 +133,24 @@ app.post("/login", (req, res) => {
 //   if(err) return console.error(err.message);
 // })
 
-app.post("/register", (req, res) => {
-  let name = req.body.name;
-  let email = req.body.email;
-  let address = req.body.address;
-  let creditcard = req.body.credit;
-  let username = req.body.uname;
-  let password = req.body.psw;
-  usql = 'INSERT INTO Account(name , email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
-  udb.run(usql, [name, email, address, creditcard, username, password], (err) => {
-    if(err) return console.error(err.message);
-    res.status(200).send("hoi");
-  });
+app.post("/register", async (req, res) => {  //group26/register.html
+  try{
+    let hashedPassword = await bcrypt.hash(req.body.pwd, 10);
+    let name = req.body.name;
+    let email = req.body.email;
+    let address = req.body.address;
+    let creditcard = req.body.credit;
+    let username = req.body.uname;
+    usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
+    udb.run(usql, [name, email, address, creditcard, username, hashedPassword], (err) => {
+      if(err) return console.error(err.message);
+      console.log("hoi");
+    });
+    res.redirect('/login') //group26/login.html
+  }catch{
+    res.redirect('/register') //group26/register.html
+  }
+  
   });
   
 // });
