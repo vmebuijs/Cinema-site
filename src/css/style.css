@@ -183,15 +183,6 @@ body{
     z-index: -5;
 }
 
-.films-slideshow__film-title{
-    color: white;
-    font-size: 36px;
-    text-shadow: #000 0px 0px 5px, #000 0px 0px 10px, #000 0px 0px 15px, #000 0px 0px 20px, #000 0px 0px 30px, #000 0px 0px 40px, #000 0px 0px 50px, #000 0px 0px 75px;
-    position: absolute;
-    left: 14%;
-    bottom: 6%;
-}
-
 .films-slideshow__button{
     color: white;
     font-size: 48px;
@@ -246,12 +237,22 @@ body{
 
 .film__poster{
     width: 100%;
+    transition: box-shadow 0.2s linear;
+}
+
+.film__poster:hover{
+    box-shadow: 0px 0px 20px rgb(70, 107, 175);
 }
 
 .film__title{
     color: white;
     text-align: center;
     line-height: 35px;
+    transition: text-shadow 0.2s ease-in-out;
+}
+
+.film__title:hover{
+    text-shadow: rgb(70, 107, 175) 0px 0px 5px, rgb(70, 107, 175) 0px 0px 10px, rgb(70, 107, 175) 0px 0px 15px, rgb(70, 107, 175) 0px 0px 20px, rgb(70, 107, 175) 0px 0px 30px;
 }
 
 
