@@ -58,6 +58,7 @@ fetch('http://localhost:8026/tp')
         let currentPage = 0;
         let films = 10;
 
+        //Creates and displays the film in a grid view
         function displayFilms(overview, page){
             let start = films * page;
             let end = start + films;
@@ -82,7 +83,7 @@ fetch('http://localhost:8026/tp')
             }
         }
 
-        //Changes to a page with information about the clicked film
+        //Changes the page to show a page with information about the clicked film
         function filmPage(e){
             var clickedFilm = e.target.parentElement;
             window.location.href = '/film.html?id=' + clickedFilm.id;
@@ -91,6 +92,7 @@ fetch('http://localhost:8026/tp')
         const buttonNow = document.getElementsByClassName('film-schedule')[0];
         const buttonSoon = document.getElementsByClassName('film-schedule')[1];
 
+        //Changes the films displayed based on the whether the user has clicked 'now playing' or 'coming soon'
         function changePage(clickedButton, otherButton){
             var buttons = document.getElementsByClassName('film-schedule');
             currentPage = clickedButton;
@@ -113,8 +115,8 @@ fetch('http://localhost:8026/tp')
         buttonNow.addEventListener('click', () => {changePage(0, 1);}, false);
         buttonSoon.addEventListener('click', () => {changePage(1, 0);}, false);
 
+        //Loads the posters and titles from the database and places them on the page
         function loadData(startingPoint){
-            //loads the posters and titles from the database
             var bla = document.getElementsByClassName('film__title');
             var pic = document.getElementsByClassName('film__poster');
 
@@ -128,7 +130,7 @@ fetch('http://localhost:8026/tp')
         displayFilms(overview, currentPage);
         loadData(0);
               
-        //To restructure the page
+        //Restructures the page depending on the screenwidth
         function responsiveOverview(screenWidth){
             var x = document.getElementsByClassName('films-overview')[0];
             if(screenWidth.matches){
@@ -139,7 +141,7 @@ fetch('http://localhost:8026/tp')
             }
         }
 
-        //Registering events for the images and the director's and writers names
+        //Registers events for the images and the director's and writers names
         function registerEvents(){
             //Structures the overview differently to make it easier to read
             var screenWidth = window.matchMedia("(max-width: 850px)");
