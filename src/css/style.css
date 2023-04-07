@@ -16,7 +16,7 @@ a {
 
 body{
     background-color: rgb(19, 34, 61);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Domine', serif;
 }
 
 /* header of page with navigation bar, desktop */
@@ -333,7 +333,7 @@ body{
     background-color: rgb(32, 56, 100);
     color: white;
     font-size: 22px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Domine', serif;
     border: none;
     border-radius: 50px;
     width: 80%;
