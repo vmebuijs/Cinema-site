@@ -48,7 +48,7 @@ const db = new sqlite3.Database('./movie.sqlite', sqlite3.OPEN_READWRITE, (err) 
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-  // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl/group26/");
+  // res.setHeader("Access-Control-Allow-Origin", "http://localhost:5500/");
   // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl");
   res.header(
     "Access-Control-Allow-Headers",

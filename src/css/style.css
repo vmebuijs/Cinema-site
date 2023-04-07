@@ -241,6 +241,7 @@ body{
     margin: 25px;
     display: grid;
     grid-template-columns: 1fr;
+    cursor: pointer;
 }
 
 .film__poster{
@@ -404,6 +405,43 @@ body{
 }
 
 
+/* dynamically loaded film pages */
+.film-body{
+    font-family: 'Domine', serif;
+}
+
+.general-film-info{
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    column-gap: 1em;
+    background-color: rgb(62, 91, 143);
+    margin: 7em;
+    padding: 1em;
+    border-radius: 25px;
+}
+
+.general-film-info__poster{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.general-film-info__text{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.info-element{
+    margin: 1vh 0em;
+}
+
+.film-trailer{
+    margin: 0px auto;
+}
+
 /* media queries */
 /* dekstop specifications */
 @media screen and (min-width: 767px){
@@ -448,5 +486,15 @@ body{
     .order-history{
         margin: 7.5em 1em;
         padding: 1em;
+    }
+
+    /* film pages */
+    .general-film-info{
+        grid-template-columns: 1fr;
+    }
+    .general-film-info__poster{
+        max-height: 300px;
+        width: auto;
+        margin: 0px auto 1em;
     }
 }

@@ -1,7 +1,6 @@
 fetch('http://localhost:8026/tp')
     .then(res => res.json())
     .then(data => {
-
         const nextButton = document.getElementsByClassName('films-slideshow__button')[1];
         const previousButton = document.getElementsByClassName('films-slideshow__button')[0];
         const slide = document.getElementsByClassName('films-slideshow__poster')[0];
@@ -52,26 +51,14 @@ fetch('http://localhost:8026/tp')
             }
             
         });
-        
-        
-        
 
-        console.log(data);
+        //console.log(data);
         var bla = document.getElementsByClassName('film__title');
         var pic = document.getElementsByClassName('film__poster');
         for(var i = 0; i < bla.length; i++){
-           
-                // console.log(data);
-                // output += `
-                // <ul>
-                //     <li>${data[j].title}</li>
-                // </ul>
-                // `;
             bla[i].textContent = data[i].title;
             pic[i].src = data[i].poster;
         }
-        
-
         
         //buttons for pagination
         var overview = document.getElementsByClassName('films-overview__films')[0];
@@ -86,6 +73,8 @@ fetch('http://localhost:8026/tp')
             for (var i = start; i < end; i++){
                 let itemElement = document.createElement('figure');
                 itemElement.classList.add('film');
+                itemElement.addEventListener('click', filmPage, false);
+                itemElement.setAttribute('id', i);
                 
                 let itemPoster = document.createElement('img');
                 itemPoster.classList.add('film__poster');
@@ -99,6 +88,11 @@ fetch('http://localhost:8026/tp')
                 itemElement.appendChild(itemTitle);
                 overview.appendChild(itemElement);
             }
+        }
+        
+        function filmPage(e){
+            var clickedFilm = e.target.parentElement;
+            window.location.href = '/film.html?id=' + clickedFilm.id;
         }
 
         const buttonNow = document.getElementsByClassName('film-schedule')[0];
@@ -137,18 +131,10 @@ fetch('http://localhost:8026/tp')
                 pic[i].src = data[j].poster;
             }
         }
-        
-        // function registerEvent(){
-        //     // displayFilms(overview, currentPage);
-        //     // loadData(0);
-        //     // buttonNow.addEventListener('click', () => {changePage(0, 1);}, false);
-        //     // buttonSoon.addEventListener('click', () => {changePage(1, 0);}, false);
-        //     x.addEventListener(myFunction) // Attach listener function on state changes
-        // }
-        
+
         displayFilms(overview, currentPage);
         loadData(0);
-              
+            
         //To restructure the page
         function responsiveOverview(screenWidth){
             var x = document.getElementsByClassName('films-overview')[0];
@@ -166,24 +152,16 @@ fetch('http://localhost:8026/tp')
             var screenWidth = window.matchMedia("(max-width: 850px)");
             screenWidth.addEventListener('change', responsiveOverview, false);
         }
-
+        
         window.addEventListener('load', registerEvents, false);
     })
     .catch(err => console.log(err));
-    fetch('http://localhost:8026/m')
+
+
+
+fetch('http://localhost:8026/m')
     .then(res => res.json())
     .then(data => {
-        console.log(data)
-        // var ki = document.getElementsByTagName('h1');
-        // for(let dat of data){
-        //     ki.textContent = dat.title;
-        //     console.log(ki.textContent);
-        // }
-        // bla[i].textContent = data[i].title;
-        // pic[i].src = data[i].poster;
-    }
-)
-    .catch(err => console.log(err));
-  
-    // on click picture index + 1, id van de foreach is de picture index
 
+    })
+    .catch(err => console.log(err));
