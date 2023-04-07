@@ -6,57 +6,7 @@ const db = new sqlite3.Database('./data.sqlite', sqlite3.OPEN_READWRITE, (err) =
     if(err) return console.error(err.message);
 });
 
-
-sql = 'UPDATE Staff SET age = ? WHERE staff_ID = ?';
-db.run(sql, ['30', 10004], (err) => {
-        if(err) return console.error(err.message); 
-}); 
-
-// insert data into table
-// sql = 'INSERT INTO Movies(movie_ID, title, genre, year, director, writers, stars, poster, trailer, plot, available_dates, available_times) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
-// db.run(sql, ['23132','Harry Potter and the Half-Blood Prince', 'Fantasy/Adventure', '2009', 'David Yates', 'Steve Kloves, J.K. Rowling', 'Daniel Radcliffe, Emma Watson, Rupert Grint', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pathe-thuis.nl%2F15302_450x640.jpg&tbnid=0Y2OErRe5JcOVM&vet=12ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ..i&imgrefurl=https%3A%2F%2Fwww.pathe-thuis.nl%2Ffilm%2F7471%2Fharry-potter-and-the-half-blood-prince&docid=lp_9pgtfNjtXXM&w=450&h=640&q=harry%20potter%20and%20the%20half%20blood%20prince&ved=2ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ', 'https://www.youtube.com/watch?v=tAiy66Xrsz4 ', 'Harry Potter krijgt te horen dat Voldemort terug is. Hogwarts is nu geen veilige plek meer. Dumbledore bereidt Harry voor op zijn confrontatie met Voldemort.', '29 feb', '16:00'], (err) => {
-//     if(err) return console.error(err.message);
-// })
-// db.run("INSERT INTO Ticket VALUES ('151515', '131', '60', 'Seated')", (err) => {
-//    if(err) return console.error(err.message);
-// });
-// db.run("INSERT INTO Fan VALUES ('9999999', '151515', 'Jade Boom', '23', 'Female')", (err) => {
-//     if(err) return console.error(err.message);
-//  });
-//  db.run("INSERT INTO Ticket VALUES ('161616', '141', '25', 'Standing')", (err) => {
-//     if(err) return console.error(err.message);
-//  });
-//  db.run("INSERT INTO Fan     VALUES ('4444444', '161616', 'Lisanne Boer', '4', 'Female')", (err) => {
-//     if(err) return console.error(err.message);
-//  });
-//  db.run("INSERT INTO Ticket VALUES ('171717', '151', '40', 'Standing')", (err) => {
-//      if(err) return console.error(err.message);
-//   });
-
-
-// ;
-
-// ;
-
-
-// ;
-
-// ;
-
-
-// ;
-
-// sql = 'SELECT poster FROM Movies';
-// db.each(sql, [], (err, rows) => {
-//     if(err) return console.error(err.message);
-//             console.log(rows);
-// });
-
-// console.log(sql);
-
-
-
-// create table
+// Create table
 // const venueSql =`CREATE TABLE Venue ( 
 //     venue_ID 		integer 		not null, 
 //     city			text		 	not null, 
@@ -66,145 +16,133 @@ db.run(sql, ['30', 10004], (err) => {
 //     CONSTRAINT Venue_pk PRIMARY KEY (venue_ID)
 //     )` ;
 // db.run(venueSql);
-// const venueHallSql =`CREATE TABLE Venue_hall ( 
-//     hall_ID 			integer 		not null, 
-//     venue_ID		integer		 	not null, 	
-//     capacity		varchar(500)	 	not null, 
-//     square_footage	varchar(100)		not null,
-//     disabled_seats		integer			not null,
-//     CONSTRAINT Venue_hall_pk PRIMARY KEY (hall_ID)
-//     CONSTRAINT Venue_hall_fk FOREIGN KEY (venue_ID)
-//         REFERENCES Venue(venue_ID)
-//     )` ;
-// db.run(venueHallSql);
-// const eventSql =`CREATE TABLE Event ( 
-//     event_ID		integer 		not null, 
-//     event_type 		text	 		not null, 
-//     date			date			not null, 
-//     duration		varchar(100)	not null, 
-//     revenue		integer	 	not null, 
-//     attendance		integer,		
-//     hall_ID			varchar(100) 	not null, 
-//     number_of_performers	integer	 	not null, 
-//     CONSTRAINT Event_pk PRIMARY KEY (event_ID)
-//     CONSTRAINT Event_fk FOREIGN KEY (hall_ID)
-//         REFERENCES VenueHall(hall_ID)
-    
-//     )` ;
-// db.run(eventSql);
-// const concertSql =`CREATE TABLE Concert ( 
-//     concert_ID		integer 		not null, 
-//     headliner 		text	 		not null, 
-//     opening_act		text,			
-//     genre			text			not null, 
-//     CONSTRAINT Concert_pk PRIMARY KEY (concert_ID)
-//     CONSTRAINT Concert_fk FOREIGN KEY (concert_ID)
-//         REFERENCES Event(event_ID)
-    
-//     )` ;
-// db.run(concertSql);
-// const danceSql =`CREATE TABLE Dance_performance ( 
-//     dance_ID		integer 		not null, 
-//     group_name		varchar(100)	 	not null, 
-//     dance_style		text			not null, 
-//     CONSTRAINT Dance_performance_pk PRIMARY KEY (dance_ID)
-//     CONSTRAINT Dance_performance_fk FOREIGN KEY (dance_ID)
-//         REFERENCES Event(event_ID)
-    
-//     )` ;
-// db.run(danceSql);
-// const comedySql =`CREATE TABLE Comedy_show ( 
-//     comedy_ID		integer 		not null, 
-//     language		varchar(100)		 not null, 
-//     CONSTRAINT Comedy_show_pk PRIMARY KEY (comedy_ID)
-//     CONSTRAINT Comedy_show_fk FOREIGN KEY (comedy_ID)
-//         REFERENCES Event(event_ID)
-    
-//     )` ;
-// db.run(comedySql);
-// const performerSql =`CREATE TABLE Performer ( 
-//     performer_ID		integer 		not null, 
-//     name			varchar(100)	 	not null, 
-//     age			integer			not null,
-//     sex			varchar(10)		check(sex in('Female','Male','X')),
-//     tour			varchar(100)		not null,
-//     performer_type		varchar(10)		check(performer_type in('singer','musician','dancer','comedian')),
-//     headliner		varchar(3)		check(headliner in('yes','no')),
-//     event_ID		integer			not null,
-//     CONSTRAINT Performer_pk PRIMARY KEY (performer_ID)
-//     CONSTRAINT Performer_fk FOREIGN KEY (event_ID)
-//         REFERENCES Event(event_ID)
-//     )` ;
-// db.run(performerSql);
-// const staffSql =`CREATE TABLE Staff ( 
-//     staff_ID			integer 		not null, 
-//     name			varchar(100)	 	not null, 
-//     age			integer			not null,
-//     sex			varchar(10)		check(sex in('Female','Male','X')),
-//     employee_type		text			not null,
-//     CONSTRAINT Staff_pk PRIMARY KEY (staff_ID)
-//     )` ;
-// db.run(staffSql);
-// const venueStaffSql =`CREATE TABLE Venue_staff ( 
-//     venue_staff_ID		integer 		not null, 
-//     venue_section		varchar(100)	 	not null, 	
-//     months_hired		integer			not null,
-//     CONSTRAINT Venue_staff_pk PRIMARY KEY (venue_staff_ID)
-//     CONSTRAINT Venue_staff_fk FOREIGN KEY (venue_staff_ID)
-//         REFERENCES Staff(staff_ID)
-//     )` ;
-// db.run(venueStaffSql);
-// const tourStaffSql =`CREATE TABLE Tour_staff ( 
-//     tour_staff_ID		integer 		not null, 
-//     event_ID		integer		 	not null, 	
-//     tour_division		varchar(100)		not null,
-//     CONSTRAINT Tour_staff_pk PRIMARY KEY (tour_staff_ID)
-//     CONSTRAINT Tour_staff_fk FOREIGN KEY (tour_staff_ID)
-//         REFERENCES Staff(staff_ID)
-//     CONSTRAINT Tour_staff_fk FOREIGN KEY (event_ID)
-//         REFERENCES Event(event_ID)
-//     )` ;
-// db.run(tourStaffSql);
-// const fanSql =`CREATE TABLE Fan ( 
-//     fan_ID			integer 		not null, 
-//     ticket_ID		integer		 	not null, 	
-//     name			varchar(100)	 	not null, 
-//     age			integer			not null,
-//     sex			varchar(10)		check(sex in('Female','Male','X')),
-//     CONSTRAINT Fan_pk PRIMARY KEY (fan_ID)  
-//     CONSTRAINT Fan_fk FOREIGN KEY (ticket_ID)
-//         REFERENCES Ticket(ticket_ID)
-//     )` ;
-// db.run(fanSql);
-// const ticketSql =`CREATE TABLE Ticket ( 
-//     ticket_ID		integer 		not null, 
-//     event_ID		integer		 	not null,
-//     price			varchar(100)		not null, 	
-//     ticket_type		varchar(100)		not null,
-//     CONSTRAINT Ticket_pk PRIMARY KEY (ticket_ID)
-//     CONSTRAINT Ticket_fk FOREIGN KEY (event_ID)
-//         REFERENCES Event(event_ID)
-//     )` ;
-// db.run(ticketSql);
 
-// //drop table
-// db.run('DROP TABLE Movies');
 
-// insert data into table
+// Insert data into table
 // sql = 'INSERT INTO Movies(movie_ID, title, genre, year, director, writers, stars, poster, trailer, plot, available_dates, available_times) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
 // db.run(sql, ['23132','Harry Potter and the Half-Blood Prince', 'Fantasy/Adventure', '2009', 'David Yates', 'Steve Kloves, J.K. Rowling', 'Daniel Radcliffe, Emma Watson, Rupert Grint', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pathe-thuis.nl%2F15302_450x640.jpg&tbnid=0Y2OErRe5JcOVM&vet=12ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ..i&imgrefurl=https%3A%2F%2Fwww.pathe-thuis.nl%2Ffilm%2F7471%2Fharry-potter-and-the-half-blood-prince&docid=lp_9pgtfNjtXXM&w=450&h=640&q=harry%20potter%20and%20the%20half%20blood%20prince&ved=2ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ', 'https://www.youtube.com/watch?v=tAiy66Xrsz4 ', 'Harry Potter krijgt te horen dat Voldemort terug is. Hogwarts is nu geen veilige plek meer. Dumbledore bereidt Harry voor op zijn confrontatie met Voldemort.', '29 feb', '16:00'], (err) => {
 //     if(err) return console.error(err.message);
 // })
 
-// delete data
+
+//Update db
+sql = "UPDATE Movies SET trailer = 'https://www.youtube.com/embed/Ur_DIHs92NM' WHERE movie_ID = '11111'";
+db.run(sql, (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+// ['https://www.youtube.com/embed/Ur_DIHs92NM', 11111], 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/Z-nyXX5zOLg', 21112], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/fiv8Gy5CJ0Y', 31113], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/naQr0uTrH_s', 41114], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/iH6FdW39Hag', 51115], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/BdJKm16Co6M', 61116], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/YoHD9XEInc0', 71117], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/15s4Y9ffW_o', 81118], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/0xQSIdSRlAk', 91119], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/AZGcmvrTX9M', 12121], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/znmZoVkCjpI', 22122], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/W6Mm8Sbe__o', 32123], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/MpkrMqmmy5k', 42124], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/EXeTwQWrcwY', 52125], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/5iaYLCiq5RM', 62126], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/Q_2AbjYeSMI', 72127], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/1Q4mhYF9aQQ', 82128], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/lFmFwCRLsK4', 92129], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/n3epi9hPbqQ', 13131], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+// sql = 'UPDATE Movies SET trailer = ? WHERE movie_ID = ?';
+// db.run(sql, ['https://www.youtube.com/embed/tAiy66Xrsz4', 23132], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+
+// sql = 'UPDATE Movies SET title = ? WHERE movie_ID = ?';
+// db.run(sql, ['Ocean\'s Eleven', 13131], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
+
+
+// Delete data
 // sql = 'DELETE FROM Movies WHERE movie_ID = ?';
 // db.run(sql, [''], (err) => {
 //         if(err) return console.error(err.message); 
 // });
 
-// update data
 
-// query the database
+// Query the database
 // sql = 'SELECT * FROM Venue';
 // db.all(sql, [], (err, rows) => {
 //     if(err) return console.error(err.message);
@@ -214,142 +152,11 @@ db.run(sql, ['30', 10004], (err) => {
 // });
 
 
+// Drop table
+// db.run('DROP TABLE Movies');
+
+
 /*
-
-CREATE TABLE Venue ( 
-venue_ID 		integer 		not null, 
-city			text		 	not null, 
-zip_code		varchar(100)		not null,	
-address		varchar(100)		not null,
-email_address		varchar(100)	 	not null, 
-CONSTRAINT Venue_pk PRIMARY KEY (venue_ID)
-); 
-
-CREATE TABLE Venue_hall ( 
-hall_ID 			integer 		not null, 
-venue_ID		integer		 	not null, 	
-capacity		varchar(500)	 	not null, 
-square_footage	varchar(100)		not null,
-disabled_seats		integer			not null,
-CONSTRAINT Venue_hall_pk PRIMARY KEY (hall_ID)
-CONSTRAINT Venue_hall_fk FOREIGN KEY (venue_ID)
-	REFERENCES Venue(venue_ID)
-); 
-
-
-CREATE TABLE Event ( 
-event_ID		integer 		not null, 
-event_type 		text	 		not null, 
-date			date			not null, 
-duration		varchar(100)	not null, 
-revenue		integer	 	not null, 
-attendance		integer,		
-hall_ID			varchar(100) 	not null, 
-number_of_performers	integer	 	not null, 
-CONSTRAINT Event_pk PRIMARY KEY (event_ID)
-CONSTRAINT Event_fk FOREIGN KEY (hall_ID)
-	REFERENCES VenueHall(hall_ID)
-
-); 
-
-CREATE TABLE Concert ( 
-concert_ID		integer 		not null, 
-headliner 		text	 		not null, 
-opening_act		text,			
-genre			text			not null, 
-CONSTRAINT Concert_pk PRIMARY KEY (concert_ID)
-CONSTRAINT Concert_fk FOREIGN KEY (concert_ID)
-	REFERENCES Event(event_ID)
-
-);
-
-CREATE TABLE Dance_performance ( 
-dance_ID		integer 		not null, 
-group_name		varchar(100)	 	not null, 
-dance_style		text			not null, 
-CONSTRAINT Dance_performance_pk PRIMARY KEY (dance_ID)
-CONSTRAINT Dance_performance_fk FOREIGN KEY (dance_ID)
-	REFERENCES Event(event_ID)
-
-); 
-
-CREATE TABLE Comedy_show ( 
-comedy_ID		integer 		not null, 
-language		varchar(100)		 not null, 
-CONSTRAINT Comedy_show_pk PRIMARY KEY (comedy_ID)
-CONSTRAINT Comedy_show_fk FOREIGN KEY (comedy_ID)
-	REFERENCES Event(event_ID)
-
-); 
-
-CREATE TABLE Performer ( 
-performer_ID		integer 		not null, 
-name			varchar(100)	 	not null, 
-age			integer			not null,
-sex			varchar(10)		check(sex in('Female','Male','X')),
-tour			varchar(100)		not null,
-performer_type		varchar(10)		check(performer_type in('singer','musician','dancer','comedian')),
-headliner		varchar(3)		check(headliner in('yes','no')),
-event_ID		integer			not null,
-CONSTRAINT Performer_pk PRIMARY KEY (performer_ID)
-CONSTRAINT Performer_fk FOREIGN KEY (event_ID)
-	REFERENCES Event(event_ID)
-); 
-
-CREATE TABLE Staff ( 
-staff_ID			integer 		not null, 
-name			varchar(100)	 	not null, 
-age			integer			not null,
-sex			varchar(10)		check(sex in('Female','Male','X')),
-employee_type		text			not null,
-CONSTRAINT Staff_pk PRIMARY KEY (staff_ID)
-);
-
-
-CREATE TABLE Venue_staff ( 
-venue_staff_ID		integer 		not null, 
-venue_section		varchar(100)	 	not null, 	
-months_hired		integer			not null,
-CONSTRAINT Venue_staff_pk PRIMARY KEY (venue_staff_ID)
-CONSTRAINT Venue_staff_fk FOREIGN KEY (venue_staff_ID)
-	REFERENCES Staff(staff_ID)
-); 
-
-
-CREATE TABLE Tour_staff ( 
-tour_staff_ID		integer 		not null, 
-event_ID		integer		 	not null, 	
-tour_division		varchar(100)		not null,
-CONSTRAINT Tour_staff_pk PRIMARY KEY (tour_staff_ID)
-CONSTRAINT Tour_staff_fk FOREIGN KEY (tour_staff_ID)
-	REFERENCES Staff(staff_ID)
-CONSTRAINT Tour_staff_fk FOREIGN KEY (event_ID)
-	REFERENCES Event(event_ID)
-); 
-
-CREATE TABLE Fan ( 
-fan_ID			integer 		not null, 
-ticket_ID		integer		 	not null, 	
-name			varchar(100)	 	not null, 
-age			integer			not null,
-sex			varchar(10)		check(sex in('Female','Male','X')),
-CONSTRAINT Fan_pk PRIMARY KEY (fan_ID)  
-CONSTRAINT Fan_fk FOREIGN KEY (ticket_ID)
-	REFERENCES Ticket(ticket_ID)
-); 
-
-	CREATE TABLE Ticket ( 
-ticket_ID		integer 		not null, 
-event_ID		integer		 	not null,
-price			varchar(100)		not null, 	
-ticket_type		varchar(100)		not null,
-CONSTRAINT Ticket_pk PRIMARY KEY (ticket_ID)
-CONSTRAINT Ticket_fk FOREIGN KEY (event_ID)
-	REFERENCES Event(event_ID)
-); 
-
-
-
 INSERT INTO Movies VALUES
 ('11111','Pride and Prejudice', 'Romance/Drama', '2005', 'Joe Wright', 'Deborah Moggach, Jane Austin', 'Keira Knightly, Matthew Macfadyen, Brenda Blethyn', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE%40._V1_.jpg&tbnid=4A64fnrdooeBKM&vet=12ahUKEwiRs8_g5oD-AhVa57sIHb8zCAYQMygAegUIARC0AQ..i&imgrefurl=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0414387%2F&docid=FKaMntBgSmADOM&w=2175&h=3226&q=pride%20and%20prejudice%20film&ved=2ahUKEwiRs8_g5oD-AhVa57sIHb8zCAYQMygAegUIARC0AQ', 'https://www.youtube.com/watch?v=Ur_DIHs92NM', 'In het landelijke Engeland aan het einde van de achttiende eeuw worden de vijf zusjes Bennet door hun moeder opgevoed met één enkel doel voor ogen: een geschikte man vinden en trouwen. De koppige Elizabeth is het hier echter niet geheel mee eens.', '29 feb', '16:00');
 

@@ -52,13 +52,6 @@ fetch('http://localhost:8026/tp')
             }
             
         });
-
-        var bla = document.getElementsByClassName('film__title');
-        var pic = document.getElementsByClassName('film__poster');
-        for(var i = 0; i < bla.length; i++){
-            bla[i].textContent = data[i].title;
-            pic[i].src = data[i].poster;
-        }
         
         //buttons for pagination
         var overview = document.getElementsByClassName('films-overview__films')[0];
@@ -156,7 +149,7 @@ fetch('http://localhost:8026/tp')
         window.addEventListener('load', registerEvents, false);
     })
     .catch(err => console.log(err));
-    
+
 fetch('http://localhost:8026/m')
     .then(res => res.json())
     .then(data => {

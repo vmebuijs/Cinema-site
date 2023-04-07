@@ -1,23 +1,9 @@
-// var body = document.getElementsByClassName('film-body')[0];
-// var footer = document.getElementsByClassName('footer')[0];
-// var texto = document.createElement('p');
-// var textn = document.createTextNode('hgfdsa');
-
-
-// texto.appendChild(textn);
-
-// texto.style.fontSize = '50px';
-// texto.style.marginTop = '200px';
-
-// body.insertBefore(texto, footer);
-var body = document.getElementsByClassName('film-body')[0];
-var firstScript = document.getElementsByClassName('first-script')[0];
-
-
 fetch('http://localhost:8026/m')
     .then(res => res.json())
     .then(data => {
         //Creating the headers
+        var body = document.getElementsByClassName('film-body')[0];
+
         //Desktop version
         var desktopHeader = document.createElement('header');
         desktopHeader.classList.add('header--desktop');
@@ -136,6 +122,26 @@ fetch('http://localhost:8026/m')
         menu.append(closeMenu, menuNav);
         mobileHeader.append(logo, openMenu, menu);
 
+
+        //The footer
+        var footer = document.createElement('footer');
+        footer.classList.add('footer');
+        var footerLink1 = document.createElement('a');
+        footerLink1.classList.add('footer__link');
+        footerLink1.setAttribute('href', '#');
+        footerLink1.textContent = 'Top of the page';
+        var footerLink2 = document.createElement('a');
+        footerLink2.classList.add('footer__link');
+        footerLink2.setAttribute('href', 'index.html');
+        footerLink2.textContent = 'Home';
+        var footerLink3 = document.createElement('a');
+        footerLink3.classList.add('footer__link');
+        footerLink3.setAttribute('href', 'account.html');
+        footerLink3.textContent = 'Account';
+
+        footer.append(footerLink1, footerLink2, footerLink3);
+
+
         //The content regarding the clicked film
         var filmInfo = document.createElement('article');
         var filmInfoPoster = document.createElement('img');
@@ -160,27 +166,8 @@ fetch('http://localhost:8026/m')
         filmInfoText.appendChild(filmTrailer);
         filmInfo.append(filmInfoPoster, filmInfoText);
 
-        //The footer
-        var footer = document.createElement('footer');
-        footer.classList.add('footer');
-        var footerLink1 = document.createElement('a');
-        footerLink1.classList.add('footer__link');
-        footerLink1.setAttribute('href', '#');
-        footerLink1.textContent = 'Top of the page';
-        var footerLink2 = document.createElement('a');
-        footerLink2.classList.add('footer__link');
-        footerLink2.setAttribute('href', 'index.html');
-        footerLink2.textContent = 'Home';
-        var footerLink3 = document.createElement('a');
-        footerLink3.classList.add('footer__link');
-        footerLink3.setAttribute('href', 'account.html');
-        footerLink3.textContent = 'Account';
-
-        footer.append(footerLink1, footerLink2, footerLink3);
-
+    
         body.append(desktopHeader, mobileHeader, filmInfo, footer);
-
-        //Creating the elements on the page
 
         //Getting the id from the url
         const querystring = window.location.search;
@@ -197,6 +184,6 @@ fetch('http://localhost:8026/m')
         filmInfoText.children[4].textContent = data[id].writers;
         filmInfoText.children[5].textContent = data[id].plot;
         filmInfoText.children[6].textContent = data[id].stars;
-        filmInfoText.children[7].setAttribute('src', 'https://www.youtube.com/embed/Ur_DIHs92NM');       
+        filmInfoText.children[7].setAttribute('src', data[id].trailer);       
     })    
     .catch(err => console.log(err));
