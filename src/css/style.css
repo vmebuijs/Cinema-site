@@ -257,7 +257,8 @@ body{
 
 /* login page */
 .login-container,
-.register-container{
+.register-container,
+.ordering-container{
     background-color: rgb(32, 56, 100);
     color: white;
     height: fit-content;
