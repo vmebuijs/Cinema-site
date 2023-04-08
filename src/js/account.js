@@ -14,3 +14,10 @@
         ordHistory.style.display = 'block';
         accInfo.style.display = 'none';
     });
+
+    // fetch('http://localhost:8026/login')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch(err => console.log(err));
