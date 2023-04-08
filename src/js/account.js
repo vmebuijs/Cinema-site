@@ -15,9 +15,58 @@
         accInfo.style.display = 'none';
     });
 
-    // fetch('http://localhost:8026/login')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     .catch(err => console.log(err));
+
+    fetch('http://localhost:8026/log')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            let nameN = document.getElementsByClassName("account-information__data")[0].childNodes[1].childNodes[5];
+            let username = document.getElementsByClassName("account-information__data")[0].childNodes[3].childNodes[5];
+            let email = document.getElementsByClassName("account-information__data")[0].childNodes[5].childNodes[5];
+            let password = document.getElementsByClassName("account-information__data")[0].childNodes[7].childNodes[5];
+            let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
+            let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
+
+            nameN.textContent = data[0].name;
+            username.textContent = data[0].username;
+            email.textContent = data[0].email;
+            password.textContent = data[0].password;
+            address.textContent = data[0].adress;
+            card.textContent = data[0].creditcard;
+            
+
+        })
+        .catch(err => console.log(err));
+
+/**<section class="account-information__data">
+                    <div class="user-data">
+                        <p class="user-data__type">Name</p>
+                        <hr>
+                        <p>John Doe</p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Username</p>
+                        <hr>
+                        <p>johndoe123</p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">E-mail</p>
+                        <hr>
+                        <p>johndoe@gmail.com</p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Password</p>
+                        <hr>
+                        <p>Test1234567890</p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Address</p>
+                        <hr>
+                        <p>Honeymoon St. 1, 3456AB, StarCity </p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Credit card</p>
+                        <hr>
+                        <p>AB 123 456 789</p>
+                    </div>
+                </section> */

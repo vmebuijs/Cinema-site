@@ -55,11 +55,11 @@ const sqlite3 = require('sqlite3').verbose();
 
 
 
-const db = new sqlite3.Database('html/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+const db = new sqlite3.Database('src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message); // html/ ervoor
 });
 
-const udb = new sqlite3.Database('html/src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+const udb = new sqlite3.Database('src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message);
 });
 
@@ -110,23 +110,28 @@ app.get("/m", (req, res) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post("/login.html", async (req, res) => {  //group26/login
+app.post("/login", async (req, res) => {  //group26/login
   try{
-    let username = req.body.uname;
-    let password = req.body.psw;
+    let user = req.body.uname;
+    let pass = req.body.psw;
     isql = `SELECT * FROM Account WHERE username = ? AND password = ?`
-    udb.all(isql, [username, password], (err, rij) => {
+    udb.all(isql, [user, pass], (err, rij) => {
       if(err) return console.error(err.message);
       console.log(rij); 
       if(rij[0] == null){
-        console.log('password or username is incorrect'); 
-        res.redirect('/group26/login.html') //group26/login.html
-      }else{
-        res.redirect('/account.html') //group26/login.html
+        console.log('password or username is incorrect');
+        res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
+      } else{
+        console.log('correct');
+        res.redirect('http://127.0.0.1:5500/account.html') //group26/login.html
       }
+      
+      app.get("/log", (req, res) => {
+        res.json(rij);
+      })
       });
   }catch{
-    res.redirect('/group/login.html') //group26/login.html
+    // res.redirect('/login') //group26/login.html
   }
   
   
@@ -138,7 +143,7 @@ app.post("/login.html", async (req, res) => {  //group26/login
 //   if(err) return console.error(err.message);
 // })
 
-app.post("/group26/register.html", async (req, res) => {  //group26/register.html
+app.post("/register", async (req, res) => {  //group26/register.html
   try{
     let hashedPassword = await bcrypt.hash(req.body.pwd, 10);
     let name = req.body.name;
@@ -151,9 +156,9 @@ app.post("/group26/register.html", async (req, res) => {  //group26/register.htm
       if(err) return console.error(err.message);
       console.log("hoi");
     });
-    res.redirect('/login.html') //group26/login.html
+    res.redirect('/login') //group26/login.html
   }catch{
-    res.redirect('/register.html') //group26/register.html
+    res.redirect('/register') //group26/register.html
   }
   
   });
@@ -184,7 +189,7 @@ app.post("/group26/register.html", async (req, res) => {  //group26/register.htm
 // })
 
 app.use(express.static('html'));
-// app.use(express.static('src'));
+app.use(express.static('src'));
 
 
 app.listen(port, () => {

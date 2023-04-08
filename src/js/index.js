@@ -1,4 +1,4 @@
-fetch('tp') //http://localhost:8026/tp
+fetch('http://localhost:8026/tp') //http://localhost:8026/tp
     .then(res => res.json())
     .then(data => {
         console.log(data);
@@ -171,7 +171,7 @@ fetch('tp') //http://localhost:8026/tp
         window.addEventListener('load', registerEvents, false);
     })
     .catch(err => console.log(err));
-    fetch('m')//http://localhost:8026/m
+    fetch('http://localhost:8026/m')//http://localhost:8026/m
     .then(res => res.json())
     .then(data => {
         console.log(data)
@@ -185,6 +185,6 @@ fetch('tp') //http://localhost:8026/tp
     }
 )
     .catch(err => console.log(err));
-  
+
     // on click picture index + 1, id van de foreach is de picture index
 
