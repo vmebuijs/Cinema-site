@@ -145,7 +145,7 @@ app.post("/login", async (req, res) => {  //group26/login
 
 app.post("/register", async (req, res) => {  //group26/register.html
   try{
-    let hashedPassword = await bcrypt.hash(req.body.pwd, 10);
+    let hashedPassword = req.body.psw;
     let name = req.body.name;
     let email = req.body.email;
     let address = req.body.address;
@@ -156,9 +156,9 @@ app.post("/register", async (req, res) => {  //group26/register.html
       if(err) return console.error(err.message);
       console.log("hoi");
     });
-    res.redirect('/login') //group26/login.html
+    res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
   }catch{
-    res.redirect('/register') //group26/register.html
+    res.redirect('http://127.0.0.1:5500/register.html') //group26/register.html
   }
   
   });
