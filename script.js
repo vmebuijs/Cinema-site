@@ -24,6 +24,11 @@ const port = 8026;
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 
+// function logger(req, res, next) {
+//   console.log('%s %s', req.method, req.url);
+//   next();
+// }
+// app.use(logger);
 var bodyParser = require("body-parser");
 const { json } = require('express');
 const sqlite3 = require('sqlite3').verbose();
@@ -50,11 +55,11 @@ const sqlite3 = require('sqlite3').verbose();
 
 
 
-const db = new sqlite3.Database('src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+const db = new sqlite3.Database('html/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message); // html/ ervoor
 });
 
-const udb = new sqlite3.Database('src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+const udb = new sqlite3.Database('html/src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message);
 });
 
@@ -105,25 +110,25 @@ app.get("/m", (req, res) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post("/login", (req, res) => {  //group26/login
-  let username = req.body.uname;
-  let password = req.body.psw;
-  isql = `SELECT password FROM Account WHERE username = ?`
-  udb.all(isql, [username], (err, rij) => {
-    if(err) return console.error(err.message);
-    console.log(rij); 
-    console.log(`[ { password: '${password}' } ]`);
-    res.status(200).send(rij);   
-
-    if(rij == `[ { password: '${password}' } ]`){
-      console.log('success');
-      res.status(200).send("succes");
-    }else{
-      console.log('fail');
-      res.status(200).send("fail");
-    }
-  });
- 
+app.post("/login.html", async (req, res) => {  //group26/login
+  try{
+    let username = req.body.uname;
+    let password = req.body.psw;
+    isql = `SELECT * FROM Account WHERE username = ? AND password = ?`
+    udb.all(isql, [username, password], (err, rij) => {
+      if(err) return console.error(err.message);
+      console.log(rij); 
+      if(rij[0] == null){
+        console.log('password or username is incorrect'); 
+        res.redirect('/group26/login.html') //group26/login.html
+      }else{
+        res.redirect('/account.html') //group26/login.html
+      }
+      });
+  }catch{
+    res.redirect('/group/login.html') //group26/login.html
+  }
+  
   
 });
 
@@ -133,7 +138,7 @@ app.post("/login", (req, res) => {  //group26/login
 //   if(err) return console.error(err.message);
 // })
 
-app.post("/register", async (req, res) => {  //group26/register.html
+app.post("/group26/register.html", async (req, res) => {  //group26/register.html
   try{
     let hashedPassword = await bcrypt.hash(req.body.pwd, 10);
     let name = req.body.name;
@@ -146,9 +151,9 @@ app.post("/register", async (req, res) => {  //group26/register.html
       if(err) return console.error(err.message);
       console.log("hoi");
     });
-    res.redirect('/login') //group26/login.html
+    res.redirect('/login.html') //group26/login.html
   }catch{
-    res.redirect('/register') //group26/register.html
+    res.redirect('/register.html') //group26/register.html
   }
   
   });
@@ -179,7 +184,7 @@ app.post("/register", async (req, res) => {  //group26/register.html
 // })
 
 app.use(express.static('html'));
-app.use(express.static('src'));
+// app.use(express.static('src'));
 
 
 app.listen(port, () => {

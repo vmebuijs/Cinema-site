@@ -1,4 +1,4 @@
-fetch('http://localhost:8026/tp')
+fetch('tp') //http://localhost:8026/tp
     .then(res => res.json())
     .then(data => {
         console.log(data);
@@ -171,7 +171,7 @@ fetch('http://localhost:8026/tp')
         window.addEventListener('load', registerEvents, false);
     })
     .catch(err => console.log(err));
-    fetch('http://localhost:8026/m')
+    fetch('m')//http://localhost:8026/m
     .then(res => res.json())
     .then(data => {
         console.log(data)
