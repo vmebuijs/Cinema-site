@@ -71,7 +71,10 @@ const udb = new sqlite3.Database('src/db/users.sqlite', sqlite3.OPEN_READWRITE, 
 
 
 
-     
+
+// udb.run(`DELETE FROM  Account  WHERE email = 'h@n.nl'`, (err) => {
+//         if(err) return console.error(err.message); 
+// });
 
 app.use(cors());
 // app.use((req, res, next) => {
@@ -90,7 +93,7 @@ app.get("/tp", (req, res) => {
   db.all(sql, [], (err, rows) => {
       if(err) return console.error(err.message);
       rows.forEach(row => {
-          console.log(row);
+          // console.log(row);
       });    
       res.status(200).json(rows);  
   });
@@ -101,7 +104,7 @@ app.get("/m", (req, res) => {
   db.all(sql, [], (err, rows) => {
       if(err) return console.error(err.message);
       rows.forEach(row => {
-          console.log(row);
+          // console.log(row);
       });    
       res.status(200).json(rows);  
   });
@@ -163,8 +166,10 @@ app.post("/register", async (req, res) => {  //group26/register.html
     res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
       }
     });
-  }catch{
+  }catch(err){
+    console.log(err);
     res.redirect('http://127.0.0.1:5500/register.html') //group26/register.html
+    
   }
   
   });
