@@ -2,9 +2,6 @@
 
 //available movies
 var movies = document.getElementById("movielist");
-var movielist = ["movie1","movie2","movie3","movie4"];
-movieID = [1,2,3,4];
-
 var movielist2 = [
     ["movie1",1,["1 augustus","1 september"],["11:00","21:00"]],
     ["movie2",2,["2 augustus","2 september"],["12:00","22:00"]],
@@ -66,7 +63,7 @@ function showMovieTimes() {
     var movies = document.getElementById("movielist");
     var selectedMovie = movies.options[movies.selectedIndex].value;
 
-    if(document.getElementById("datelist") == null){
+    if(document.getElementById("timelist") == null){
         var location = document.getElementsByClassName("ordering-container")[0];
         var times = document.createElement("div");
         var timess = document.createElement("select");
@@ -88,17 +85,17 @@ function showMovieTimes() {
 
     }
 
-
     times.appendChild(timess);
     location.appendChild(times);
-
 
 }
 
 function removeOptions(dropdownlist) {
-    var i, list = dropdownlist.options.length - 1;
-    for(i = list; i >= 0; i--){
-        dropdownlist.remove(i);
+    if(dropdownlist!=null && dropdownlist.options!=null){
+        var i, list = dropdownlist.options.length - 1;
+        for(i = list; i >= 0; i--){
+            dropdownlist.remove(i);
+        }
     }
 }
 
@@ -107,7 +104,11 @@ function addOptions(selectedMovie,datess,nr) {
         var option = document.createElement("option");
         option.text = movielist2[selectedMovie-1][nr][i];
         option.value = movielist2[selectedMovie-1][1];
-        datess.add(option);
+        
+        if(datess!==null){
+            datess.add(option);
+        }
+        //datess.add(option);
     }
 }
 
