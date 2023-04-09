@@ -1,7 +1,7 @@
-fetch('http://localhost:8026/tp')
+fetch('http://localhost:8026/tp') //http://localhost:8026/tp
     .then(res => res.json())
     .then(data => {
-
+        console.log(data);
         const nextButton = document.getElementsByClassName('films-slideshow__button')[1];
         const previousButton = document.getElementsByClassName('films-slideshow__button')[0];
         const slide = document.getElementsByClassName('films-slideshow__poster')[0];
@@ -156,11 +156,21 @@ fetch('http://localhost:8026/tp')
         window.addEventListener('load', registerEvents, false);
     })
     .catch(err => console.log(err));
-    
-fetch('http://localhost:8026/m')
+
+    fetch('http://localhost:8026/m')//http://localhost:8026/m
     .then(res => res.json())
     .then(data => {
-
-    })
+        console.log(data)
+        // var ki = document.getElementsByTagName('h1');
+        // for(let dat of data){
+        //     ki.textContent = dat.title;
+        //     console.log(ki.textContent);
+        // }
+        // bla[i].textContent = data[i].title;
+        // pic[i].src = data[i].poster;
+    }
+)
     .catch(err => console.log(err));
+
+    // on click picture index + 1, id van de foreach is de picture index
 
