@@ -16,12 +16,15 @@ fetch('http://localhost:8026/m')
             let title = dat.title;
             let dates = dat.available_dates;
             let times = dat.available_times;
-            let movielist = [title, movieID,[dates,dates], [times,times]];
+
+            let dates2 = dates.split(",");
+            let times2 = times.split(",");
+
+            let movielist = [title, movieID,dates2, times2];
             movielist2.push(movielist);
         });
         
 
-        console.log(movielist2);
         var movies = document.getElementById("movielist");
         // var movielist2 = [
             
@@ -41,13 +44,13 @@ fetch('http://localhost:8026/m')
 
 
         movies.addEventListener("change", function() {
-                showMovieDates();
+            showMovieDates();
         });
 
         function showMovieDates() {
 
             var movies = document.getElementById("movielist");
-            var selectedMovie = movies.selectedIndex; //movies.options[movies.selectedIndex].value;
+            var selectedMovie = movies.selectedIndex;
 
             if(document.getElementById("datelist") == null){
                 var location = document.getElementsByClassName("ordering-container")[0];
@@ -58,10 +61,6 @@ fetch('http://localhost:8026/m')
                 datess.setAttribute("name","datelist");
                 datess.setAttribute("id","datelist");
 
-                console.log(selectedMovie);
-                console.log(datess);
-                console.log(movielist2);
-                console.log(movies.options[movies.selectedIndex].value);
                 addOptions(selectedMovie,datess,2);
 
             }
@@ -92,7 +91,7 @@ fetch('http://localhost:8026/m')
         function showMovieTimes() {
 
             var movies = document.getElementById("movielist");
-            var selectedMovie = movies.selectedIndex; //movies.options[movies.selectedIndex].value; // id of selected movie
+            var selectedMovie = movies.selectedIndex; 
 
             if(document.getElementById("timelist") == null){
                 var location = document.getElementsByClassName("ordering-container")[0];
@@ -136,14 +135,9 @@ fetch('http://localhost:8026/m')
                 option.text = movielist2[selectedMovie-1][nr][i];
                 option.value = movielist2[selectedMovie-1][1];
                 
-                //selectedMovie: id
-                //datess: html locatie
-                //nr: 2 voor data, 3 voor tijden
-
                 if(datess!==null){
                     datess.add(option);
                 }
-                //datess.add(option);
             }
         }
 
@@ -151,6 +145,7 @@ fetch('http://localhost:8026/m')
     })
     .catch(err => console.log(err));
 //available movies
+
 
 // var movies = document.getElementById("movielist");
 // var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
