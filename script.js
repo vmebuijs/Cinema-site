@@ -31,7 +31,6 @@ const sqlite3 = require('sqlite3').verbose();
 // var apiRouter = require('./router/secret_routing')
 // var staticPath = path.resolve(__dirname, 'static');
 
-
 //connect db
 
 // sql = 'UPDATE Movies SET poster = ? WHERE movie_ID = ?';
@@ -45,6 +44,7 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message);
 });
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
@@ -78,6 +78,7 @@ app.get("/m", function(req, res){
       res.status(200).json(rows);  
   });
 })
+
 
 // console.log(sql);
 

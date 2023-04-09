@@ -1,6 +1,6 @@
 {
   "main": "script.js",
-  "Access-Control-Allow-Origin" : "*",
+  "Access-Control-Allow-Origin": "*",
   "dependencies": {
     "ajax": "^0.0.4",
     "express": "^4.18.2",
