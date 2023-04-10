@@ -70,10 +70,10 @@ fetch('http://localhost:8026/m')
                 var datess = document.getElementById("datelist");
 
                 if(document.getElementById("timelist") != null){
-                    removeOptions(document.getElementById("timelist"));
+                    removeOptions(document.getElementById("timelist"),document.getElementById("submitButton"));
                     document.getElementById("timelist").remove();
                 }
-                removeOptions(document.getElementById("datelist"));
+                removeOptions(document.getElementById("datelist"),document.getElementById("submitButton"));
                 addOptions(selectedMovie,datess,2);
 
             }
@@ -110,22 +110,46 @@ fetch('http://localhost:8026/m')
                 var times = document.getElementsByClassName("times")[0];
                 var timess = document.getElementById("timelist");
 
-                removeOptions(timess);
+                removeOptions(timess,document.getElementById("submitButton"));
                 addOptions(selectedMovie,timess,3);
 
             }
+
+            timess.addEventListener("change", function() {
+                showSubmitButton();
+            });
 
             times.appendChild(timess);
             location.appendChild(times);
 
         }
 
-        function removeOptions(dropdownlist) {
+        function showSubmitButton() {
+            var location = document.getElementsByClassName("movie")[0];
+            
+            if (document.getElementById("submitButton") == null){
+                var submitButton = document.createElement("INPUT");
+                submitButton.setAttribute("type","submit");
+                submitButton.setAttribute("id","submitButton");
+                location.appendChild(submitButton);
+            }
+            else{
+                var submitButton = document.getElementById("submitButton");
+                submitButton.style.visibility = "visible";
+            }
+
+            
+        }
+
+        function removeOptions(dropdownlist,submit) {
             if(dropdownlist!=null && dropdownlist.options!=null){
                 var i, list = dropdownlist.options.length - 1;
                 for(i = list; i >= 0; i--){
                     dropdownlist.remove(i);
                 }
+            }
+            if (submit!=null){
+                submit.style.visibility="hidden";
             }
         }
 
