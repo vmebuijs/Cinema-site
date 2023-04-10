@@ -11,6 +11,7 @@ fetch('http://localhost:8026/m')
         
         let movielist2 = [];
         
+        //makes array in correct format from the data retrieved from the database
         data.forEach(dat => {
             let movieID = dat.movie_ID;
             let title = dat.title;
@@ -34,7 +35,7 @@ fetch('http://localhost:8026/m')
         //     ["movie4",4,["4 augustus","4 september"],["14:00","00:00"]]
         // ]
 
-
+        //adds all the movies to the first dropdownmenu
         for(var i = 0; i < movielist2.length; i++){
             var option = document.createElement("option");
             option.text = movielist2[i][0];
@@ -42,16 +43,19 @@ fetch('http://localhost:8026/m')
             movies.add(option);
         }
 
-
+        //adds evenlistener for changes in dropdownmenu
         movies.addEventListener("change", function() {
             showMovieDates();
         });
 
         function showMovieDates() {
 
+            //gets the selected movie
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.selectedIndex;
 
+            //if there is no datelist dropdown it will be created and the dates will be added, 
+            //else the datelist will be cleared and the correct dates will be added 
             if(document.getElementById("datelist") == null){
                 var location = document.getElementsByClassName("ordering-container")[0];
                 var dates = document.createElement("div");
@@ -61,12 +65,7 @@ fetch('http://localhost:8026/m')
                 datess.setAttribute("name","datelist");
                 datess.setAttribute("id","datelist");
 
-                //toevoegen lege optie
-                // var firstOption = document.createElement("option");
-                // firstOption.setAttribute("value","");
-
                 addOptions(selectedMovie,datess,2);
-
             }
             else{
                 var location = document.getElementsByClassName("ordering-container")[0];
@@ -82,21 +81,23 @@ fetch('http://localhost:8026/m')
 
             }
 
+            //adds evenlistener to the datelist dropdownmenu
             datess.addEventListener("change", function() {
                 showMovieTimes();
             });
 
             dates.appendChild(datess);
             location.appendChild(dates);
-
-
         }
 
         function showMovieTimes() {
 
+            //gets the selected movie
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.selectedIndex; 
 
+            //if there is no timelist dropdown it will be created and the times will be added, 
+            //else the timelist will be cleared and the correct times will be added 
             if(document.getElementById("timelist") == null){
                 var location = document.getElementsByClassName("ordering-container")[0];
                 var times = document.createElement("div");
@@ -119,6 +120,7 @@ fetch('http://localhost:8026/m')
 
             }
 
+            //adds evenlistener to the timelist dropdownmenu
             timess.addEventListener("change", function() {
                 showSubmitButton();
             });
@@ -131,6 +133,8 @@ fetch('http://localhost:8026/m')
         function showSubmitButton() {
             var location = document.getElementsByClassName("movie")[0];
             
+            //creates submit button if it doesn't exist
+            //else it will make the submit button visible
             if (document.getElementById("submitButton") == null){
                 var submitButton = document.createElement("INPUT");
                 submitButton.setAttribute("type","submit");
@@ -146,22 +150,27 @@ fetch('http://localhost:8026/m')
         }
 
         function removeOptions(dropdownlist,submit) {
+            //removes all items from given dropdownlist
             if(dropdownlist!=null && dropdownlist.options!=null){
                 var i, list = dropdownlist.options.length - 1;
                 for(i = list; i >= 0; i--){
                     dropdownlist.remove(i);
                 }
             }
+
+            //hides the submit button if it exists
             if (submit!=null){
                 submit.style.visibility="hidden";
             }
         }
 
         function addOptions(selectedMovie,datess,nr) {
+            //creates the empty option
             var firstOption = document.createElement("option");
             firstOption.setAttribute("value","");
             datess.add(firstOption);
 
+            //creates a option for each element in the movielist2 array
             for(var i = 0; i < movielist2[selectedMovie-1][nr].length; i++){
                 var option = document.createElement("option");
                 option.text = movielist2[selectedMovie-1][nr][i];
@@ -176,7 +185,6 @@ fetch('http://localhost:8026/m')
         
     })
     .catch(err => console.log(err));
-//available movies
 
 
 // var movies = document.getElementById("movielist");
@@ -189,40 +197,3 @@ fetch('http://localhost:8026/m')
 // var selectedTime = times.options[times.selectedIndex].text; //selected time
 
 
-// function onChange(args) {
-//     var plekje = document.getElementsByClassName("ordering-container");
-//     var text = document.createElement("p");
-//     if (args.isInteracted){
-//         text.innerText = "ja"
-//     }
-//     else {
-//         text.innerText = "nee"
-//     }
-//     plekje.add(text);
-// };
-
-
-// fetch('http://localhost:8026/m')
-//     .then(res => res.json())
-//     .then(data => {
-//          var movies = document.getElementById("movielist");
-//          var option = document.createElement("option");
-//          option.text ="kiwi";
-//          movies.add(option);
-
-//          test = data[0].movie_ID;
-//     })
-//     .catch(err => console.log(err));
-
-// function showCustomer(str) {
-//     if (str == "") {
-//       document.getElementById("txtHint").innerHTML = "";
-//       return;
-//     }
-//     const xhttp = new XMLHttpRequest();
-//     xhttp.onload = function() {
-//       document.getElementById("txtHint").innerHTML = this.responseText;
-//     }
-//     xhttp.open("GET", "getcustomer.php?q="+str);
-//     xhttp.send();
-//   }
