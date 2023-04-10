@@ -61,6 +61,10 @@ fetch('http://localhost:8026/m')
                 datess.setAttribute("name","datelist");
                 datess.setAttribute("id","datelist");
 
+                //toevoegen lege optie
+                // var firstOption = document.createElement("option");
+                // firstOption.setAttribute("value","");
+
                 addOptions(selectedMovie,datess,2);
 
             }
@@ -154,6 +158,10 @@ fetch('http://localhost:8026/m')
         }
 
         function addOptions(selectedMovie,datess,nr) {
+            var firstOption = document.createElement("option");
+            firstOption.setAttribute("value","");
+            datess.add(firstOption);
+
             for(var i = 0; i < movielist2[selectedMovie-1][nr].length; i++){
                 var option = document.createElement("option");
                 option.text = movielist2[selectedMovie-1][nr][i];
