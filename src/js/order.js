@@ -131,15 +131,21 @@ fetch('http://localhost:8026/m')
         }
 
         function showSubmitButton() {
-            var location = document.getElementsByClassName("movie")[0];
+            var location = document.getElementsByClassName("ordering-container")[0];
             
             //creates submit button if it doesn't exist
             //else it will make the submit button visible
             if (document.getElementById("submitButton") == null){
-                var submitButton = document.createElement("INPUT");
+                var submitButton = document.createElement("input");
                 submitButton.setAttribute("type","submit");
                 submitButton.setAttribute("id","submitButton");
+
                 location.appendChild(submitButton);
+
+                //var location2 = document.getElementsByClassName("ordering-container");
+                location.addEventListener("submit",function() {
+                    submitAction();
+                });
             }
             else{
                 var submitButton = document.getElementById("submitButton");
@@ -180,6 +186,12 @@ fetch('http://localhost:8026/m')
                     datess.add(option);
                 }
             }
+        }
+
+        function submitAction(event){
+            
+            //wat moet worden gebeurd bij submission
+
         }
 
         
