@@ -446,10 +446,10 @@ body{
 .ordering-container{
     background-color: rgb(32, 56, 100);
     color: white;
-    height: 15em;
+    height: 18em;
     max-width: 26em;
     min-width: fit-content;
-    margin: 7em auto 0px;
+    margin: 15em auto 0px;
     padding: 1.5em 2em;
     border: none;
     border-radius: 60px;
@@ -475,7 +475,7 @@ body{
     position: absolute;
     right: 40%;
     left: 40%;
-    top: 25em;
+    top: 38em;
 }
 
 /* media queries */
@@ -536,6 +536,6 @@ body{
 
     /* ticket ordering page */
     #submitButton{
-        top: 28em;
+        top: 42em;
     }
 }

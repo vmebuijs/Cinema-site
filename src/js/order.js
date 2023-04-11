@@ -26,14 +26,31 @@ fetch('http://localhost:8026/m')
         });
         
 
-        var movies = document.getElementById("movielist");
-        // var movielist2 = [
-            
+        var location = document.getElementsByClassName("ordering-container")[0];
+        
+        //creates the textlabel
+        var movieLabel = document.createElement("label");
+        movieLabel.setAttribute("id","label1");
+        movieLabel.appendChild(document.createTextNode("Choose your movie: "));
+        location.appendChild(movieLabel);
+
+        //creates the first dropdownmenu
+        var movies = document.createElement("select");
+        movies.setAttribute("name","movielist");
+        movies.setAttribute("id","movielist");
+        location.appendChild(movies);
+
+        // var movielist2 = [   
         //     ["movie1",1,["1 augustus","1 september"],["11:00","21:00"]],
         //     ["movie2",2,["2 augustus","2 september"],["12:00","22:00"]],
         //     ["movie3",3,["3 augustus","3 september"],["13:00","23:00"]],
         //     ["movie4",4,["4 augustus","4 september"],["14:00","00:00"]]
         // ]
+
+        //adds standard option to dropdownmenu
+        var firstOption = document.createElement("option");
+        firstOption.setAttribute("value","");
+        movies.add(firstOption);
 
         //adds all the movies to the first dropdownmenu
         for(var i = 0; i < movielist2.length; i++){
@@ -47,23 +64,17 @@ fetch('http://localhost:8026/m')
         movies.addEventListener("change", showMovieDates);
 
         function showMovieDates() {
-
-            //Ajax
-            // xhttp = new XMLHttpRequest();
-            // xhttp.onload = function() {
-                
-            // }
-            // xhttp.open("POST","");
-            // xhttp.send();
+            var location = document.getElementsByClassName("ordering-container")[0];
+            createLabel(location,"Choose your date: ");
 
             //gets the selected movie
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.selectedIndex;
 
+
             //if there is no datelist dropdown it will be created and the dates will be added, 
             //else the datelist will be cleared and the correct dates will be added 
             if(document.getElementById("datelist") == null){
-                var location = document.getElementsByClassName("ordering-container")[0];
                 var dates = document.createElement("div");
                 var datess = document.createElement("select");
 
@@ -74,7 +85,6 @@ fetch('http://localhost:8026/m')
                 addOptions(selectedMovie,datess,2);
             }
             else{
-                var location = document.getElementsByClassName("ordering-container")[0];
                 var dates = document.getElementsByClassName("dates")[0];
                 var datess = document.getElementById("datelist");
 
@@ -100,10 +110,12 @@ fetch('http://localhost:8026/m')
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.selectedIndex; 
 
+            var location = document.getElementsByClassName("ordering-container")[0];
+            createLabel(location,"Choose your time: ");
+
             //if there is no timelist dropdown it will be created and the times will be added, 
             //else the timelist will be cleared and the correct times will be added 
             if(document.getElementById("timelist") == null){
-                var location = document.getElementsByClassName("ordering-container")[0];
                 var times = document.createElement("div");
                 var timess = document.createElement("select");
 
@@ -115,7 +127,6 @@ fetch('http://localhost:8026/m')
 
             }
             else{
-                var location = document.getElementsByClassName("ordering-container")[0];
                 var times = document.getElementsByClassName("times")[0];
                 var timess = document.getElementById("timelist");
 
@@ -262,6 +273,12 @@ fetch('http://localhost:8026/m')
                 }
             }
 
+            //removes all labels excepts the first one
+            var labels = document.getElementsByClassName("labels");
+            for(var i=0;i<labels.length;i++){
+                labels[i].remove();
+            }
+
             //hides the submit button if it exists
             if (submit!=null){
                 submit.style.visibility="hidden";
@@ -287,6 +304,13 @@ fetch('http://localhost:8026/m')
                     datess.add(option);
                 }
             }
+        }
+
+        function createLabel(location, text) {
+            var movieLabel = document.createElement("label");
+            movieLabel.setAttribute("class","labels");
+            movieLabel.appendChild(document.createTextNode(text));
+            location.appendChild(movieLabel);
         }
 
         function submitAction(event){
