@@ -48,7 +48,12 @@ const sqlite3 = require('sqlite3').verbose();
 //app.use(express.static('src'));
 //app.use(express.static('html'));
 
+function logger(req, res, next){
+  console.log('%s %s', req.method, req.url);
+  next();
+}
 
+app.use(logger);
 
 
 
