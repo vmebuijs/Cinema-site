@@ -209,30 +209,42 @@ fetch('http://localhost:8026/m')
             
         }
 
-        document.getElementById('ordering-container').addEventListener('submit', post);
+        // showSubmitButton();
+        
+        // console.log(submitButton);
+        // submitButton.addEventListener('click', post);
+        var location = document.getElementsByClassName("ordering-container")[0].addEventListener('submit', postt);
+        // document.getElementById('button1').addEventListener('click', post);
+       
 
-        function post(e){
+        function postt(e){
             e.preventDefault();
 
-            //gets selected movie, date and time
+            // gets selected movie, date and time
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
 
-            var dates = document.getElementById("datelist");
-            var selectedDate = dates.options[dates.selectedIndex].text; //selected date
+            // var dates = document.getElementById("datelist");
+            // var selectedDate = dates.options[dates.selectedIndex].text; //selected date
 
-            var times = document.getElementById("timelist");
-            var selectedTime = times.options[times.selectedIndex].text; //selected time
+            // var times = document.getElementById("timelist");
+            // var selectedTime = times.options[times.selectedIndex].text; //selected time
 
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'test.php',true);
+            xhr.open('POST', 'test.php');
             xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 
             xhr.onload = function(){
                 console.log(this.responseText);
             }
 
-            xhr.send(selectedMovie);
+            xhr.send('selectedMovie=' + encodeURIComponent(selectedMovie));
+            // xhr.open('GET', 'test.php', true);
+            // xhr.onload = function(){
+            //     console.log(this.responseText);
+            // }
+
+            // xhr.send();
         }
 
         function removeOptions(dropdownlist,submit,tickets) {

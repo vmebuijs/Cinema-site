@@ -257,8 +257,7 @@ body{
 
 /* login page */
 .login-container,
-.register-container,
-.ordering-container{
+.register-container{
     background-color: rgb(32, 56, 100);
     color: white;
     height: fit-content;
@@ -443,6 +442,42 @@ body{
     margin: 0px auto;
 }
 
+/*ticket ordering page*/
+.ordering-container{
+    background-color: rgb(32, 56, 100);
+    color: white;
+    height: 15em;
+    max-width: 26em;
+    min-width: fit-content;
+    margin: 7em auto 0px;
+    padding: 1.5em 2em;
+    border: none;
+    border-radius: 60px;
+    text-align: center;
+}
+
+#movielist,
+#datelist,
+#timelist{
+    min-width:fit-content;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 1em 0.5em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#submitButton{
+    padding: 1em 0.5em;
+    position: absolute;
+    right: 40%;
+    left: 40%;
+    top: 25em;
+}
+
 /* media queries */
 /* dekstop specifications */
 @media screen and (min-width: 767px){
@@ -497,5 +532,10 @@ body{
         max-height: 300px;
         width: auto;
         margin: 0px auto 1em;
+    }
+
+    /* ticket ordering page */
+    #submitButton{
+        top: 28em;
     }
 }
