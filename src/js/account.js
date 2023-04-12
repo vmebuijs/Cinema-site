@@ -19,6 +19,8 @@
     fetch('http://localhost:8026/log')
         .then(res => res.json())
         .then(data => {
+
+            
             console.log(data);
             let nameN = document.getElementsByClassName("account-information__data")[0].childNodes[1].childNodes[5];
             let username = document.getElementsByClassName("account-information__data")[0].childNodes[3].childNodes[5];
@@ -27,13 +29,68 @@
             let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
             let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
 
-            nameN.textContent = data[0].name;
-            username.textContent = data[0].username;
-            email.textContent = data[0].email;
-            password.textContent = data[0].password;
-            address.textContent = data[0].adress;
-            card.textContent = data[0].creditcard;
             
+            let log = false;
+            let login = document.getElementsByClassName("nav__link")[1];
+            console.log(login);
+            console.log(login.childNodes[0]);
+            let butt = document.getElementsByClassName("login__button").childNodes[0];
+            butt.addEventListener('submit', loggedIN);
+            console.log(nameN.textContent);
+            function loggedIN (){
+                    log = true;
+                    login.childNodes[0].textContent="Log out";
+                nameN.textContent = data[0].name;
+                username.textContent = data[0].username;
+                email.textContent = data[0].email;
+                password.textContent = data[0].password;
+                address.textContent = data[0].adress;
+                card.textContent = data[0].creditcard;    
+            }
+            
+            if(log==false){
+                login.childNodes[0].textContent="Log in";
+                nameN = '';
+                username = '';
+                email = '';
+                password = '';
+                address = '';
+                card = '';  
+            }
+            
+            if(log == true){
+                login.childNodes[0].textContent="Log out";
+                nameN.textContent = data[0].name;
+                username.textContent = data[0].username;
+                email.textContent = data[0].email;
+                password.textContent = data[0].password;
+                address.textContent = data[0].adress;
+                card.textContent = data[0].creditcard;              
+            }
+            
+            // if(nameN.textContent == ''){
+            //     login.childNodes[0].textContent="Log out";
+            //     nameN.textContent = data[0].name;
+          //     use                 
+            // }
+            
+            /*
+            var loggedin = false;
+            
+            if(!loggedin){
+                window.location = 'login.html'; 
+            }
+            else if (loggedin){
+                login.childNodes[0].textContent="Log out";
+                nameN.textContent = data[0].name;
+                username.textContent = data[0].username;
+                email.textContent = data[0].email;
+                password.textContent = data[0].password;
+                address.textContent = data[0].adress;
+                card.textContent = data[0].creditcard;
+            }
+
+             */
 
         })
         .catch(err => console.log(err));

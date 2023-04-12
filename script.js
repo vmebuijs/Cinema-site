@@ -229,6 +229,7 @@ app.post("/register", async (req, res) => {  //group26/register.html
 //   express.response.status(404).send("page not found");
 // })
 
+
 app.use(express.static('html'));
 app.use(express.static('src'));
 

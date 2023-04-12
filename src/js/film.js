@@ -26,8 +26,8 @@ fetch('http://localhost:8026/m')
         nav.classList.add('nav');
         var navLink1 = document.createElement('a');
         navLink1.classList.add('nav__link');
-        navLink1.setAttribute('href', '#');
-        navLink1.textContent = 'Films';
+        navLink1.setAttribute('href', 'order.html');
+        navLink1.textContent = 'Order';
         var navLink2 = document.createElement('a');
         navLink2.classList.add('nav__link');
         navLink2.setAttribute('href', 'login.html');
@@ -102,8 +102,8 @@ fetch('http://localhost:8026/m')
         menuLink1.textContent = 'Home';
         var menuLink2 = document.createElement('a');
         menuLink2.classList.add('menu__item');
-        menuLink2.setAttribute('href', '#');
-        menuLink2.textContent = 'Films';
+        menuLink2.setAttribute('href', 'order.html');
+        menuLink2.textContent = 'Order';
         var menuLink3 = document.createElement('a');
         menuLink3.classList.add('menu__item');
         menuLink3.setAttribute('href', 'login.html');
@@ -138,8 +138,12 @@ fetch('http://localhost:8026/m')
         footerLink3.classList.add('footer__link');
         footerLink3.setAttribute('href', 'account.html');
         footerLink3.textContent = 'Account';
+        var footerLink4 = document.createElement('a');
+        footerLink4.classList.add('footer__link');
+        footerLink4.setAttribute('href', 'order.html');
+        footerLink4.textContent = 'Order';
 
-        footer.append(footerLink1, footerLink2, footerLink3);
+        footer.append(footerLink1, footerLink2, footerLink3, footerLink4);
 
 
         //The content regarding the clicked film
