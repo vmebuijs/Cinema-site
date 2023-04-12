@@ -86,7 +86,10 @@ const udb = new sqlite3.Database('src/db/users.sqlite', sqlite3.OPEN_READWRITE, 
 
 
 
-     
+
+// udb.run(`DELETE FROM  Account  WHERE email = 'h@n.nl'`, (err) => {
+//         if(err) return console.error(err.message); 
+// });
 
 app.use(cors());
 // app.use((req, res, next) => {
@@ -121,7 +124,9 @@ app.get("/m", (req, res) => {
       res.status(200).json(rows);  
   });
 })
-
+// app.get('/films.html', (req, res)=>{
+//   res.render('http://127.0.0.1:5500/films.html');
+// })
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -149,10 +154,7 @@ app.post("/login", async (req, res) => {  //group26/login
     // res.redirect('/login') //group26/login.html
   }
   
-  
 });
-
-
 
 // udb.run("INSERT INTO Account VALUES ('1001','Valérie','Valerie3@gmail.com', 'lasseslaan 45', '2203', 'ilovetayler_34', 'ebdiuefj!#')", (err) => {
 //   if(err) return console.error(err.message);
@@ -166,17 +168,40 @@ app.post("/register", async (req, res) => {  //group26/register.html
     let address = req.body.address;
     let creditcard = req.body.credit;
     let username = req.body.uname;
-    usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
-    udb.run(usql, [name, email, address, creditcard, username, hashedPassword], (err) => {
+    ansql = 'SELECT * FROM Account WHERE username = ?' // checks if the username already excists in the database
+    udb.all(ansql, [username], (err, names) => {
       if(err) return console.error(err.message);
-      console.log("hoi");
+      if(names[0] != null){
+        console.log('username already excists');
+        res.redirect('http://127.0.0.1:5500/register.html')
+      } else{ // if not then an row is added to the database
+        usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
+        udb.run(usql, [name, email, address, creditcard, username, hashedPassword], (err) => {
+          if(err) return console.error(err.message);
+          console.log("hoi");
     });
     res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
-  }catch{
+      }
+    });
+  }catch(err){
+    console.log(err);
     res.redirect('http://127.0.0.1:5500/register.html') //group26/register.html
+    
   }
   
   });
+
+
+  var join = require('path').join;
+  var staticPath = join(__dirname, "public/html");
+
+  app.use(express.static(staticPath));
+  app.get('order.js', function (req, res) {
+    res.send(req.body.value);
+    console.log(staticPath);
+  })
+
+
   
 // });
 // app.get("/", (req, res) => {

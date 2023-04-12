@@ -31,7 +31,7 @@
 // })
 
 // delete data
-// sql = 'DELETE FROM Movies WHERE movie_ID = ?';
+// sql = 'DELETE FROM Account WHERE username = ?';
 // db.run(sql, [''], (err) => {
 //         if(err) return console.error(err.message); 
 // });
