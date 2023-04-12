@@ -1,10 +1,3 @@
-//get account_ID
-
-
-
-// connect database
-
-// create table
 fetch('http://localhost:8026/m')
     .then(res => res.json())
     .then(data => {
@@ -209,31 +202,6 @@ fetch('http://localhost:8026/m')
             
         }
 
-        document.getElementById('ordering-container').addEventListener('submit', post);
-
-        function post(e){
-            e.preventDefault();
-
-            //gets selected movie, date and time
-            var movies = document.getElementById("movielist");
-            var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
-
-            var dates = document.getElementById("datelist");
-            var selectedDate = dates.options[dates.selectedIndex].text; //selected date
-
-            var times = document.getElementById("timelist");
-            var selectedTime = times.options[times.selectedIndex].text; //selected time
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'test.php',true);
-            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-
-            xhr.onload = function(){
-                console.log(this.responseText);
-            }
-
-            xhr.send(selectedMovie);
-        }
 
         function removeOptions(dropdownlist,submit,tickets) {
             //removes all items from given dropdownlist
@@ -283,18 +251,42 @@ fetch('http://localhost:8026/m')
 
         }
 
+        function myLogin(e){
+            var movies = document.getElementById("movielist");
+            var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
+
+            // var dates = document.getElementById("datelist");
+            // var selectedDate = dates.options[dates.selectedIndex].text; //selected date
+
+            // var times = document.getElementById("timelist");
+            // var selectedTime = times.options[times.selectedIndex].text; //selected time
+            //+ "&dates=" + selectedDate + "&times=" + selectedTime
+
+            var url = "order.js?movies=" + selectedMovie;
+
+            get(url);
+            e.preventDefault();
+        }
+        myLogin();
+        var con = document.getElementById('ordering');
+        con.addEventListener('submit', myLogin);
+        console.log(url);
+
+        function get(url){
+            console.log(url);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function(){
+                console.log(this.responseText);
+            }
+
+            xhr.send();
+        }
         
     })
     .catch(err => console.log(err));
 
-
-// var movies = document.getElementById("movielist");
-// var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
-
-// var dates = document.getElementById("datelist");
-// var selectedDate = dates.options[dates.selectedIndex].text; //selected date
-
-// var times = document.getElementById("timelist");
-// var selectedTime = times.options[times.selectedIndex].text; //selected time
 
 

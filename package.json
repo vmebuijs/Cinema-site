@@ -9,6 +9,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "passport": "^0.6.0",
+    "php": "^1.0.2",
     "sqlite3": "^5.1.6"
   },
   "scripts": {

@@ -109,7 +109,9 @@ app.get("/m", (req, res) => {
       res.status(200).json(rows);  
   });
 })
-
+// app.get('/films.html', (req, res)=>{
+//   res.render('http://127.0.0.1:5500/films.html');
+// })
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -173,6 +175,18 @@ app.post("/register", async (req, res) => {  //group26/register.html
   }
   
   });
+
+
+  var join = require('path').join;
+  var staticPath = join(__dirname, "public/html");
+
+  app.use(express.static(staticPath));
+  app.get('order.js', function (req, res) {
+    res.send(req.body.value);
+    console.log(staticPath);
+  })
+
+
   
 // });
 // app.get("/", (req, res) => {
