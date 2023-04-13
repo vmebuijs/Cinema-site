@@ -7,6 +7,7 @@ fetch('http://localhost:8026/m')
         
         //makes array in correct format from the data retrieved from the database
         data.forEach(dat => {
+            //array format: [[movie_titel,movie_ID,[dates],[times]],etc]
             let movieID = dat.movie_ID;
             let title = dat.title;
             let dates = dat.available_dates;
@@ -33,13 +34,6 @@ fetch('http://localhost:8026/m')
         movies.setAttribute("id","movielist");
         location.appendChild(movies);
 
-        // var movielist2 = [   
-        //     ["movie1",1,["1 augustus","1 september"],["11:00","21:00"]],
-        //     ["movie2",2,["2 augustus","2 september"],["12:00","22:00"]],
-        //     ["movie3",3,["3 augustus","3 september"],["13:00","23:00"]],
-        //     ["movie4",4,["4 augustus","4 september"],["14:00","00:00"]]
-        // ]
-
         //adds standard option to dropdownmenu
         var firstOption = document.createElement("option");
         firstOption.setAttribute("value","");
@@ -57,13 +51,12 @@ fetch('http://localhost:8026/m')
         movies.addEventListener("change", showMovieDates);
 
         function showMovieDates() {
-            var location = document.getElementsByClassName("ordering-container")[0];
-            createLabel(location,"Choose your date: ");
-
             //gets the selected movie
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.selectedIndex;
 
+            var location = document.getElementsByClassName("ordering-container")[0];
+            createLabel(location,"Choose your date: ");
 
             //if there is no datelist dropdown it will be created and the dates will be added, 
             //else the datelist will be cleared and the correct dates will be added 
@@ -135,7 +128,6 @@ fetch('http://localhost:8026/m')
             else{
 
 //                var location = document.getElementsByClassName("ordering-container")[0];
-
                 var times = document.getElementsByClassName("times")[0];
                 var timess = document.getElementById("timelist");
 
@@ -265,6 +257,9 @@ fetch('http://localhost:8026/m')
             // }
 
             // xhr.send();
+
+            //moet account id opvragen, als de gebruiker niet is ingelogd moet deze geen tickets kunnen kopen
+            //bij submit is movieID en datum al opgeslagen dus alleen tijdslot en accountID moeten worden toegevoegd.
         }
 
         function removeOptions(dropdownlist,submit,tickets) {
