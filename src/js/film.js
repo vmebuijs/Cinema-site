@@ -1,14 +1,21 @@
+/*
+    This file creates the contents of the film page, which is only generated/ visible when a poster or title on the index page is clicked.
+    First the database is fetched. Then the headers and the footer are created in such a manner that they are identical to those on other pages. 
+    After that, the film page specific elements are created and everything is added to the body of the film html page.
+    Lastly, the contents of the film page elements are set based on which film was clicked.
+*/
+
 fetch('http://localhost:8026/m')
     .then(res => res.json())
     .then(data => {
-        //Creating the headers
+        //Getting the body of the film html file
         var body = document.getElementsByClassName('film-body')[0];
 
-        //Desktop version
+        //Creation of the desktop header
         var desktopHeader = document.createElement('header');
         desktopHeader.classList.add('header--desktop');
 
-        //Logo on the left side
+        //The cinema logo on the top-left side
         var logo = document.createElement('div');
         logo.classList.add('logo-container');
         var logoLink = document.createElement('a');
@@ -27,7 +34,7 @@ fetch('http://localhost:8026/m')
         var navLink1 = document.createElement('a');
         navLink1.classList.add('nav__link');
         navLink1.setAttribute('href', 'order.html');
-        navLink1.textContent = 'Order';
+        navLink1.textContent = 'Tickets';
         var navLink2 = document.createElement('a');
         navLink2.classList.add('nav__link');
         navLink2.setAttribute('href', 'login.html');
@@ -35,7 +42,7 @@ fetch('http://localhost:8026/m')
         nav.appendChild(navLink1);
         nav.appendChild(navLink2);
         
-        //Account button
+        //The account button on the top-right
         var account = document.createElement('a');
         account.setAttribute('href', 'account.html');
         var userImage = document.createElement('img');
@@ -45,10 +52,11 @@ fetch('http://localhost:8026/m')
         userImage.setAttribute('width', '50px');
         account.appendChild(userImage);
 
+        //The elements are appended to the desktop header
         desktopHeader.append(logo, nav, account);
 
 
-        //Mobile version
+        //Creation of the mobile header
         var mobileHeader = document.createElement('header');
         mobileHeader.classList.add('header--mobile');
 
@@ -76,6 +84,7 @@ fetch('http://localhost:8026/m')
         closeMenu.classList.add('close-menu');
         closeMenu.setAttribute('src', 'src/svg/close.svg');
 
+        //The eventlisteners are added to be able to open and close the menu
         var menuClasses = menu.classList;
         openMenu.addEventListener('click', () => {
             menuClasses.toggle('opened');
@@ -86,7 +95,7 @@ fetch('http://localhost:8026/m')
             menuClasses.toggle('closed');
         });
         
-        //The menu on the side
+        //The (hidden) menu on the side
         var menuNav = document.createElement('nav');
         menuNav.classList.add('menu');
         var menuNavLogo = document.createElement('img');
@@ -103,7 +112,7 @@ fetch('http://localhost:8026/m')
         var menuLink2 = document.createElement('a');
         menuLink2.classList.add('menu__item');
         menuLink2.setAttribute('href', 'order.html');
-        menuLink2.textContent = 'Order';
+        menuLink2.textContent = 'Tickets';
         var menuLink3 = document.createElement('a');
         menuLink3.classList.add('menu__item');
         menuLink3.setAttribute('href', 'login.html');
@@ -118,6 +127,7 @@ fetch('http://localhost:8026/m')
         menuAccount.setAttribute('width', '50px');
         menuLink4.appendChild(menuAccount);
 
+        //Everything is appended to the mobile header in a hierarchical manner
         menuNav.append(menuNavLogo, menuLink1, menuLink2, menuLink3, menuLink4);
         menu.append(closeMenu, menuNav);
         mobileHeader.append(logo, openMenu, menu);
@@ -143,6 +153,7 @@ fetch('http://localhost:8026/m')
         footerLink4.setAttribute('href', 'order.html');
         footerLink4.textContent = 'Order';
 
+        //The elements are appended to the footer
         footer.append(footerLink1, footerLink2, footerLink3, footerLink4);
 
 
@@ -170,10 +181,10 @@ fetch('http://localhost:8026/m')
         filmInfoText.appendChild(filmTrailer);
         filmInfo.append(filmInfoPoster, filmInfoText);
 
-    
+        //The headers, footer, and film overview are appended to the body of the html film page
         body.append(desktopHeader, mobileHeader, filmInfo, footer);
 
-        //Getting the id from the url
+        //Getting the film-id from the url
         const querystring = window.location.search;
         const urlQuery = new URLSearchParams(querystring);
         const id = urlQuery.get('id');
@@ -188,6 +199,9 @@ fetch('http://localhost:8026/m')
         filmInfoText.children[4].textContent = data[id].writers;
         filmInfoText.children[5].textContent = data[id].plot;
         filmInfoText.children[6].textContent = data[id].stars;
-        filmInfoText.children[7].setAttribute('src', data[id].trailer);       
+        filmInfoText.children[7].setAttribute('src', data[id].trailer);
+        
+        //Changes the title of the page 
+        document.title = 'An overview of: ' + data[id].title;
     })    
     .catch(err => console.log(err));

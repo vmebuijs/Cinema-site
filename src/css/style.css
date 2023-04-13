@@ -1,3 +1,9 @@
+/* This css file is specifies the styles of every page on our website. 
+First, we style the elements which are on every page - the headers and the footer. Then we have media queries only for the headers, to keep it organised.
+After the general specifications, every page has a specific section of style definitions. These are separated by comments.
+At the very end, we have media queries for the page specific elements. We do not have x media queries per page, instead, we have general media queries 
+and within them separated the sections by pages. */
+
 /* general specifications */
 body,
 html,
@@ -442,6 +448,7 @@ body{
 .film-trailer{
     margin: 0px auto;
 }
+
 
 /*ticket ordering page*/
 .ordering-container{
