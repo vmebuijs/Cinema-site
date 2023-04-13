@@ -19,12 +19,38 @@
 // // Console will print the message
 // console.log('Server running at http://127.0.0.1:8081/');
 const express = require('express');
+const { authenticate } = require('passport');
 const app = express();
 const port = 8026;
 const cors = require('cors');
+const flash = require('express-flash');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const initializePassport = require("./passport-config")
+initializePassport(passport, 
+  username =>{
+    console.log('ho');
+  username = req.body.uname;
+  ansql = 'SELECT * FROM Account WHERE username = ?' // checks if the username already excists in the database
+  udb.all(ansql, [username], (err, names) => {
+    console.log(names);
+    if(err) return console.error(err.message);
+    return names;
+  })
+  },
+  username =>{
+    username = req.body.uname;
+    ansql = 'SELECT * FROM Account WHERE username = ?' // checks if the username already excists in the database
+    udb.all(ansql, [username], (err, names) => {
+      console.log(names);
+      if(err) return console.error(err.message);
+      return names;
+    })
+  },
+
+);
 
 // function logger(req, res, next) {
 //   console.log('%s %s', req.method, req.url);
@@ -33,6 +59,7 @@ const cookieParser = require("cookie-parser");
 // app.use(logger);
 var bodyParser = require("body-parser");
 const { json } = require('express');
+// const { request } = require('http');
 const sqlite3 = require('sqlite3').verbose();
 // var path = require('path');
 // var apiRouter = require('./router/secret_routing')
@@ -115,67 +142,24 @@ app.get("/m", (req, res) => {
 //   res.render('http://127.0.0.1:5500/films.html');
 // })
 
- 
+
 // Initialization
 app.use(cookieParser());
- 
+app.use(flash());
 app.use(session({
     secret: "secret",
-    saveUninitialized: true,
-    resave: true
+    saveUninitialized: false,
+    resave: false
 }));
- 
-// User Object
- 
-// Login page
-
-
- 
-// Logout page
-
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.post("/login", async (req, res) => {  //group26/login
-  try{
-    let loggedIN = false;
-    let user = req.body.uname;
-    let pass = req.body.psw;
-    isql = `SELECT * FROM Account WHERE username = ? AND password = ?`
-    udb.all(isql, [user, pass], (err, rij) => {
-      if(err) return console.error(err.message);
-      if(rij[0] == null){
-        console.log('password or username is incorrect');
-        res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
-        loggedIN = false;
-      } else{
-        console.log('correct');
-        res.redirect('http://127.0.0.1:5500/account.html') //group26/login.html
-          // let b = req.session.user;
-          var b = rij;
-          let c = true;
-          // req.session.save();
-          let sessionuser = b;
-          console.log(sessionuser); 
-          
-      }
-      console.log(b);
-      
-      });
-  }catch{
-    // res.redirect('/login') //group26/login.html
-  }
-  
-});
-
-console.log(b);
-// udb.run("INSERT INTO Account VALUES ('1001','Valérie','Valerie3@gmail.com', 'lasseslaan 45', '2203', 'ilovetayler_34', 'ebdiuefj!#')", (err) => {
-//   if(err) return console.error(err.message);
-// })
 
 app.post("/register", async (req, res) => {  //group26/register.html
   try{
-    let hashedPassword = req.body.psw;
+    // let hashedPassword = await bcrypt.hash(req.body.psw, 10);
+    bcrypt.hash(req.body.psw, (err, hash) => {
+      // Now we can store the password hash in db.
     let name = req.body.name;
     let email = req.body.email;
     let address = req.body.address;
@@ -189,13 +173,14 @@ app.post("/register", async (req, res) => {  //group26/register.html
         res.redirect('http://127.0.0.1:5500/register.html')
       } else{ // if not then an row is added to the database
         usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
-        udb.run(usql, [name, email, address, creditcard, username, hashedPassword], (err) => {
+        udb.run(usql, [name, email, address, creditcard, username, hash], (err) => {
           if(err) return console.error(err.message);
           console.log("hoi");
     });
     res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
       }
     });
+  });
   }catch(err){
     console.log(err);
     res.redirect('http://127.0.0.1:5500/register.html') //group26/register.html
@@ -203,6 +188,63 @@ app.post("/register", async (req, res) => {  //group26/register.html
   }
   
   });
+
+
+app.post("/login", passport.authenticate('local', {
+  successRedirect: 'http://127.0.0.1:5500/account.html',
+  failureRedirect: 'http://127.0.0.1:5500/login.html'
+  // failureFlash: true
+})); //group26/login
+  // try{
+  //   let loggedIN = false;
+  //   let user = req.body.uname;
+  //   let pwd = req.body.psw;
+  //   // isql = `SELECT * FROM Account WHERE username = ?`
+  //   // udb.all(isql, [user], (err, rij) => {
+  //   //   if(err) return console.error(err.message);
+  //     psql = `SELECT password FROM Account WHERE username = ?`
+  //     udb.all(psql, [user], (err, rij) => {
+  //       if(err) return console.error(err.message);
+  //         console.log(rij[0].password);
+  //         let pas = JSON.stringify(rij[0].password);
+  //         console.log(pwd);
+  //         bcrypt
+  //           .compare(pwd, pas)
+  //           .then(res => {
+  //             console.log(res) // return true
+  //         })
+  //           .catch(err => console.error(err.message)) 
+  //         if(bcrypt.compare(pwd, pas)){
+  //           console.log("succes");
+  //           res.redirect('http://127.0.0.1:5500/account.html') //group26/login.html
+  //         } else{
+  //           console.log('password or username is incorrect');
+  //           res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
+  //           loggedIN = false;
+  //         }
+              
+  //       });
+          
+  // }catch{
+  //   // res.redirect('/login') //group26/login.html
+  // }
+  
+
+
+// console.log('correct');
+//                   // let b = req.session.user;
+//                   var b = rij;
+//                   let c = true;
+//                   // req.session.save();
+//                   let sessionuser = b;
+//                   console.log(sessionuser); 
+                  
+//               }
+// udb.run("INSERT INTO Account VALUES ('1001','Valérie','Valerie3@gmail.com', 'lasseslaan 45', '2203', 'ilovetayler_34', 'ebdiuefj!#')", (err) => {
+//   if(err) return console.error(err.message);
+// })
+
+
 
 
   var join = require('path').join;
