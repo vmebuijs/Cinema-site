@@ -26,106 +26,303 @@ const db = new sqlite3.Database('./movie.sqlite', sqlite3.OPEN_READWRITE, (err) 
 
 
 //Update db
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ['Sparks fly when spirited Elizabeth Bennet meets single, rich, and proud Mr. Darcy. But Mr. Darcy reluctantly finds himself falling in love with a woman beneath his class. Can each overcome their own pride and prejudice?', 11111], (err) => {
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ['Sparks fly when spirited Elizabeth Bennet meets single, rich, and proud Mr. Darcy. But Mr. Darcy reluctantly finds himself falling in love with a woman beneath his class. Can each overcome their own pride and prejudice?', 11111], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ['In late-19th-century Russian high society, St. Petersburg aristocrat Anna Karenina enters into a life-changing affair with the dashing Count Alexei Vronsky.', 21112], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Thirteen-year-old fledgling writer Briony Tallis irrevocably changes the course of several lives when she accuses her older sister's lover of a crime he did not commit.", 31113], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Blacksmith Will Turner teams up with eccentric pirate 'Captain' Jack Sparrow to save his love, the governor's daughter, from Jack's former pirate allies, who are now undead.", 41114], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Tells the story of Benjamin Button, a man who starts aging backwards with consequences.", 51115], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.", 61116], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.", 71117], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["In a future world devastated by disease, a convict is sent back in time to gather information about the man-made virus that wiped out most of the human population on the planet.", 81118], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers.", 91119], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.", 12121], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.", 22122], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.", 32123], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.", 42124], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", 52125], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["In 1954, a U.S. Marshal investigates the disappearance of a murderer who escaped from a hospital for the criminally insane.", 62126], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Henry Roth is a man afraid of commitment until he meets the beautiful Lucy. They hit it off and Henry think he's finally found the girl of his dreams until discovering she has short-term memory loss and forgets him the next day.", 72127], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["A police officer joins a secret organization that polices and monitors extraterrestrial interactions on Earth.", 82128], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["After a sudden attack on MI5, Johnny English, Britain's most confident, yet unintelligent spy, becomes Britain's only spy.", 92129], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+db.run(sql, ["Danny Ocean and his ten accomplices plan to rob three Las Vegas casinos simultaneously.", 13131], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+//trailers
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ['https://www.youtube.com/embed/Ur_DIHs92NM', 11111], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ['https://www.youtube.com/embed/Z-nyXX5zOLg', 21112], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/fiv8Gy5CJ0Y", 31113], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/naQr0uTrH_s", 41114], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/iH6FdW39Hag", 51115], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/BdJKm16Co6M", 61116], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/YoHD9XEInc0", 71117], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/15s4Y9ffW_o", 81118], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/0xQSIdSRlAk", 91119], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/AZGcmvrTX9M", 12121], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/znmZoVkCjpI", 22122], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/W6Mm8Sbe__o", 32123], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/MpkrMqmmy5k", 42124], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/EXeTwQWrcwY", 52125], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/v8yrZSkKxTA", 62126], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/Q_2AbjYeSMI", 72127], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/1Q4mhYF9aQQ", 82128], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/lFmFwCRLsK4", 92129], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/n3epi9hPbqQ", 13131], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+db.run(sql, ["https://www.youtube.com/embed/tAiy66Xrsz4", 23132], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+
+//
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ['', 11111], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ['In late-19th-century Russian high society, St. Petersburg aristocrat Anna Karenina enters into a life-changing affair with the dashing Count Alexei Vronsky.', 21112], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ['', 21112], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Thirteen-year-old fledgling writer Briony Tallis irrevocably changes the course of several lives when she accuses her older sister's lover of a crime he did not commit.", 31113], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 31113], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Blacksmith Will Turner teams up with eccentric pirate 'Captain' Jack Sparrow to save his love, the governor's daughter, from Jack's former pirate allies, who are now undead.", 41114], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 41114], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Tells the story of Benjamin Button, a man who starts aging backwards with consequences.", 51115], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 51115], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.", 61116], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 61116], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.", 71117], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 71117], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["In a future world devastated by disease, a convict is sent back in time to gather information about the man-made virus that wiped out most of the human population on the planet.", 81118], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 81118], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers.", 91119], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 91119], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.", 12121], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 12121], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.", 22122], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 22122], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.", 32123], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 32123], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.", 42124], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 42124], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", 52125], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 52125], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["In 1954, a U.S. Marshal investigates the disappearance of a murderer who escaped from a hospital for the criminally insane.", 62126], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 62126], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Henry Roth is a man afraid of commitment until he meets the beautiful Lucy. They hit it off and Henry think he's finally found the girl of his dreams until discovering she has short-term memory loss and forgets him the next day.", 72127], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 72127], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["A police officer joins a secret organization that polices and monitors extraterrestrial interactions on Earth.", 82128], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 82128], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["After a sudden attack on MI5, Johnny English, Britain's most confident, yet unintelligent spy, becomes Britain's only spy.", 92129], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 92129], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["Danny Ocean and his ten accomplices plan to rob three Las Vegas casinos simultaneously.", 13131], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 13131], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
 
-// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
-// db.run(sql, ["As Harry Potter begins his sixth year at Hogwarts, he discovers an old book marked as 'the property of the Half-Blood Prince' and begins to learn more about Lord Voldemort's dark past.", 23132], (err) => {
+// sql = "UPDATE Movies SET trailer = ? WHERE movie_ID = ?";
+// db.run(sql, ["", 23132], (err) => {
 //         if(err) return console.error(err.message); 
 // }); 
-
 
 // Delete data
 // sql = 'DELETE FROM Movies WHERE movie_ID = ?';
