@@ -1,7 +1,13 @@
-fetch('http://localhost:8026/tp') //http://localhost:8026/tp
+/*
+    This javascript file renders the films on the index page. The first thing we do is fetch the film posters and titles from the database to even use the data.
+    As the slideshow is shown first, we store the needed elements for the slideshow in variables. Then eventlisteners are added to the buttons, 
+    to change the src of the elements on the page.
+    Then the overview of films already playing and the ones coming soon is done with pagination. 
+*/
+fetch('http://localhost:8026/tp')
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        //The buttons and posterslots in the slideshow
         const nextButton = document.getElementsByClassName('films-slideshow__button')[1];
         const previousButton = document.getElementsByClassName('films-slideshow__button')[0];
         const slide = document.getElementsByClassName('films-slideshow__poster')[0];
@@ -9,6 +15,7 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
         const slideThree = document.getElementsByClassName('films-slideshow__poster')[2];
         const slideFour = document.getElementsByClassName('films-slideshow__poster')[3];
 
+        //The first four films in our database are shown when the user loads the index page
         let n = 0;
         let m = 1;
         let p = 2;
@@ -17,6 +24,8 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
         slideTwo.src = data[m].poster;
         slideThree.src = data[p].poster;
         slideFour.src = data[k].poster;
+
+        //When the next button is clicked, the films are moved one place to their left 
         nextButton.addEventListener('click', () => {
             try{
                 if(k < 19){
@@ -28,15 +37,15 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
                     slideTwo.src = data[m].poster;
                     slideThree.src = data[p].poster;
                     slideFour.src = data[k].poster;
-                }else{
+                }
+                else{
                     slideFour.src = none;
                 }
-                
-            }catch{
-
             }
+            catch{}
         });
 
+        //When the previous button is clicked, the films are moved one place to their right 
         previousButton.addEventListener('click', () => {
             try{
                 n -= 1;
@@ -47,13 +56,11 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
                 slideTwo.src = data[m].poster;
                 slideThree.src = data[p].poster;
                 slideFour.src = data[k].poster;
-            }catch{
-
             }
-            
+            catch{}
         });
         
-        //Buttons for pagination
+        //The container of the overview, the current page, and the number of films on a page
         var overview = document.getElementsByClassName('films-overview__films')[0];
         let currentPage = 0;
         let films = 10;
@@ -63,6 +70,7 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
             let start = films * page;
             let end = start + films;
 
+            //Creates the film posters and titles on the page
             for (var i = start; i < end; i++){
                 let itemElement = document.createElement('figure');
                 itemElement.classList.add('film');
@@ -89,21 +97,28 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
             window.location.href = '/film.html?id=' + clickedFilm.id;
         }
 
+        //The buttons for pagination
         const buttonNow = document.getElementsByClassName('film-schedule')[0];
         const buttonSoon = document.getElementsByClassName('film-schedule')[1];
+        buttonNow.addEventListener('click', () => {changePage(0, 1);}, false);
+        buttonSoon.addEventListener('click', () => {changePage(1, 0);}, false);
 
         //Changes the films displayed based on the whether the user has clicked 'now playing' or 'coming soon'
         function changePage(clickedButton, otherButton){
             var buttons = document.getElementsByClassName('film-schedule');
             currentPage = clickedButton;
             
+            //Ensures the overview is empty before adding the new films
             while(overview.firstChild){
                 overview.removeChild(overview.lastChild);
             }
 
             displayFilms(overview, currentPage);
+
             buttons[otherButton].classList.remove('active');
             buttons[clickedButton].classList.add('active');
+
+            //Ensures that the correct films are loaded onto the page
             if(clickedButton == 0){
                 loadData(0);
             }
@@ -112,51 +127,20 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
             }
         }
 
-        buttonNow.addEventListener('click', () => {changePage(0, 1);}, false);
-        buttonSoon.addEventListener('click', () => {changePage(1, 0);}, false);
-
         //Loads the posters and titles from the database and places them on the page
         function loadData(startingPoint){
-            var bla = document.getElementsByClassName('film__title');
-            var pic = document.getElementsByClassName('film__poster');
+            var title = document.getElementsByClassName('film__title');
+            var poster = document.getElementsByClassName('film__poster');
 
-            for(let i = 0; i < bla.length; i++){
+            for(let i = 0; i < title.length; i++){
                 var j = startingPoint + i;
-                bla[i].textContent = data[j].title;
-                pic[i].src = data[j].poster;
+                title[i].textContent = data[j].title;
+                poster[i].src = data[j].poster;
             }
         }
         
+        //Ensures that the 'now playing' films are shown when first loading the page
         displayFilms(overview, currentPage);
         loadData(0);
-              
-        //Restructures the page depending on the screenwidth
-        function responsiveOverview(screenWidth){
-            var x = document.getElementsByClassName('films-overview')[0];
-            if(screenWidth.matches){
-                x.style.backgroundColor = "yellow";
-            }
-            else{
-                x.style.backgroundColor = "pink";
-            }
-        }
-
-        //Registers events for the images and the director's and writers names
-        function registerEvents(){
-            //Structures the overview differently to make it easier to read
-            var screenWidth = window.matchMedia("(max-width: 850px)");
-            screenWidth.addEventListener('change', responsiveOverview, false);
-        }
-
-        window.addEventListener('load', registerEvents, false);
     })
     .catch(err => console.log(err));
-
-
-fetch('http://localhost:8026/m')//http://localhost:8026/m
-    .then(res => res.json())
-    .then(data => {
-
-    }
-)
-.catch(err => console.log(err));
