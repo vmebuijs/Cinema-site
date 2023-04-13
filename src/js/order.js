@@ -1,11 +1,10 @@
-
 fetch('http://localhost:8026/m')
     .then(res => res.json())
     .then(data => {
         
         let movielist2 = [];
         
-        //makes array in correct format from the data retrieved from the database
+        //Makes array in correct format from the data retrieved from the database
         data.forEach(dat => {
             let movieID = dat.movie_ID;
             let title = dat.title;
@@ -21,13 +20,13 @@ fetch('http://localhost:8026/m')
         
         var location = document.getElementsByClassName("ordering-container")[0];
         
-        //creates the textlabel
+        //Creates the textlabel
         var movieLabel = document.createElement("label");
         movieLabel.setAttribute("id","label1");
         movieLabel.appendChild(document.createTextNode("Choose your movie: "));
         location.appendChild(movieLabel);
 
-        //creates the first dropdownmenu
+        //Creates the first dropdownmenu
         var movies = document.createElement("select");
         movies.setAttribute("name","movielist");
         movies.setAttribute("id","movielist");
@@ -40,12 +39,12 @@ fetch('http://localhost:8026/m')
         //     ["movie4",4,["4 augustus","4 september"],["14:00","00:00"]]
         // ]
 
-        //adds standard option to dropdownmenu
+        //Adds standard option to dropdownmenu
         var firstOption = document.createElement("option");
         firstOption.setAttribute("value","");
         movies.add(firstOption);
 
-        //adds all the movies to the first dropdownmenu
+        //Adds all the movies to the first dropdownmenu
         for(var i = 0; i < movielist2.length; i++){
             var option = document.createElement("option");
             option.text = movielist2[i][0];
@@ -53,20 +52,19 @@ fetch('http://localhost:8026/m')
             movies.add(option);
         }
 
-        //adds evenlistener for changes in dropdownmenu
+        //Adds evenlistener for changes in dropdownmenu
         movies.addEventListener("change", showMovieDates);
 
         function showMovieDates() {
             var location = document.getElementsByClassName("ordering-container")[0];
             createLabel(location,"Choose your date: ");
 
-            //gets the selected movie
+            //Gets the selected movie
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.selectedIndex;
 
-
-            //if there is no datelist dropdown it will be created and the dates will be added, 
-            //else the datelist will be cleared and the correct dates will be added 
+            //If there is no datelist dropdown it will be created and the dates will be added, 
+            //Else the datelist will be cleared and the correct dates will be added 
             if(document.getElementById("datelist") == null){
             // //if there is no datelist dropdown it will be created and the dates will be added, 
             // //else the datelist will be cleared and the correct dates will be added 
@@ -96,7 +94,7 @@ fetch('http://localhost:8026/m')
                 addOptions(selectedMovie,datess,2);
             }
 
-            //adds evenlistener to the datelist dropdownmenu
+            //Adds evenlistener to the datelist dropdownmenu
             datess.addEventListener("change", showMovieTimes);
 
             dates.appendChild(datess);
@@ -104,22 +102,20 @@ fetch('http://localhost:8026/m')
         }
 
         function showMovieTimes() {
-
-            //gets the selected movie
+            //Gets the selected movie
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.selectedIndex; 
-
 
             var location = document.getElementsByClassName("ordering-container")[0];
             createLabel(location,"Choose your time: ");
 
-            //if there is no timelist dropdown it will be created and the times will be added, 
-            //else the timelist will be cleared and the correct times will be added 
+            //If there is no timelist dropdown it will be created and the times will be added, 
+            //Else the timelist will be cleared and the correct times will be added 
             if(document.getElementById("timelist") == null){
 
-            //if there is no timelist dropdown it will be created and the times will be added, 
-            //else the timelist will be cleared and the correct times will be added 
-            // if(document.getElementById("timelist") == null){
+            //If there is no timelist dropdown it will be created and the times will be added, 
+            //Else the timelist will be cleared and the correct times will be added 
+            //if(document.getElementById("timelist") == null){
             //     var location = document.getElementsByClassName("ordering-container")[0];
 
                 var times = document.createElement("div");
@@ -130,36 +126,29 @@ fetch('http://localhost:8026/m')
                 timess.setAttribute("id","timelist");
 
                 addOptions(selectedMovie,timess,3);
-
             }
             else{
-
-//                var location = document.getElementsByClassName("ordering-container")[0];
+                // var location = document.getElementsByClassName("ordering-container")[0];
 
                 var times = document.getElementsByClassName("times")[0];
                 var timess = document.getElementById("timelist");
 
                 removeOptions(timess,document.getElementById("submitButton"),document.getElementById("numberOfTickets"));
                 addOptions(selectedMovie,timess,3);
-
             }
-
-            //adds evenlistener to the timelist dropdownmenu
+            //Adds evenlistener to the timelist dropdownmenu
             timess.addEventListener("change", showSubmitButton);//numberOfTickets);
 
             times.appendChild(timess);
             location.appendChild(times);
-
         }
 
         // function numberOfTickets() {
-        //     //gets the selected movie
+        //     //Gets the selected movie
         //     var movies = document.getElementById("movielist");
         //     var selectedMovie = movies.selectedIndex; 
 
-        //     //check number of tickets available
-
-        //     //
+        //     //Check number of tickets available
         //     if(document.getElementById("numberOfTickets") == null){
         //         var location = document.getElementsByClassName("ordering-container")[0];
         //         var tickets = document.createElement("select");
@@ -173,16 +162,13 @@ fetch('http://localhost:8026/m')
         //             option.value = i;
         //             tickets.add(option);
         //         }
-
         //     }
         //     else{
         //         var numberOfTickets = document.getElementById("numberOfTickets");
         //         numberOfTickets.style.visibility="visible";
         //     }
-
         //     tickets.addEventListener("change", showSubmitButton);
         //     location.appendChild(tickets);
-
         // }
 
         function showSubmitButton() {
@@ -205,7 +191,7 @@ fetch('http://localhost:8026/m')
                 submitButton.style.visibility = "visible";
             }
 
-            // //gets selected movie, date and time
+            // //Gets selected movie, date and time
             // var movies = document.getElementById("movielist");
             // var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
 
@@ -214,9 +200,6 @@ fetch('http://localhost:8026/m')
 
             // var times = document.getElementById("timelist");
             // var selectedTime = times.options[times.selectedIndex].text; //selected time
-
-
-
 
             // xhttp.onreadystatechange = function() {
             //     if(this.readyState == 4 && this.status == 200){
@@ -240,7 +223,7 @@ fetch('http://localhost:8026/m')
         function postt(e){
             e.preventDefault();
 
-            // gets selected movie, date and time
+            //Gets selected movie, date and time
             var movies = document.getElementById("movielist");
             var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
 
@@ -268,7 +251,7 @@ fetch('http://localhost:8026/m')
         }
 
         function removeOptions(dropdownlist,submit,tickets) {
-            //removes all items from given dropdownlist
+            //Removes all items from given dropdownlist
             if(dropdownlist!=null && dropdownlist.options!=null){
                 var i, list = dropdownlist.options.length - 1;
                 for(i = list; i >= 0; i--){
@@ -282,13 +265,13 @@ fetch('http://localhost:8026/m')
                 }
             }
 
-            //removes all labels excepts the first one
+            //Removes all labels excepts the first one
             var labels = document.getElementsByClassName("labels");
             for(var i=0;i<labels.length;i++){
                 labels[i].remove();
             }
 
-            //hides the submit button if it exists
+            //Hides the submit button if it exists
             if (submit!=null){
                 submit.style.visibility="hidden";
             }
@@ -298,12 +281,12 @@ fetch('http://localhost:8026/m')
         }
 
         function addOptions(selectedMovie,datess,nr) {
-            //creates the empty option
+            //Creates the empty option
             var firstOption = document.createElement("option");
             firstOption.setAttribute("value","");
             datess.add(firstOption);
 
-            //creates a option for each element in the movielist2 array
+            //Creates a option for each element in the movielist2 array
             for(var i = 0; i < movielist2[selectedMovie-1][nr].length; i++){
                 var option = document.createElement("option");
                 option.text = movielist2[selectedMovie-1][nr][i];

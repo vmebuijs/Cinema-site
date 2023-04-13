@@ -53,7 +53,7 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
             
         });
         
-        //buttons for pagination
+        //Buttons for pagination
         var overview = document.getElementsByClassName('films-overview__films')[0];
         let currentPage = 0;
         let films = 10;
@@ -156,17 +156,7 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
 fetch('http://localhost:8026/m')//http://localhost:8026/m
     .then(res => res.json())
     .then(data => {
-        console.log(data)
-        // var ki = document.getElementsByTagName('h1');
-        // for(let dat of data){
-        //     ki.textContent = dat.title;
-        //     console.log(ki.textContent);
-        // }
-        // bla[i].textContent = data[i].title;
-        // pic[i].src = data[i].poster;
+
     }
 )
-    .catch(err => console.log(err));
-
-    // on click picture index + 1, id van de foreach is de picture index
-
+.catch(err => console.log(err));
