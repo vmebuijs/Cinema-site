@@ -487,7 +487,25 @@ body{
     }
 }
 
+@media screen and (max-width: 1510px){
+    .films-overview{
+        margin-top: 25em;
+    }
+}
+
+@media screen and (max-width: 816px){
+    .films-overview{
+        margin-top: 50em;
+    }
+}
+
 /* mobile specifications */
+@media screen and (max-width: 786px){
+    .films-overview{
+        margin-top: 80em;
+    }
+}
+
 @media screen and (max-width: 767px){
     /* index */
     .film-schedule{
