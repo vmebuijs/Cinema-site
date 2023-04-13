@@ -172,7 +172,7 @@ app.post("/register", async (req, res) => {  //group26/register.html
     udb.all(ansql, [username], (err, names) => {
       if(err) return console.error(err.message);
       if(names[0] != null){
-        console.log('username already excists');
+        console.log('username already exists');
         res.redirect('http://127.0.0.1:5500/register.html')
       } else{ // if not then an row is added to the database
         usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
@@ -201,6 +201,26 @@ app.post("/register", async (req, res) => {  //group26/register.html
     console.log(staticPath);
   })
 
+
+
+  app.post('/order', (req, res) => {
+    console.log("hi");
+    const username = "bangtan#2"
+    const movie_ID = req.body.movie;
+    const date = req.body.date;
+    const time =  req.body.time;
+
+    sql = 'INSERT INTO Orders (username, movie_ID, datum, timeslot) VALUES (?, ?, ?, ?)'
+    db.run(sql, [username, movie_ID, date, time], (error) => {
+      if(error) {
+        console.error(error);
+        res.status(500).send('Error processing your order');
+      } else {
+        res.send('Your order for ${movie_ID} on ${date} at ${time} has been processed');
+      }
+
+    });
+  });
 
   
 // });

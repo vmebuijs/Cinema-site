@@ -229,28 +229,66 @@ fetch('http://localhost:8026/m')
         // document.getElementById('button1').addEventListener('click', post);
        
 
-        function postt(e){
-            e.preventDefault();
+        function postt(){
+            var xhtml = new XMLHttpRequest();
+            xhtml.open("POST","/order",true);
+            xhtml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            console.log(xhtml.readyState);
+            console.log(xhtml.status);
+            xhtml.onreadystatechange = function() {
+                if(this.readyState === XMLHttpRequest.DONE && this.status ===200){
+                    alert(this.responseText);
+                }
+            };
+            // var data = new FormData(document.getElementsByClassName('ordering-container')[0]);
+            // var movie = data.get("movie");
+            // var date = data.get("date")
+
+            // var movie = document.getElementById("movielist").value;
+            // var date = document.getElementById("datelist").value;
+            // var time = document.getElementById("timelist").value;
+
+            // var data = "movie=" + encodeURIComponent(movie) + "&date=" + encodeURIComponent(date) + "&time=" + encodeURIComponent(time);
+
+            // console.log("test");
+            // console.log(movie);
+            // console.log(date);
+            // console.log(time);
+            // xhtml.send(data);
+
+            var data = new FormData();
+            data.append("movie", document.getElementById("movielist").value);
+            data.append("date", document.getElementById("datelist").value);
+            data.append("time", document.getElementById("timelist").value);
+          
+            console.log("test");
+            console.log(data.get("movie"));
+            console.log(data.get("date"));
+            console.log(data.get("time"));
+          
+            xhtml.send(data);
+
+            // e.preventDefault();
 
             // gets selected movie, date and time
-            var movies = document.getElementById("movielist");
-            var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
+            // var movies = document.getElementById("movielist");
+            // var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
 
-            // var dates = document.getElementById("datelist");
-            // var selectedDate = dates.options[dates.selectedIndex].text; //selected date
+            // // var dates = document.getElementById("datelist");
+            // // var selectedDate = dates.options[dates.selectedIndex].text; //selected date
 
-            // var times = document.getElementById("timelist");
-            // var selectedTime = times.options[times.selectedIndex].text; //selected time
+            // // var times = document.getElementById("timelist");
+            // // var selectedTime = times.options[times.selectedIndex].text; //selected time
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'test.php');
-            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+            // var xhr = new XMLHttpRequest();
+            // xhr.open('POST', 'test.php');
+            // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 
-            xhr.onload = function(){
-                console.log(this.responseText);
-            }
+            // xhr.onload = function(){
+            //     console.log(this.responseText);
+            // }
 
-            xhr.send('selectedMovie=' + encodeURIComponent(selectedMovie));
+            // xhr.send('selectedMovie=' + encodeURIComponent(selectedMovie));
             // xhr.open('GET', 'test.php', true);
             // xhr.onload = function(){
             //     console.log(this.responseText);
@@ -302,7 +340,7 @@ fetch('http://localhost:8026/m')
             for(var i = 0; i < movielist2[selectedMovie-1][nr].length; i++){
                 var option = document.createElement("option");
                 option.text = movielist2[selectedMovie-1][nr][i];
-                option.value = movielist2[selectedMovie-1][1];
+                option.value = movielist2[selectedMovie-1][nr][i];
                 
                 if(datess!==null){
                     datess.add(option);
