@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
         <header class="header--desktop">
@@ -17,15 +20,17 @@
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="films.html">Films</a>
+                <a class="nav__link" href="order.html">Order</a>
                 <a class="nav__link" href="login.html">Log in</a>
                 <!-- log in should be gone, as a user can only access the account page when logged in -->
                 <!-- when not logged in, the account button will not be visible , for now it is -->
                 <!-- when logging in, replace 'log in' with account thing, through DOM -->
                 <!-- maybe add a logout button instead if that's easy enough -->
             </nav>
+
             <a href="#">
                 <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
+
             </a>
         </header>
 
@@ -42,12 +47,13 @@
                 <nav class="menu">
                     <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
                     <a class="menu__item" href="index.html">Home</a>
-                    <a class="menu__item" href="films.html">Films</a>
+                    <a class="menu__item" href="order.html">Order</a>
                     <a class="menu__item" href="login.html">Log in</a>
                     <a class="menu__item" href="#">
                         <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
                     </a>
                 </nav>
+                
             </div>
         </header>
         
@@ -63,32 +69,32 @@
                     <div class="user-data">
                         <p class="user-data__type">Name</p>
                         <hr>
-                        <p>John Doe</p>
+                        <p></p>
                     </div>
                     <div class="user-data">
                         <p class="user-data__type">Username</p>
                         <hr>
-                        <p>johndoe123</p>
+                        <p></p>
                     </div>
                     <div class="user-data">
                         <p class="user-data__type">E-mail</p>
                         <hr>
-                        <p>johndoe@gmail.com</p>
+                        <p></p>
                     </div>
                     <div class="user-data">
                         <p class="user-data__type">Password</p>
                         <hr>
-                        <p>Test1234567890</p>
+                        <p></p>
                     </div>
                     <div class="user-data">
                         <p class="user-data__type">Address</p>
                         <hr>
-                        <p>Honeymoon St. 1, 3456AB, StarCity </p>
+                        <p></p>
                     </div>
                     <div class="user-data">
                         <p class="user-data__type">Credit card</p>
                         <hr>
-                        <p>AB 123 456 789</p>
+                        <p></p>
                     </div>
                 </section>
             </article>
@@ -141,10 +147,11 @@
         <footer class="footer">
             <a class="footer__link" href="#">Top of the page</a>
             <a class="footer__link" href="index.html">Home</a>
-            <a class="footer__link" href="films.html">Films</a>
+            <a class="footer__link" href="order.html">Order</a>
         </footer>
 
         <script src="src/js/menu.js"></script>
+        <script src="src/js/index.js"></script>
         <script src="src/js/account.js"></script>
     </body>
 </html>

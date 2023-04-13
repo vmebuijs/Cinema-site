@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
         <header class="header--desktop">
@@ -16,7 +19,7 @@
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="films.html">Films</a>
+                <a class="nav__link" href="order.html">Order</a>
                 <a class="nav__link" href="login.html">Log in</a>
             </nav>
             <a href="account.html">
@@ -37,7 +40,7 @@
                 <nav class="menu">
                     <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
                     <a class="menu__item" href="#">Home</a>
-                    <a class="menu__item" href="films.html">Films</a>
+                    <a class="menu__item" href="order.html">Order</a>
                     <a class="menu__item" href="login.html">Log in</a>
                     <a class="menu__item" href="account.html">
                         <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
@@ -50,8 +53,10 @@
             <div class="films-slideshow">
                 <button class="films-slideshow__button">&lt;</button>
                 <figure>
-                    <img class="films-slideshow__poster" src="src/img/film-poster.png" alt="film-poster">
-                    <figcaption class="films-slideshow__film-title">Film Title</figcaption>
+                    <img class="films-slideshow__poster" alt="film-poster">
+                    <img class="films-slideshow__poster" alt="film-poster">
+                    <img class="films-slideshow__poster" alt="film-poster">
+                    <img class="films-slideshow__poster" alt="film-poster">
                 </figure>
                 <button class="films-slideshow__button">&gt;</button>
             </div>
@@ -62,57 +67,17 @@
                     <p class="film-schedule">NOW PLAYING</p>
                     <p class="film-schedule">COMING SOON</p>
                 </div>
-                <div class="films-overview__films">
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                    <figure class="film">
-                        <img class="film__poster" src="src/img/poster.png" alt="">
-                        <figcaption class="film__title">The Intruder</figcaption>
-                    </figure>
-                </div>
+                <div class="films-overview__films"></div>
             </div>    
         </main>
         
         <footer class="footer">
             <a class="footer__link" href="#">Top of the page</a>
-            <a class="footer__link" href="films.html">Films</a>
+            <a class="footer__link" href="order.html">Order</a>
             <a class="footer__link" href="account.html">Account</a>
         </footer>
 
         <script src="src/js/menu.js"></script>
+        <script src="src/js/index.js"></script>
     </body>
 </html>

@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
         <header class="header--desktop">
@@ -16,7 +19,7 @@
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="films.html">Films</a>
+                <a class="nav__link" href="order.html">Order</a>
                 <a class="nav__link" href="#">Log in</a>
             </nav>
             <a href="account.html">
@@ -37,7 +40,7 @@
                 <nav class="menu">
                     <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
                     <a class="menu__item" href="index.html">Home</a>
-                    <a class="menu__item" href="films.html">Films</a>
+                    <a class="menu__item" href="order.html">Order</a>
                     <a class="menu__item" href="#">Log in</a>
                     <a class="menu__item" href="account.html">
                         <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
@@ -47,12 +50,12 @@
         </header>
 
         <main>
-            <form class="login-container">
+            <form class="login-container" action="http://localhost:8026/login" method="post">  <!--group26/login,  http://localhost:8026/login-->
                 <img src="src/img/account.png" alt="" width="200px">
                 <div class="login">
-                    <p>Username</p>
+                    <label for="uname">Username</label>
                     <input class="login__input-field" name="uname" type="text" placeholder="Enter your username" required>
-                    <p>Password</p>
+                    <label for="pws">Password</label>
                     <input class="login__input-field" name="psw" type="password" placeholder="Enter your password" required>
                     <button class="login__button" type="submit">Login</button>
                 </div>
@@ -67,10 +70,12 @@
         
         <footer class="footer">
             <a class="footer__link" href="index.html">Home</a>
-            <a class="footer__link" href="films.html">Films</a>
+            <a class="footer__link" href="order.html">Order</a>
         </footer>
 
         <script src="src/js/menu.js"></script>
+        <script src="src/js/index.js"></script>
         <script src="src/js/login.js"></script>
+        <script src="src/js/account.js"></script>
     </body>
 </html>

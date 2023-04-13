@@ -16,7 +16,7 @@ a {
 
 body{
     background-color: rgb(19, 34, 61);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Domine', serif;
 }
 
 /* header of page with navigation bar, desktop */
@@ -165,28 +165,22 @@ body{
 
 /* index page */
 .films-slideshow{
-    width: 90vw;
+    width: 95vw;
     height: 80vh;
     margin: 7em auto 100px;
     display: grid;
-    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-columns: 2fr 20fr 2.1fr;
     align-items: center;
     position: relative;
     z-index: 0;
 }
 
 .films-slideshow__poster{
-    max-height: 100%;
+    height: 100%;
+    max-height: 400px;
     max-width: 100%;
-}
-
-.films-slideshow__film-title{
-    color: white;
-    font-size: 36px;
-    text-shadow: #000 0px 0px 5px, #000 0px 0px 10px, #000 0px 0px 15px, #000 0px 0px 20px, #000 0px 0px 30px, #000 0px 0px 40px, #000 0px 0px 50px, #000 0px 0px 75px;
-    position: absolute;
-    left: 14%;
-    bottom: 6%;
+    width: auto;
+    z-index: -5;
 }
 
 .films-slideshow__button{
@@ -238,16 +232,27 @@ body{
     margin: 25px;
     display: grid;
     grid-template-columns: 1fr;
+    cursor: pointer;
 }
 
 .film__poster{
     width: 100%;
+    transition: box-shadow 0.2s linear;
+}
+
+.film__poster:hover{
+    box-shadow: 0px 0px 20px rgb(70, 107, 175);
 }
 
 .film__title{
     color: white;
     text-align: center;
     line-height: 35px;
+    transition: text-shadow 0.2s ease-in-out;
+}
+
+.film__title:hover{
+    text-shadow: rgb(70, 107, 175) 0px 0px 5px, rgb(70, 107, 175) 0px 0px 10px, rgb(70, 107, 175) 0px 0px 15px, rgb(70, 107, 175) 0px 0px 20px, rgb(70, 107, 175) 0px 0px 30px;
 }
 
 
@@ -329,7 +334,7 @@ body{
     background-color: rgb(32, 56, 100);
     color: white;
     font-size: 22px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Domine', serif;
     border: none;
     border-radius: 50px;
     width: 80%;
@@ -401,6 +406,79 @@ body{
 }
 
 
+/* dynamically loaded film pages */
+.film-body{
+    font-family: 'Domine', serif;
+}
+
+.general-film-info{
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    column-gap: 1em;
+    background-color: rgb(62, 91, 143);
+    margin: 7em;
+    padding: 1em;
+    border-radius: 25px;
+}
+
+.general-film-info__poster{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.general-film-info__text{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.info-element{
+    margin: 1vh 0em;
+}
+
+.film-trailer{
+    margin: 0px auto;
+}
+
+/*ticket ordering page*/
+.ordering-container{
+    background-color: rgb(32, 56, 100);
+    color: white;
+    height: 18em;
+    max-width: 26em;
+    min-width: fit-content;
+    margin: 15em auto 0px;
+    padding: 1.5em 2em;
+    border: none;
+    border-radius: 60px;
+    text-align: center;
+}
+
+#movielist,
+#datelist,
+#timelist{
+    min-width:fit-content;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 1em 0.5em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#submitButton{
+    padding: 1em 0.5em;
+    position: absolute;
+    right: 40%;
+    left: 40%;
+    top: 38em;
+}
+
 /* media queries */
 /* dekstop specifications */
 @media screen and (min-width: 767px){
@@ -445,5 +523,20 @@ body{
     .order-history{
         margin: 7.5em 1em;
         padding: 1em;
+    }
+
+    /* film pages */
+    .general-film-info{
+        grid-template-columns: 1fr;
+    }
+    .general-film-info__poster{
+        max-height: 300px;
+        width: auto;
+        margin: 0px auto 1em;
+    }
+
+    /* ticket ordering page */
+    #submitButton{
+        top: 42em;
     }
 }

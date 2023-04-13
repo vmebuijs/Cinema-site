@@ -6,8 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
+        
         <header class="header--desktop">
             <div class="logo-container">
                 <a href="index.html">
@@ -16,7 +20,7 @@
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="#">Films</a>
+                <a class="nav__link" href="order.html">Order</a>
                 <a class="nav__link" href="login.html">Log in</a>
             </nav>
             <a href="account.html">
@@ -37,7 +41,7 @@
                 <nav class="menu">
                     <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
                     <a class="menu__item" href="index.html">Home</a>
-                    <a class="menu__item" href="#">Films</a>
+                    <a class="menu__item" href="order.html">Order</a>
                     <a class="menu__item" href="login.html">Log in</a>
                     <a class="menu__item" href="account.html">
                         <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
@@ -45,13 +49,19 @@
                 </nav>
             </div>
         </header>
-        
-        <footer class="footer">
-            <a class="footer__link" href="#">Top of the page</a>
-            <a class="footer__link" href="index.html">Home</a>
-            <a class="footer__link" href="account.html">Account</a>
-        </footer>
+        <main>
+            <form class="ordering-container">
+                <!-- <select name="movielist" id="movielist">
+                    <option value=""></option>
+                </select> -->
+            </form>
+            <button id="button1">
+                Click
+            </button>
 
+        </main>
+        <script src="src/js/order.js"></script>
         <script src="src/js/menu.js"></script>
+        <script src="src/js/index.js"></script>
     </body>
 </html>
