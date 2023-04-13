@@ -27,12 +27,19 @@
             let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
             let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
 
+            console.log(data);
             nameN.textContent = data[0].name;
             username.textContent = data[0].username;
             email.textContent = data[0].email;
             password.textContent = data[0].password;
             address.textContent = data[0].adress;
             card.textContent = data[0].creditcard;
+
+            // let logIn = document.getElementsByClassName("nav_link")[1];
+            // console.log(logIn.childNodes[0]);
+            // if(nameN != null){
+            //     logIn.childNodes[0] = "log uit";
+            // }
             
 
         })

@@ -23,6 +23,8 @@ const app = express();
 const port = 8026;
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 // function logger(req, res, next) {
 //   console.log('%s %s', req.method, req.url);
@@ -113,27 +115,52 @@ app.get("/m", (req, res) => {
 //   res.render('http://127.0.0.1:5500/films.html');
 // })
 
+ 
+// Initialization
+app.use(cookieParser());
+ 
+app.use(session({
+    secret: "secret",
+    saveUninitialized: true,
+    resave: true
+}));
+ 
+// User Object
+ 
+// Login page
+
+
+ 
+// Logout page
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post("/login", async (req, res) => {  //group26/login
   try{
+    let loggedIN = false;
     let user = req.body.uname;
     let pass = req.body.psw;
     isql = `SELECT * FROM Account WHERE username = ? AND password = ?`
     udb.all(isql, [user, pass], (err, rij) => {
       if(err) return console.error(err.message);
-      console.log(rij); 
       if(rij[0] == null){
         console.log('password or username is incorrect');
         res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
+        loggedIN = false;
       } else{
         console.log('correct');
         res.redirect('http://127.0.0.1:5500/account.html') //group26/login.html
+          // let b = req.session.user;
+          var b = rij;
+          let c = true;
+          // req.session.save();
+          let sessionuser = b;
+          console.log(sessionuser); 
+          
       }
+      console.log(b);
       
-      app.get("/log", (req, res) => {
-        res.json(rij);
-      })
       });
   }catch{
     // res.redirect('/login') //group26/login.html
@@ -141,6 +168,7 @@ app.post("/login", async (req, res) => {  //group26/login
   
 });
 
+console.log(b);
 // udb.run("INSERT INTO Account VALUES ('1001','Valérie','Valerie3@gmail.com', 'lasseslaan 45', '2203', 'ilovetayler_34', 'ebdiuefj!#')", (err) => {
 //   if(err) return console.error(err.message);
 // })
