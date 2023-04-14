@@ -25,8 +25,6 @@ function logger(req, res, next) {
 
 app.use(logger);
 app.use(cors());
-//app.use(express.static('html'));
-//app.use(express.static('src'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -43,14 +41,6 @@ var staticPath = join(__dirname, "public/html");
 app.use(express.static(staticPath));
 
 //Connect the databases
-// const db = new sqlite3.Database('html/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
-//   if(err) return console.error(err.message); // html/ ervoor
-// });
-
-// const udb = new sqlite3.Database('html/src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
-//   if(err) return console.error(err.message);
-// });
-
 const db = new sqlite3.Database('public/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message); // html/ ervoor
 });
@@ -60,13 +50,6 @@ const udb = new sqlite3.Database('public/src/db/users.sqlite', sqlite3.OPEN_READ
 });
 
 //Routing
-// router.get('/login.html', (req, res) => res.send('login.html'));
-// router.get('/register.html', (req, res) => res.send('register.html'));
-// router.get('/account.html', (req, res) => res.send('account.html'));
-// router.get('/order.html', (req, res) => res.send('order.html'));
-// router.get('/index.html', (req, res) => res.send('index.html'));
-// router.get('/film.html', (req, res) => res.send('film.html'));
-
 router.get('/login.html', (req, res) => res.send('public/login.html'));
 router.get('/register.html', (req, res) => res.send('public/register.html'));
 router.get('/account.html', (req, res) => res.send('public/account.html'));
