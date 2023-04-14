@@ -28,9 +28,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(flash());
 app.use(session({
-    secret: "secret",
-    saveUninitialized: false,
-    resave: false
+  secret: "secret",
+  saveUninitialized: false,
+  resave: false
 }));
 
 
