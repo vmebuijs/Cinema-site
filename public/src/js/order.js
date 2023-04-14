@@ -1,4 +1,8 @@
-fetch('http://localhost:8026/m')
+// if(sessionStorage.getItem('username') == ""){
+//     window.location.href = 'login.html';
+// }
+
+fetch('m')
     .then(res => res.json())
     .then(data => {
         
@@ -238,7 +242,7 @@ fetch('http://localhost:8026/m')
             xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 
             xhr.onload = function(){
-                console.log(this.responseText);
+                console.log(this.responseText + 'joh');
             }
 
             xhr.send('selectedMovie=' + encodeURIComponent(selectedMovie));

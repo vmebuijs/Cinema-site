@@ -1,0 +1,78 @@
+<!-- 
+    This file creates the page on which one can see and purchase tickets to a film. 
+    As with every page, the headers make up the first code in the body and the footer and the javascript files the last.
+    The main content displayed online, are dropdown menu's to choose a film, date, and time. 
+    These elements are created dynamically by the account javascript file once an option in a dropdown is selected.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tickets</title>
+        <meta name="description" content="Select a film to see when it's playing at Starry Nights Cinemas and order tickets.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="src/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Desktop header -->
+        <header class="header--desktop">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                </a>
+            </div>
+
+            <nav class="nav">
+                <a class="nav__link" href="order.html">Tickets</a>
+                <a class="nav__link" href="login.html">Log in</a>
+            </nav>
+            <a href="account.html">
+                <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
+            </a>
+        </header>
+
+        <!-- Mobile header -->
+        <header class="header--mobile">
+            <div class="logo-container">
+                <a href="#">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                </a>
+            </div>
+            <img class="open-menu" src="src/svg/open.svg">
+            <div class="menu-container closed">
+                <img class="close-menu" src="src/svg/close.svg">
+                <nav class="menu">
+                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                    <a class="menu__item" href="#">Home</a>
+                    <a class="menu__item" href="order.html">Tickets</a>
+                    <a class="menu__item" href="login.html">Log in</a>
+                    <a class="menu__item" href="account.html">
+                        <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <form class="ordering-container">
+                <select name="movielist" id="movielist">
+                    <option value=""></option>
+                </select>
+            </form>
+            <button id="button1">
+                Click
+            </button>
+        </main>
+
+        <footer class="footer">
+            <a class="footer__link" href="index.html">Home</a>
+            <a class="footer__link" href="account.html">Account</a>
+        </footer>
+        
+        <script src="src/js/menu.js"></script>
+        <script src="src/js/order.js"></script>
+    </body>
+</html>

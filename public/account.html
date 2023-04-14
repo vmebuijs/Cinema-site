@@ -1,8 +1,13 @@
+<!-- 
+    This file shows a user their user information and their ticket orders. 
+    As with every page, the headers make up the first code in the body and the footer and the javascript files the last.
+    The main content of this page comes after the headers, and is divided in an control panel, 'account informartion', and 'order history'.
+ -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
-        <meta name="description" content="">
+        <title>Account</title>
+        <meta name="description" content="This is your account page where you can see your data and your tickets for films in Starry Nights Cinemas.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
@@ -11,56 +16,55 @@
         <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
+        <!-- log in should be gone, as a user can only access the account page when logged in -->
+        <!-- when not logged in, the account button will not be visible , for now it is -->
+        <!-- when logging in, replace 'log in' with account thing, through DOM -->
+        <!-- maybe add a logout button instead if that's easy enough -->
+
+        <!-- Desktop header -->
         <header class="header--desktop">
             <div class="logo-container">
                 <a href="index.html">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
-                    <!-- logo image is not used in css -->
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
                 </a>
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="order.html">Order</a>
+                <a class="nav__link" href="order.html">Tickets</a>
                 <a class="nav__link" href="login.html">Log in</a>
-                <!-- log in should be gone, as a user can only access the account page when logged in -->
-                <!-- when not logged in, the account button will not be visible , for now it is -->
-                <!-- when logging in, replace 'log in' with account thing, through DOM -->
-                <!-- maybe add a logout button instead if that's easy enough -->
             </nav>
-
-            <a href="#">
-                <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
-
+            <a href="account.html">
+                <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
             </a>
         </header>
 
-        <!-- mobile version -->
+        <!-- Mobile header -->
         <header class="header--mobile">
             <div class="logo-container">
                 <a href="#">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
                 </a>
             </div>
             <img class="open-menu" src="src/svg/open.svg">
             <div class="menu-container closed">
                 <img class="close-menu" src="src/svg/close.svg">
                 <nav class="menu">
-                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
-                    <a class="menu__item" href="index.html">Home</a>
-                    <a class="menu__item" href="order.html">Order</a>
+                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                    <a class="menu__item" href="#">Home</a>
+                    <a class="menu__item" href="order.html">Tickets</a>
                     <a class="menu__item" href="login.html">Log in</a>
-                    <a class="menu__item" href="#">
-                        <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
+                    <a class="menu__item" href="account.html">
+                        <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
                     </a>
                 </nav>
-                
             </div>
-        </header>
+        </header>    
         
         <main>
             <aside class="account-controls">
                 <button class="account-controls__button">Account Information</button>
                 <button class="account-controls__button">Order History</button>
+                <button class="account-controls__button logout-button">Logout</button>
             </aside>
             <article class="account-information">
                 <h1>Account Information</h1>
@@ -147,11 +151,10 @@
         <footer class="footer">
             <a class="footer__link" href="#">Top of the page</a>
             <a class="footer__link" href="index.html">Home</a>
-            <a class="footer__link" href="order.html">Order</a>
+            <a class="footer__link" href="order.html">Tickets</a>
         </footer>
 
         <script src="src/js/menu.js"></script>
-        <script src="src/js/index.js"></script>
         <script src="src/js/account.js"></script>
     </body>
 </html>

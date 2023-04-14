@@ -7,44 +7,144 @@
 // });
 
 
-// sql = 'SELECT poster FROM Movies';
-// db.each(sql, [], (err, rows) => {
-//     if(err) return console.error(err.message);
-//             console.log(rows);
-// });
-
-// console.log(sql);
-
-
-
-// create table
+// Create table
 // const moviesSql = 'CREATE TABLE Movies(movie_ID INTEGER AUTO_INCREMENT NOT NULL, title varchar(50) NOT NULL,genre varchar(50) NOT NULL,year INTEGER NOT NULL,director char(50) NOT NULL,writers varchar(50) NOT NULL,stars varchar(50) NOT NULL,poster varchar(50) NOT NULL,trailer varchar(50) NOT NULL,plot varchar(50) NOT NULL,available_dates varchar(50) NOT NULL,available_times varchar(5) NOT NULL,CONSTRAINT Movies_pk PRIMARY KEY(movie_ID))';
 // db.run(moviesSql);
 
-// //drop table
+// Drop table
 // db.run('DROP TABLE Movies');
 
-// insert data into table
+// Insert data into table
 // sql = 'INSERT INTO Movies(movie_ID, title, genre, year, director, writers, stars, poster, trailer, plot, available_dates, available_times) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
 // db.run(sql, ['23132','Harry Potter and the Half-Blood Prince', 'Fantasy/Adventure', '2009', 'David Yates', 'Steve Kloves, J.K. Rowling', 'Daniel Radcliffe, Emma Watson, Rupert Grint', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pathe-thuis.nl%2F15302_450x640.jpg&tbnid=0Y2OErRe5JcOVM&vet=12ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ..i&imgrefurl=https%3A%2F%2Fwww.pathe-thuis.nl%2Ffilm%2F7471%2Fharry-potter-and-the-half-blood-prince&docid=lp_9pgtfNjtXXM&w=450&h=640&q=harry%20potter%20and%20the%20half%20blood%20prince&ved=2ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ', 'https://www.youtube.com/watch?v=tAiy66Xrsz4 ', 'Harry Potter krijgt te horen dat Voldemort terug is. Hogwarts is nu geen veilige plek meer. Dumbledore bereidt Harry voor op zijn confrontatie met Voldemort.', '29 feb', '16:00'], (err) => {
 //     if(err) return console.error(err.message);
 // })
+// udb.run(`DELETE FROM  Account  WHERE email = 'h@n.nl'`, (err) => {
+//         if(err) return console.error(err.message); 
+// });
 
 // delete data
 // sql = 'DELETE FROM Account WHERE username = ?';
 // db.run(sql, [''], (err) => {
 //         if(err) return console.error(err.message); 
 // });
+//drop table
+// udb.run('DROP TABLE Account');
 
-// update data
+// Update data
+// sql = "UPDATE Movies SET plot = ? WHERE movie_ID = ?";
+// db.run(sql, ['Sparks fly when spirited Elizabeth Bennet meets single, rich, and proud Mr. Darcy. But Mr. Darcy reluctantly finds himself falling in love with a woman beneath his class. Can each overcome their own pride and prejudice?', 11111], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
 
-// query the database
+//update data park jimin
+sql = "UPDATE Account SET creditcard = ? WHERE name = ?";
+udb.run(sql, ['1234-5678-9052-8113', 'park jimin'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET adress = ? WHERE name = ?";
+udb.run(sql, ['Persey Road 23', 'park jimin'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET name = ? WHERE creditcard = ?";
+udb.run(sql, ['Park Jimin', '1234-5678-9052-8113'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+//valérie buijs
+sql = "UPDATE Account SET adress = ? WHERE name = ?";
+udb.run(sql, ['Downtown Abbey 921', 'Valérie Buijs'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET username = ? WHERE name = ?";
+udb.run(sql, ['slaylor13', 'Valérie Buijs'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET password = ? WHERE name = ?";
+udb.run(sql, ['IMnyp89rep', 'Valérie Buijs'], (err) => {
+        if(err) return console.error(err.message); 
+});
+
+sql = "UPDATE Account SET creditcard = ? WHERE name = ?";
+udb.run(sql, ['6457-9127-1123-0925', 'Valérie Buijs'], (err) => {
+        if(err) return console.error(err.message); 
+});
+
+//jeon jeongguk
+sql = "UPDATE Account SET adress = ? WHERE name = ?";
+udb.run(sql, ['Persey Road 25', 'Jeon Jeongguk'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET creditcard = ? WHERE name = ?";
+udb.run(sql, ['2932-5675-8351-4407', 'Jeon Jeongguk'], (err) => {
+        if(err) return console.error(err.message); 
+});
+
+sql = "UPDATE Account SET password = ? WHERE name = ?";
+udb.run(sql, ['bunnyy783LP', 'Jeon Jeongguk'], (err) => {
+        if(err) return console.error(err.message); 
+});
+
+//de
+sql = "UPDATE Account SET adress = ? WHERE name = ?";
+udb.run(sql, ['Beverweerd 6', 'de'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET name = ? WHERE adress = ?";
+udb.run(sql, ['Donny Uil', 'Beverweerd 6'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET creditcard = ? WHERE name = ?";
+udb.run(sql, ['9384-3498-5593-0037', 'Donny Uil'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET password = ? WHERE name = ?";
+udb.run(sql, ['wddOmk7', 'Donny Uil'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET username = ? WHERE name = ?";
+udb.run(sql, ['films010', 'Donny Uil'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+sql = "UPDATE Account SET email = ? WHERE name = ?";
+udb.run(sql, ['fey010@hotmail.com', 'Donny Uil'], (err) => {
+        if(err) return console.error(err.message); 
+}); 
+
+//insert user
+sql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES(?,?,?,?,?,?)';
+udb.run(sql, ['Lisi Boer', 'lisi04@gmail.com', 'Gerard Willibrordlaan 760', '2673-5550-1238-0447', 'imdbgek01', 'Br44p1asd'], (err) => {
+    if(err) return console.error(err.message);
+})
+
+sql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES(?,?,?,?,?,?)';
+udb.run(sql, ['Hannelies Mok', 'hannalovesajax@gmail.com', 'Pieterstraat 8', '1002-1297-4385-8850', 'pinocchio020', 'FeyIsBeter'], (err) => {
+    if(err) return console.error(err.message);
+})
+
+// Query the database
 // sql = 'SELECT poster FROM Movies';
 // db.all(sql, [], (err, rows) => {
 //     if(err) return console.error(err.message);
 //         rows.forEach(row => {
 //             console.log(row);
 //         });
+// });
+
+// sql = 'SELECT poster FROM Movies';
+// db.each(sql, [], (err, rows) => {
+//     if(err) return console.error(err.message);
+//             console.log(rows);
 // });
 
 
