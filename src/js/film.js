@@ -14,7 +14,7 @@ var body = document.getElementsByClassName('film-body')[0];
 var firstScript = document.getElementsByClassName('first-script')[0];
 
 
-fetch('http://localhost:8026/m')
+fetch('m')
     .then(res => res.json())
     .then(data => {
         //Creating the headers
