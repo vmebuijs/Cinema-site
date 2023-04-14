@@ -1,46 +1,56 @@
+<!-- 
+    This file creates the log in page where a user can log in when they have an account, or go to the register page to create one.
+    Without being logged in, a user cannot buy tickets. 
+    As with every page, the headers make up the first code in the body and the footer and the javascript files the last.
+    The log in form and the register button are the main content of this file. 
+ -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
-        <meta name="description" content="">
+        <title>Log in</title>
+        <meta name="description" content="Log in here to get access to your Starry Nights Cinemas account.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
+        <!-- Desktop header -->
         <header class="header--desktop">
             <div class="logo-container">
                 <a href="index.html">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
                 </a>
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="films.html">Films</a>
-                <a class="nav__link" href="#">Log in</a>
+                <a class="nav__link" href="order.html">Tickets</a>
+                <a class="nav__link" href="login.html">Log in</a>
             </nav>
             <a href="account.html">
-                <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
+                <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
             </a>
         </header>
 
-        <!-- mobile version -->
+        <!-- Mobile header -->
         <header class="header--mobile">
             <div class="logo-container">
                 <a href="#">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
                 </a>
             </div>
-            <img class="open-menu" src="src/svg/open.svg" alt="">
+            <img class="open-menu" src="src/svg/open.svg">
             <div class="menu-container closed">
                 <img class="close-menu" src="src/svg/close.svg">
                 <nav class="menu">
-                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
-                    <a class="menu__item" href="index.html">Home</a>
-                    <a class="menu__item" href="films.html">Films</a>
-                    <a class="menu__item" href="#">Log in</a>
+                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                    <a class="menu__item" href="#">Home</a>
+                    <a class="menu__item" href="order.html">Tickets</a>
+                    <a class="menu__item" href="login.html">Log in</a>
                     <a class="menu__item" href="account.html">
-                        <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
+                        <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
                     </a>
                 </nav>
             </div>
@@ -67,11 +77,11 @@
         
         <footer class="footer">
             <a class="footer__link" href="index.html">Home</a>
-            <a class="footer__link" href="films.html">Films</a>
+            <a class="footer__link" href="order.html">Tickets</a>
         </footer>
 
         <script src="src/js/menu.js"></script>
-        <script src="src/js/index.js"></script>
         <script src="src/js/login.js"></script>
+        <script src="src/js/account.js"></script>
     </body>
 </html>

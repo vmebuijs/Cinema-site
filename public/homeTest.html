@@ -1,0 +1,132 @@
+<!-- 
+This file shows a user their user information and their ticket orders. 
+As with every page, the headers make up the first code in the body and the footer and the javascript files the last.
+The main content of this page comes after the headers, and is divided in an control panel, 'account informartion', and 'order history'.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Account</title>
+        <meta name="description" content="This is your account page where you can see your data and your tickets for films in Starry Nights Cinemas.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
+    </head>
+    <body> 
+        <!-- Desktop header -->
+        <header class="header--desktop">
+            <div class="logo-container">
+                <a href="homeTest.html">
+                    <img class="logo-image" src="img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                </a>
+            </div>
+
+            <nav class="nav">
+                <a class="nav__link" href="order.html">Tickets</a>
+                <a class="nav__link" href="loginTest.html">Log in</a>
+            </nav>
+            <a href="account.html">
+                <img class="user-image" src="img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
+            </a>
+        </header>  
+        
+        <main>
+            <aside class="account-controls">
+                <button class="account-controls__button">Account Information</button>
+                <button class="account-controls__button">Order History</button>
+            </aside>
+            <article class="account-information">
+                <h1>Account Information</h1>
+                <hr>
+                <section class="account-information__data">
+                    <div class="user-data">
+                        <p class="user-data__type">Name</p>
+                        <hr>
+                        <p></p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Username</p>
+                        <hr>
+                        <p></p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">E-mail</p>
+                        <hr>
+                        <p></p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Password</p>
+                        <hr>
+                        <p></p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Address</p>
+                        <hr>
+                        <p></p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-data__type">Credit card</p>
+                        <hr>
+                        <p></p>
+                    </div>
+                </section>
+            </article>
+
+            <article class="order-history">
+                <h1>Order History</h1>
+                <hr>
+                <article class="order">
+                    <img class="order__film-poster" src="img/poster.png">
+                    <section class="order__data">
+                        <p>Film title: The Intruder</p>
+                        <p>Date: 27/03/23</p>
+                        <p>Price: €12.50</p>
+                        <p>OrderID: 123465</p>
+                    </section>
+                </article>
+
+                <article class="order">
+                    <img class="order__film-poster" src="img/poster.png">
+                    <section class="order__data">
+                        <p>Film title: The Intruder</p>
+                        <p>Date: 27/03/23</p>
+                        <p>Price: €12.50</p>
+                        <p>OrderID: 123465</p>
+                    </section>
+                </article>
+
+                <article class="order">
+                    <img class="order__film-poster" src="img/poster.png">
+                    <section class="order__data">
+                        <p>Film title: The Intruder</p>
+                        <p>Date: 27/03/23</p>
+                        <p>Price: €12.50</p>
+                        <p>OrderID: 123465</p>
+                    </section>
+                </article>
+
+                <article class="order">
+                    <img class="order__film-poster" src="img/poster.png">
+                    <section class="order__data">
+                        <p>Film title: The Intruder</p>
+                        <p>Date: 27/03/23</p>
+                        <p>Price: €12.50</p>
+                        <p>OrderID: 123465</p>
+                    </section>
+                </article>
+            </article>
+        </main>
+
+        <footer class="footer">
+            <a class="footer__link" href="#">Top of the page</a>
+            <a class="footer__link" href="homeTest.html">Home</a>
+            <a class="footer__link" href="order.html">Tickets</a>
+        </footer>
+<!-- 
+        <script src="/src/js/menu.js"></script> -->
+        <script src="/src/js/account.js"></script>
+    </body>
+</html>

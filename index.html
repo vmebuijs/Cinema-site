@@ -1,50 +1,58 @@
+<!-- 
+    This file holds the page a user first sees when accessing our website. It first displays the film that are showing/ coming soon in a slideshow.
+    Beneath that the films are listed based on whether they are currently playing or are coming soon. 
+    The head of this file is almost the same for every page, only the title and the description differ.
+    The first code in the body is for the header displayed on desktop, the code for the mobile header follows that.
+    Then the main content of the page, the slideshow and the overview of the films playing, comes next. 
+    Lastly, the footer and the javascripts are included in the body.
+ -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
-        <meta name="description" content="">
+        <title>Starry Nights Cinemas</title>
+        <meta name="description" content="Welcome to the site of Starry Nights Cinemas. This cinema is currently showing ten films and will soon ten more.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
+        <!-- Desktop header -->
         <header class="header--desktop">
             <div class="logo-container">
                 <a href="#">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
                 </a>
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="order.html">Films</a>
+                <a class="nav__link" href="order.html">Tickets</a>
                 <a class="nav__link" href="login.html">Log in</a>
             </nav>
             <a href="account.html">
-
-                <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
-
+                <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
             </a>
         </header>
 
-        <!-- mobile version -->
+        <!-- Mobile header -->
         <header class="header--mobile">
             <div class="logo-container">
                 <a href="#">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
                 </a>
             </div>
             <img class="open-menu" src="src/svg/open.svg">
             <div class="menu-container closed">
                 <img class="close-menu" src="src/svg/close.svg">
                 <nav class="menu">
-                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="cinema logo" width="100px">
+                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
                     <a class="menu__item" href="#">Home</a>
-                    <a class="menu__item" href="order.html">Films</a>
-
+                    <a class="menu__item" href="order.html">Tickets</a>
                     <a class="menu__item" href="login.html">Log in</a>
                     <a class="menu__item" href="account.html">
-                        <img class="user-image" src="src/img/account.png" alt="cinema logo" width="50px">
-
+                        <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
                     </a>
                 </nav>
             </div>
@@ -58,7 +66,6 @@
                     <img class="films-slideshow__poster" alt="film-poster">
                     <img class="films-slideshow__poster" alt="film-poster">
                     <img class="films-slideshow__poster" alt="film-poster">
-                    <figcaption class="films-slideshow__film-title">Film Title</figcaption>
                 </figure>
                 <button class="films-slideshow__button">&gt;</button>
             </div>
@@ -75,7 +82,7 @@
         
         <footer class="footer">
             <a class="footer__link" href="#">Top of the page</a>
-            <a class="footer__link" href="films.html">Films</a>
+            <a class="footer__link" href="order.html">Tickets</a>
             <a class="footer__link" href="account.html">Account</a>
         </footer>
 

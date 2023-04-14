@@ -1,19 +1,29 @@
-    // buttons on the account page to change what section you see
-    const accInfo = document.getElementsByClassName('account-information')[0];
-    const ordHistory = document.getElementsByClassName('order-history')[0];
+/*
+    This file influences the account page. 
+    Firstly, we get the two sections on the page and enable the functionality that when a button is clicked in the control panel, 
+    a specific section is shown. 
 
-    const accButton = document.getElementsByClassName('account-controls__button')[0];
-    const ordButton = document.getElementsByClassName('account-controls__button')[1];
+    ......
+*/
 
-    accButton.addEventListener('click', () => {
-        accInfo.style.display = 'block';
-        ordHistory.style.display = 'none';
-    });
+//The sections on the account page
+const accInfo = document.getElementsByClassName('account-information')[0];
+const ordHistory = document.getElementsByClassName('order-history')[0];
 
-    ordButton.addEventListener('click', () => {
-        ordHistory.style.display = 'block';
-        accInfo.style.display = 'none';
-    });
+//The buttons on the account page to change what section you see
+const accButton = document.getElementsByClassName('account-controls__button')[0];
+const ordButton = document.getElementsByClassName('account-controls__button')[1];
+
+//Eventlisteners are added to the buttons to display one of the sections when clicked
+accButton.addEventListener('click', () => {
+    accInfo.style.display = 'block';
+    ordHistory.style.display = 'none';
+});
+
+ordButton.addEventListener('click', () => {
+    ordHistory.style.display = 'block';
+    accInfo.style.display = 'none';
+});
 
     
     console.log(sessionStorage.getItem('username'));

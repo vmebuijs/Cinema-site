@@ -1,0 +1,64 @@
+<!-- 
+This page takes care of registering users who do not yet have an account, so they cna buy tickets. 
+As with every page, the headers make up the first code in the body and the footer and the javascript files the last.
+The register form makes up the main content of this page where a user can enter their information. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create a Starry Nights Cinemas account!</title>
+        <meta name="description" content="You can create an account here to buy tickets for Starry Nights Cinemas.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Desktop header -->
+        <header class="header--desktop">
+            <div class="logo-container">
+                <a href="indexTest.html">
+                    <img class="logo-image" src="img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                </a>
+            </div>
+
+            <nav class="nav">
+                <a class="nav__link" href="order.html">Tickets</a>
+                <a class="nav__link" href="loginTest.html">Log in</a>
+            </nav>
+            <a href="account.html">
+                <img class="user-image" src="img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
+            </a>
+        </header>
+        
+        <!-- register stuff -->
+        <main>
+            <div class="register-container"> 
+                <div class="register" >
+                <form action="/register" method="POST">
+                    <input type="text" class="register__input-field" name="name"  placeholder="Enter your full name" required>
+                    <input type="email" class="register__input-field" name="email"  placeholder="Enter your E-mail" required>
+                    <input type="text" class="register__input-field" name="address"  placeholder="Enter your Address" required>
+                    <input type="number" class="register__input-field" name="creditcard"  placeholder="Enter your credit card number" required>
+                    <input type="text" class="register__input-field" name="username"  placeholder="Create your username" required>
+                    <input  type="password" class="register__input-field" name="password" placeholder="Create your password" required>
+                    <button type="submit" class="submitBtn">Create account</button>
+                    <a class="register__submit-button" href="/login">Go to login</a>
+                </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <a class="footer__link" href="#">Top of the page</a>
+            <a class="footer__link" href="indexTest.html">Home</a>
+            <a class="footer__link" href="order.html">Tickets</a>
+            <a class="footer__link" href="account.html">Account</a>
+        </footer>
+
+        <!-- <script src="/src/js/menu.js"></script> -->
+        <!-- <script src="js/form.js"></script> -->
+    </body>
+</html>
