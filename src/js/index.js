@@ -95,6 +95,7 @@ fetch('http://localhost:8026/tp')
         function filmPage(e){
             var clickedFilm = e.target.parentElement;
             window.location.href = '/film.html?id=' + clickedFilm.id;
+            //op de server: /group26/film.html?id=
         }
 
         //The buttons for pagination
