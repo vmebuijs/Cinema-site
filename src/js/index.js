@@ -1,4 +1,4 @@
-fetch('http://localhost:8026/tp') //http://localhost:8026/tp
+fetch('tp') //http://localhost:8026/tp
     .then(res => res.json())
     .then(data => {
         console.log(data);
@@ -8,7 +8,7 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
         const slideTwo = document.getElementsByClassName('films-slideshow__poster')[1];
         const slideThree = document.getElementsByClassName('films-slideshow__poster')[2];
         const slideFour = document.getElementsByClassName('films-slideshow__poster')[3];
-
+        sessionStorage.setItem('username', 'user');
         let n = 0;
         let m = 1;
         let p = 2;
@@ -171,7 +171,7 @@ fetch('http://localhost:8026/tp') //http://localhost:8026/tp
         window.addEventListener('load', registerEvents, false);
     })
     .catch(err => console.log(err));
-    fetch('http://localhost:8026/m')//http://localhost:8026/m
+    fetch('m')//http://localhost:8026/m
     .then(res => res.json())
     .then(data => {
         console.log(data)

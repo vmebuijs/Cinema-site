@@ -29,14 +29,24 @@
 // db.run(sql, ['23132','Harry Potter and the Half-Blood Prince', 'Fantasy/Adventure', '2009', 'David Yates', 'Steve Kloves, J.K. Rowling', 'Daniel Radcliffe, Emma Watson, Rupert Grint', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pathe-thuis.nl%2F15302_450x640.jpg&tbnid=0Y2OErRe5JcOVM&vet=12ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ..i&imgrefurl=https%3A%2F%2Fwww.pathe-thuis.nl%2Ffilm%2F7471%2Fharry-potter-and-the-half-blood-prince&docid=lp_9pgtfNjtXXM&w=450&h=640&q=harry%20potter%20and%20the%20half%20blood%20prince&ved=2ahUKEwjrqaq394D-AhXfiv0HHYVZDUQQMygAegUIARC7AQ', 'https://www.youtube.com/watch?v=tAiy66Xrsz4 ', 'Harry Potter krijgt te horen dat Voldemort terug is. Hogwarts is nu geen veilige plek meer. Dumbledore bereidt Harry voor op zijn confrontatie met Voldemort.', '29 feb', '16:00'], (err) => {
 //     if(err) return console.error(err.message);
 // })
-
+// udb.run(`DELETE FROM  Account  WHERE email = 'h@n.nl'`, (err) => {
+//         if(err) return console.error(err.message); 
+// });
 // delete data
 // sql = 'DELETE FROM Account WHERE username = ?';
 // db.run(sql, [''], (err) => {
 //         if(err) return console.error(err.message); 
 // });
+//drop table
+// udb.run('DROP TABLE Account');
 
+// const userSql = 'CREATE TABLE test(name varchar(50) NOT NULL,email varchar(50) NOT NULL, adress varchar(50) NOT NULL, creditcard char(50) NOT NULL, username varchar(50) NOT NULL, password varchar(50) NOT NULL, CONSTRAINT Account_pk PRIMARY KEY(username))';
+// udb.run(userSql);
 // update data
+// sql = 'UPDATE Movies SET poster = ? WHERE movie_ID = ?';
+// db.run(sql, ['src/img/harryPotterIMG.jpg', 23132], (err) => {
+//         if(err) return console.error(err.message); 
+// }); 
 
 // query the database
 // sql = 'SELECT poster FROM Movies';

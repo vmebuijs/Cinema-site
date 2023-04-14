@@ -1,4 +1,4 @@
-fetch('http://localhost:8026/m')
+fetch('m')
     .then(res => res.json())
     .then(data => {
         
