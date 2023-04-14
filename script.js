@@ -25,8 +25,9 @@ function logger(req, res, next) {
 
 app.use(logger);
 app.use(cors());
-app.use(express.static('html'));
-app.use(express.static('src'));
+//app.use(express.static('html'));
+//app.use(express.static('src'));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -42,22 +43,36 @@ var staticPath = join(__dirname, "public/html");
 app.use(express.static(staticPath));
 
 //Connect the databases
-const db = new sqlite3.Database('html/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+// const db = new sqlite3.Database('html/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+//   if(err) return console.error(err.message); // html/ ervoor
+// });
+
+// const udb = new sqlite3.Database('html/src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+//   if(err) return console.error(err.message);
+// });
+
+const db = new sqlite3.Database('public/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message); // html/ ervoor
 });
 
-const udb = new sqlite3.Database('html/src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+const udb = new sqlite3.Database('public/src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message);
 });
 
-
 //Routing
-router.get('/login.html', (req, res) => res.send('login.html'));
-router.get('/register.html', (req, res) => res.send('register.html'));
-router.get('/account.html', (req, res) => res.send('account.html'));
-router.get('/order.html', (req, res) => res.send('order.html'));
-router.get('/index.html', (req, res) => res.send('index.html'));
-router.get('/film.html', (req, res) => res.send('film.html'));
+// router.get('/login.html', (req, res) => res.send('login.html'));
+// router.get('/register.html', (req, res) => res.send('register.html'));
+// router.get('/account.html', (req, res) => res.send('account.html'));
+// router.get('/order.html', (req, res) => res.send('order.html'));
+// router.get('/index.html', (req, res) => res.send('index.html'));
+// router.get('/film.html', (req, res) => res.send('film.html'));
+
+router.get('/login.html', (req, res) => res.send('public/login.html'));
+router.get('/register.html', (req, res) => res.send('public/register.html'));
+router.get('/account.html', (req, res) => res.send('public/account.html'));
+router.get('/order.html', (req, res) => res.send('public/order.html'));
+router.get('/index.html', (req, res) => res.send('public/index.html'));
+router.get('/film.html', (req, res) => res.send('public/film.html'));
 
 
 app.get("/tp", (req, res) => {
@@ -95,28 +110,27 @@ app.get('/logout', (req, res) =>{
 app.post("/register.html", async (req, res) => {  
   try{
     bcrypt.hash(req.body.psw, (err, hash) => {
-    let name = req.body.name;
-    let email = req.body.email;
-    let address = req.body.address;
-    let creditcard = req.body.credit;
-    let username = req.body.uname;
-    ansql = 'SELECT * FROM Account WHERE username = ?' // checks if the username already excists in the database
-    udb.all(ansql, [username], (err, names) => {
-      if(err) return console.error(err.message);
-      if(names[0] != null){
-        console.log('username already exists');
-        res.redirect('/register.html')
-      } 
-      else { // if not then an row is added to the database
-        usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
-        udb.run(usql, [name, email, address, creditcard, username, req.body.psw], (err, rij) => {
-          if(err) return console.error(err.message);
-          console.log(rij);
-        });
-        res.redirect('login.html')
-        
-      }
-    });
+      let name = req.body.name;
+      let email = req.body.email;
+      let address = req.body.address;
+      let creditcard = req.body.credit;
+      let username = req.body.uname;
+      ansql = 'SELECT * FROM Account WHERE username = ?' // checks if the username already excists in the database
+      udb.all(ansql, [username], (err, names) => {
+        if(err) return console.error(err.message);
+        if(names[0] != null){
+          console.log('username already exists');
+          res.redirect('/register.html')
+        } 
+        else { // if not then an row is added to the database
+          usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
+          udb.run(usql, [name, email, address, creditcard, username, req.body.psw], (err, rij) => {
+            if(err) return console.error(err.message);
+            console.log(rij);
+          });
+          res.redirect('login.html')
+        }
+      });
     });
   }catch(err){
     console.log(err);
