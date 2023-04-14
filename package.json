@@ -14,6 +14,7 @@
     "sqlite3": "^5.1.6"
   },
   "scripts": {
+    "start": "scriptTest.js",
     "dev": "nodemon script.js"
   },
   "devDependencies": {

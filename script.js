@@ -191,3 +191,8 @@ app.listen(port, () => {
 // app.listen(port, () => {
 //   console.log('Example app listening on port ${port}')
 // })
+
+sql = 'DELETE FROM Account WHERE username = ?';
+udb.run(sql, ['qwertyui'], (err) => {
+        if(err) return console.error(err.message); 
+});

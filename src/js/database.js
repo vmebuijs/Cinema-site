@@ -118,12 +118,12 @@ udb.run(sql, ['fey010@hotmail.com', 'Donny Uil'], (err) => {
 
 //insert user
 sql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES(?,?,?,?,?,?)';
-db.run(sql, ['Lisi Boer', 'lisi04@gmail.com', 'Gerard Willibrordlaan 760', '2673-5550-1238-0447', 'imdbgek01', 'Br44p1asd'], (err) => {
+udb.run(sql, ['Lisi Boer', 'lisi04@gmail.com', 'Gerard Willibrordlaan 760', '2673-5550-1238-0447', 'imdbgek01', 'Br44p1asd'], (err) => {
     if(err) return console.error(err.message);
 })
 
 sql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES(?,?,?,?,?,?)';
-db.run(sql, ['Hannelies Mok', 'hannalovesajax@gmail.com', 'Pieterstraat 8', '1002-1297-4385-8850', 'pinocchio020', 'FeyIsBeter'], (err) => {
+udb.run(sql, ['Hannelies Mok', 'hannalovesajax@gmail.com', 'Pieterstraat 8', '1002-1297-4385-8850', 'pinocchio020', 'FeyIsBeter'], (err) => {
     if(err) return console.error(err.message);
 })
 
