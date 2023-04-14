@@ -4,7 +4,7 @@
     to change the src of the elements on the page.
     Then the overview of films already playing and the ones coming soon is done with pagination. 
 */
-fetch('http://localhost:8026/tp')
+fetch('tp')
     .then(res => res.json())
     .then(data => {
         //The buttons and posterslots in the slideshow
@@ -94,8 +94,7 @@ fetch('http://localhost:8026/tp')
         //Changes the page to show a page with information about the clicked film
         function filmPage(e){
             var clickedFilm = e.target.parentElement;
-            window.location.href = '/film.html?id=' + clickedFilm.id;
-            //op de server: /group26/film.html?id=
+            window.location.href = 'film.html?id=' + clickedFilm.id;
         }
 
         //The buttons for pagination

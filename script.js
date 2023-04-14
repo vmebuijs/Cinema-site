@@ -131,6 +131,12 @@ app.get('/user', (req, res) =>{
   res.send(sessionuser);
 })
 
+app.get('/logout', (req, res) =>{
+  req.session.row = null;
+  res.redirect('login.html');
+  //res.send("You are logged out");
+})
+
 app.post("/login.html", (req, res) =>{
   try{
     let user = req.body.uname;
@@ -149,48 +155,14 @@ app.post("/login.html", (req, res) =>{
       else{
         console.log('password or username is incorrect');
         res.redirect('login.html');
-      }
-
-      
-    //   if(err) return console.error(err.message);
-      // psql = `SELECT password FROM Account WHERE username = ?`
-      // udb.all(psql, [user], (err, rij) => {
-      //   if(err) return console.error(err.message);
-      //     console.log(rij[0].password);
-      //     let pas = JSON.stringify(rij[0].password);
-      //     console.log(pwd);
-      //     bcrypt
-      //       .compare(pwd, pas)
-      //       .then(res => {
-      //         console.log(res) // return true
-      //     })
-      //       .catch(err => console.error(err.message)) 
-      //     if(bcrypt.compare(pwd, pas)){
-      //       console.log("succes");
-      //       res.redirect('account.html') //group26/login.html
-      //     } else{
-      //       console.log('password or username is incorrect');
-      //       res.redirect('login.html') //group26/login.html
-      //       loggedIN = false;
-      //     }
-              
-        });
-          
-  }catch{
+      }       
+    });      
+  }
+  catch{
     res.redirect('login.html') //group26/login.html
   }
 })
 
-
-// console.log('correct');
-//                   // let b = req.session.user;
-//                   var b = rij;
-//                   let c = true;
-//                   // req.session.save();
-//                   let sessionuser = b;
-//                   console.log(sessionuser); 
-                  
-//               }
 
 var join = require('path').join;
 var staticPath = join(__dirname, "public/html");
