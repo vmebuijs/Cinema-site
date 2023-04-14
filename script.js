@@ -22,11 +22,11 @@ function logger(req, res, next) {
   console.log('%s %s', req.method, req.url);
   next();
 }
+
 app.use(logger);
 app.use(cors());
 app.use(express.static('html'));
 app.use(express.static('src'));
-// Initialization
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -37,8 +37,11 @@ app.use(session({
   resave: false
 }));
 
+var join = require('path').join;
+var staticPath = join(__dirname, "public/html");
+app.use(express.static(staticPath));
 
-//connect to database
+//Connect the databases
 const db = new sqlite3.Database('html/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message); // html/ ervoor
 });
@@ -48,7 +51,7 @@ const udb = new sqlite3.Database('html/src/db/users.sqlite', sqlite3.OPEN_READWR
 });
 
 
-// routes
+//Routing
 router.get('/login.html', (req, res) => res.send('login.html'));
 router.get('/register.html', (req, res) => res.send('register.html'));
 router.get('/account.html', (req, res) => res.send('account.html'));
@@ -68,8 +71,6 @@ app.get("/tp", (req, res) => {
   });
 })
 
-
-
 app.get("/m", (req, res) => {
   sql = 'SELECT * FROM Movies';
   db.all(sql, [], (err, rows) => {
@@ -81,7 +82,17 @@ app.get("/m", (req, res) => {
   });
 })
 
-app.post("/register.html", async (req, res) => {  //group26/register.html
+app.get('/user', (req, res) =>{
+  var sessionuser = req.session.row;
+  res.json(sessionuser);
+})
+
+app.get('/logout', (req, res) =>{
+  req.session.row = null;
+  res.redirect('login.html');
+})
+
+app.post("/register.html", async (req, res) => {  
   try{
     bcrypt.hash(req.body.psw, (err, hash) => {
     let name = req.body.name;
@@ -102,40 +113,16 @@ app.post("/register.html", async (req, res) => {  //group26/register.html
           if(err) return console.error(err.message);
           console.log(rij);
         });
-        res.redirect('login.html') //group26/login.html
+        res.redirect('login.html')
         
       }
     });
     });
   }catch(err){
     console.log(err);
-    res.redirect('register.html') //group26/register.html
+    res.redirect('register.html') 
   }
 });
-
-/*
-  als de data goed is
-  rij met data 
-  sessionStorage.username = rij[0].username;
-
-  if(!sessionStorage.username){ //niet ingelogd
-
-  }
-  else{ //wel ingelogd
-
-  }
-  "hallo ${sessionStorage.name}"
-*/
-app.get('/user', (req, res) =>{
-  var sessionuser = req.session.row;
-  res.send(sessionuser);
-})
-
-app.get('/logout', (req, res) =>{
-  req.session.row = null;
-  res.redirect('login.html');
-  //res.send("You are logged out");
-})
 
 app.post("/login.html", (req, res) =>{
   try{
@@ -150,7 +137,7 @@ app.post("/login.html", (req, res) =>{
         req.session.row = sesh
         req.session.save();
         console.log(sesh);
-        res.redirect('account.html'); //group26/login.html
+        res.redirect('account.html'); 
       }
       else{
         console.log('password or username is incorrect');
@@ -159,15 +146,11 @@ app.post("/login.html", (req, res) =>{
     });      
   }
   catch{
-    res.redirect('login.html') //group26/login.html
+    res.redirect('login.html') 
   }
 })
 
 
-var join = require('path').join;
-var staticPath = join(__dirname, "public/html");
-
-app.use(express.static(staticPath));
 app.get('order.js', function (req, res) {
   res.send(req.body.value);
   console.log(staticPath);
@@ -177,4 +160,3 @@ app.get('order.js', function (req, res) {
 app.listen(port, () => {
   console.log('Example app listening on port ${port}')
 });
-

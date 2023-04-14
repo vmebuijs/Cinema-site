@@ -1,3 +1,7 @@
+// if(sessionStorage.getItem('username') == ""){
+//     window.location.href = 'login.html';
+// }
+
 fetch('m')
     .then(res => res.json())
     .then(data => {
@@ -238,7 +242,7 @@ fetch('m')
             xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 
             xhr.onload = function(){
-                console.log(this.responseText);
+                console.log(this.responseText + 'joh');
             }
 
             xhr.send('selectedMovie=' + encodeURIComponent(selectedMovie));

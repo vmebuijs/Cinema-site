@@ -41,10 +41,6 @@ logoutButton.addEventListener('click', () => {
 fetch('user')
     .then(res => res.json())
     .then(data => {
-        console.log(data);
-        
-
-        // console.log(data);
         nameN.textContent = data[0].name;
         username.textContent = data[0].username;
         email.textContent = data[0].email;
@@ -53,3 +49,5 @@ fetch('user')
         card.textContent = data[0].creditcard;       
     })
     .catch(err => console.log(err));
+
+sessionStorage.setItem('username', username.textContent);
