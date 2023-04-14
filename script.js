@@ -126,7 +126,10 @@ app.post("/register.html", async (req, res) => {  //group26/register.html
   }
   "hallo ${sessionStorage.name}"
 */
-
+app.get('/user', (req, res) =>{
+  var sessionuser = req.session.row;
+  res.send(sessionuser);
+})
 
 app.post("/login.html", (req, res) =>{
   try{
@@ -137,6 +140,10 @@ app.post("/login.html", (req, res) =>{
       if(err) return console.error(err.message);
       if(rij[0] != null){
         console.log("succes");
+        let sesh = rij;
+        req.session.row = sesh
+        req.session.save();
+        console.log(sesh);
         res.redirect('account.html'); //group26/login.html
       }
       else{

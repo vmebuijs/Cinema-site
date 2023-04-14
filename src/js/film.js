@@ -5,7 +5,7 @@
     Lastly, the contents of the film page elements are set based on which film was clicked.
 */
 
-fetch('http://localhost:8026/m')
+fetch('m')
     .then(res => res.json())
     .then(data => {
         //Getting the body of the film html file
