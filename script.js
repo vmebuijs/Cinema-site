@@ -1,24 +1,5 @@
-
-//web dev simplified
-// const express = require('express');
-// const router = express.Router();
-
-// router.get('/', (req, res) => {
-//     res.send("helloo");
-// });
-
-// var http = require("http");
-// http.createServer(function (request, response) {
-// // Send the HTTP header
-// // HTTP Status: 200 : OK
-// // Content Type: text/plain
-// response.writeHead(200, {'Content-Type': 'text/plain'});
-// // Send the response body as "Hello World"
-// response.end('Hello booo!\n');
-// }).listen(8026);
-// // Console will print the message
-// console.log('Server running at http://127.0.0.1:8081/');
 const express = require('express');
+const router = express.Router();
 const { authenticate } = require('passport');
 const app = express();
 const port = 8026;
@@ -28,94 +9,49 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const initializePassport = require("./passport-config")
-initializePassport(passport, 
-  username =>{
-    console.log('ho');
-  username = req.body.uname;
-  ansql = 'SELECT * FROM Account WHERE username = ?' // checks if the username already excists in the database
-  udb.all(ansql, [username], (err, names) => {
-    console.log(names);
-    if(err) return console.error(err.message);
-    return names;
-  })
-  },
-  username =>{
-    username = req.body.uname;
-    ansql = 'SELECT * FROM Account WHERE username = ?' // checks if the username already excists in the database
-    udb.all(ansql, [username], (err, names) => {
-      console.log(names);
-      if(err) return console.error(err.message);
-      return names;
-    })
-  },
-
-);
-
-// function logger(req, res, next) {
-//   console.log('%s %s', req.method, req.url);
-//   next();
-// }
-// app.use(logger);
 var bodyParser = require("body-parser");
 const { json } = require('express');
-// const { request } = require('http');
+const { request } = require('http');
 const sqlite3 = require('sqlite3').verbose();
-// var path = require('path');
-// var apiRouter = require('./router/secret_routing')
-// var staticPath = path.resolve(__dirname, 'static');
-// app.set('view-engine', 'ejs');
 
-// app.get('/loginInfo', (req, res)=>{
-//   res.render('index.ejs');
-// })
-//connect db
-
-// sql = 'UPDATE Movies SET poster = ? WHERE movie_ID = ?';
-// db.run(sql, ['src/img/harryPotterIMG.jpg', 23132], (err) => {
-//         if(err) return console.error(err.message); 
-// }); 
-
-//app.use(express.static('src'));
-//app.use(express.static('html'));
-
-
-
-
+function logger(req, res, next) {
+  console.log('%s %s', req.method, req.url);
+  next();
+}
+app.use(logger);
+app.use(cors());
+app.use(express.static('html'));
+app.use(express.static('src'));
+// Initialization
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(flash());
+app.use(session({
+    secret: "secret",
+    saveUninitialized: false,
+    resave: false
+}));
 
 
-const db = new sqlite3.Database('src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+//connect to database
+const db = new sqlite3.Database('html/src/db/movie.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message); // html/ ervoor
 });
 
-const udb = new sqlite3.Database('src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
+const udb = new sqlite3.Database('html/src/db/users.sqlite', sqlite3.OPEN_READWRITE, (err) => {
   if(err) return console.error(err.message);
 });
 
-//drop table
-// udb.run('DROP TABLE Account');
 
-// const userSql = 'CREATE TABLE test(name varchar(50) NOT NULL,email varchar(50) NOT NULL, adress varchar(50) NOT NULL, creditcard char(50) NOT NULL, username varchar(50) NOT NULL, password varchar(50) NOT NULL, CONSTRAINT Account_pk PRIMARY KEY(username))';
-// udb.run(userSql);
+// routes
+router.get('/login.html', (req, res) => res.send('login.html'));
+router.get('/register.html', (req, res) => res.send('register.html'));
+router.get('/account.html', (req, res) => res.send('account.html'));
+router.get('/order.html', (req, res) => res.send('order.html'));
+router.get('/index.html', (req, res) => res.send('index.html'));
+router.get('/film.html', (req, res) => res.send('film.html'));
 
-
-
-
-// udb.run(`DELETE FROM  Account  WHERE email = 'h@n.nl'`, (err) => {
-//         if(err) return console.error(err.message); 
-// });
-
-app.use(cors());
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-//   // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl/group26/");
-//   // res.setHeader("Access-Control-Allow-Origin", "http://webtech.science.uu.nl");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
 
 app.get("/tp", (req, res) => {
   sql = 'SELECT title, poster FROM Movies';
@@ -128,6 +64,8 @@ app.get("/tp", (req, res) => {
   });
 })
 
+
+
 app.get("/m", (req, res) => {
   sql = 'SELECT * FROM Movies';
   db.all(sql, [], (err, rows) => {
@@ -138,28 +76,10 @@ app.get("/m", (req, res) => {
       res.status(200).json(rows);  
   });
 })
-// app.get('/films.html', (req, res)=>{
-//   res.render('http://127.0.0.1:5500/films.html');
-// })
 
-
-// Initialization
-app.use(cookieParser());
-app.use(flash());
-app.use(session({
-    secret: "secret",
-    saveUninitialized: false,
-    resave: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.post("/register", async (req, res) => {  //group26/register.html
+app.post("/register.html", async (req, res) => {  //group26/register.html
   try{
-    // let hashedPassword = await bcrypt.hash(req.body.psw, 10);
     bcrypt.hash(req.body.psw, (err, hash) => {
-      // Now we can store the password hash in db.
     let name = req.body.name;
     let email = req.body.email;
     let address = req.body.address;
@@ -169,66 +89,86 @@ app.post("/register", async (req, res) => {  //group26/register.html
     udb.all(ansql, [username], (err, names) => {
       if(err) return console.error(err.message);
       if(names[0] != null){
-        console.log('username already excists');
-        res.redirect('http://127.0.0.1:5500/register.html')
-      } else{ // if not then an row is added to the database
+        console.log('username already exists');
+        res.redirect('/register.html')
+      } 
+      else { // if not then an row is added to the database
         usql = 'INSERT INTO Account(name, email, adress, creditcard, username, password) VALUES (?,?,?,?,?,?)';
-        udb.run(usql, [name, email, address, creditcard, username, hash], (err) => {
+        udb.run(usql, [name, email, address, creditcard, username, req.body.psw], (err, rij) => {
           if(err) return console.error(err.message);
-          console.log("hoi");
-    });
-    res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
+          console.log(rij);
+        });
+        res.redirect('login.html') //group26/login.html
+        
       }
     });
-  });
+    });
   }catch(err){
     console.log(err);
-    res.redirect('http://127.0.0.1:5500/register.html') //group26/register.html
-    
+    res.redirect('register.html') //group26/register.html
   }
-  
-  });
+});
+
+/*
+  als de data goed is
+  rij met data 
+  sessionStorage.username = rij[0].username;
+
+  if(!sessionStorage.username){ //niet ingelogd
+
+  }
+  else{ //wel ingelogd
+
+  }
+  "hallo ${sessionStorage.name}"
+*/
 
 
-app.post("/login", passport.authenticate('local', {
-  successRedirect: 'http://127.0.0.1:5500/account.html',
-  failureRedirect: 'http://127.0.0.1:5500/login.html'
-  // failureFlash: true
-})); //group26/login
-  // try{
-  //   let loggedIN = false;
-  //   let user = req.body.uname;
-  //   let pwd = req.body.psw;
-  //   // isql = `SELECT * FROM Account WHERE username = ?`
-  //   // udb.all(isql, [user], (err, rij) => {
-  //   //   if(err) return console.error(err.message);
-  //     psql = `SELECT password FROM Account WHERE username = ?`
-  //     udb.all(psql, [user], (err, rij) => {
-  //       if(err) return console.error(err.message);
-  //         console.log(rij[0].password);
-  //         let pas = JSON.stringify(rij[0].password);
-  //         console.log(pwd);
-  //         bcrypt
-  //           .compare(pwd, pas)
-  //           .then(res => {
-  //             console.log(res) // return true
-  //         })
-  //           .catch(err => console.error(err.message)) 
-  //         if(bcrypt.compare(pwd, pas)){
-  //           console.log("succes");
-  //           res.redirect('http://127.0.0.1:5500/account.html') //group26/login.html
-  //         } else{
-  //           console.log('password or username is incorrect');
-  //           res.redirect('http://127.0.0.1:5500/login.html') //group26/login.html
-  //           loggedIN = false;
-  //         }
+app.post("/login.html", (req, res) =>{
+  try{
+    let user = req.body.uname;
+    let pwd = req.body.psw;
+    isql = `SELECT * FROM Account WHERE username = ? AND password = ?`
+    udb.all(isql, [user, pwd], (err, rij) => {
+      if(err) return console.error(err.message);
+      if(rij[0] != null){
+        console.log("succes");
+        res.redirect('account.html'); //group26/login.html
+      }
+      else{
+        console.log('password or username is incorrect');
+        res.redirect('login.html');
+      }
+
+      
+    //   if(err) return console.error(err.message);
+      // psql = `SELECT password FROM Account WHERE username = ?`
+      // udb.all(psql, [user], (err, rij) => {
+      //   if(err) return console.error(err.message);
+      //     console.log(rij[0].password);
+      //     let pas = JSON.stringify(rij[0].password);
+      //     console.log(pwd);
+      //     bcrypt
+      //       .compare(pwd, pas)
+      //       .then(res => {
+      //         console.log(res) // return true
+      //     })
+      //       .catch(err => console.error(err.message)) 
+      //     if(bcrypt.compare(pwd, pas)){
+      //       console.log("succes");
+      //       res.redirect('account.html') //group26/login.html
+      //     } else{
+      //       console.log('password or username is incorrect');
+      //       res.redirect('login.html') //group26/login.html
+      //       loggedIN = false;
+      //     }
               
-  //       });
+        });
           
-  // }catch{
-  //   // res.redirect('/login') //group26/login.html
-  // }
-  
+  }catch{
+    res.redirect('login.html') //group26/login.html
+  }
+})
 
 
 // console.log('correct');
@@ -240,65 +180,18 @@ app.post("/login", passport.authenticate('local', {
 //                   console.log(sessionuser); 
                   
 //               }
-// udb.run("INSERT INTO Account VALUES ('1001','Valérie','Valerie3@gmail.com', 'lasseslaan 45', '2203', 'ilovetayler_34', 'ebdiuefj!#')", (err) => {
-//   if(err) return console.error(err.message);
-// })
 
+var join = require('path').join;
+var staticPath = join(__dirname, "public/html");
 
-
-
-  var join = require('path').join;
-  var staticPath = join(__dirname, "public/html");
-
-  app.use(express.static(staticPath));
-  app.get('order.js', function (req, res) {
-    res.send(req.body.value);
-    console.log(staticPath);
-  })
-
-
-  
-// });
-// app.get("/", (req, res) => {
-//   res.send("<p>halloo</p>");
-// });
-//username id vinden 
-  // bestaat die niet dan error message
-  //password bij dat id vinden 
-  // die twee passwords vergelijken 
-  // als ze niet matchen dan 
-
-
-// id moet nu elke keer aangepast worden
-//ww niet meer in plain text
-//                                      
-// 1. ophalen gegevens                   
-// 2. store die gegevens in een database 
-// 3. kijk of ingevoerde gegevens overeenkomen met die in de database
-// console.log(sql);
-// npm run dev
-// node script.js
-
-// app.use((req, res) => {
-//   express.response.status(404).send("page not found");
-// })
-
-app.use(express.static('html'));
-app.use(express.static('src'));
+app.use(express.static(staticPath));
+app.get('order.js', function (req, res) {
+  res.send(req.body.value);
+  console.log(staticPath);
+})
 
 
 app.listen(port, () => {
   console.log('Example app listening on port ${port}')
 });
 
-// const indexRouter = require('./router');
-// app.use(express.static(staticPath));
-// app.use('/secret/', apiRouter);
-
-
-
-// app.use('/', indexRouter);
-
-// app.listen(port, () => {
-//   console.log('Example app listening on port ${port}')
-// })
