@@ -81,14 +81,29 @@ app.get("/m", (req, res) => {
 })
 
 app.get('/user', (req, res) =>{
-  var sessionuser = req.session.row;
+  let sessionuser = req.session.row;
   res.json(sessionuser);
-})
+});
+  // usql = 'SELECT * FROM Account WHERE username = ?'
+  // udb.all(usql, [us.username], (err, sessionuser) =>{
+   //  if(err) return console.error(err.message);
+   //  res.json(sessionuser);
+  // });
 
+  
 app.get('/logout', (req, res) =>{
   req.session.row = null;
   res.redirect('login.html');
-})
+});
+
+app.get('/orderHistory', (req, res) =>{
+  osql = 'SELECT * FROM Orders WHERE username = ?'
+  db.all(osql, ['bangtan#2'], (err, userRow) =>{
+    if(err) return console.error(err.message);
+    res.json(userRow);
+  });
+});
+
 
 app.post("/register.html", async (req, res) => {  
   try{
@@ -128,6 +143,14 @@ app.post("/login.html", (req, res) =>{
     isql = `SELECT * FROM Account WHERE username = ? AND password = ?`
     udb.all(isql, [user, pwd], (err, rij) => {
       if(err) return console.error(err.message);
+      isql = `SELECT username FROM Account`
+      udb.all(isql, [user, pwd], (err, usern) => {
+      if(err) return console.error(err.message);
+        let sesh2 = usern;
+        req.session.user = usern;
+        req.session.save();
+        console.log(sesh2);
+    });  
       if(rij[0] != null){
         console.log("succes");
         let sesh = rij;

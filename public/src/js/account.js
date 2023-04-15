@@ -31,12 +31,42 @@ let email = document.getElementsByClassName("account-information__data")[0].chil
 let password = document.getElementsByClassName("account-information__data")[0].childNodes[7].childNodes[5];
 let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
 let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
-
+let poster = document.getElementsByClassName("order__film-poster")[0];
+let title = document.getElementsByClassName("order__data")[0].childNodes[1].childNodes[0];
+let date = document.getElementsByClassName("order_data")[0].childNodes[3].childNodes[0];
+let price = document.getElementsByClassName("order_data")[0].childNodes[5].childNodes[0];
+let orderID = document.getElementsByClassName("order_data")[0].childNodes[7].childNodes[0];
+console.log(title);
 var logoutButton = document.getElementsByClassName('logout-button')[0];
-
+var orderButton = document.getElementsByClassName('order-button')[0];
+/**<article class="order">
+                    <img class="order__film-poster" src="src/img/poster.png">
+                    <section class="order__data">
+                        <p>Film title: The Intruder</p>
+                        <p>Date: 27/03/23</p>
+                        <p>Price: €12.50</p>
+                        <p>OrderID: 123465</p>
+                    </section>
+                </article> */
 logoutButton.addEventListener('click', () => { 
     window.location.href = 'logout';
-})
+});
+
+// orderButton.addEventListener('click', () => { 
+//     window.location.href = 'orderHistory';
+// });
+
+fetch('orderHistory')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        // poster.src = data[0].poster
+        // title.textContent
+        date.textContent = data[0].date;
+        price.textContent = data[0].price;
+        orderID.textContent = data[0].order_ID;
+    })
+    .catch(err => console.log(err));
 
 fetch('user')
     .then(res => res.json())
