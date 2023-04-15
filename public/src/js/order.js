@@ -155,34 +155,6 @@ fetch('m')
             location.appendChild(times);
         }
 
-        // function numberOfTickets() {
-        //     //Gets the selected movie
-        //     var movies = document.getElementById("movielist");
-        //     var selectedMovie = movies.selectedIndex; 
-
-        //     //Check number of tickets available
-        //     if(document.getElementById("numberOfTickets") == null){
-        //         var location = document.getElementsByClassName("ordering-container")[0];
-        //         var tickets = document.createElement("select");
-
-        //         tickets.setAttribute("name","numberOfTickets");
-        //         tickets.setAttribute("id","numberOfTickets");
-
-        //         for(var i=1;i<=10;i++){
-        //             var option = document.createElement("option");
-        //             option.text = i;
-        //             option.value = i;
-        //             tickets.add(option);
-        //         }
-        //     }
-        //     else{
-        //         var numberOfTickets = document.getElementById("numberOfTickets");
-        //         numberOfTickets.style.visibility="visible";
-        //     }
-        //     tickets.addEventListener("change", showSubmitButton);
-        //     location.appendChild(tickets);
-        // }
-
         function showSubmitButton() {
             //var location = document.getElementsByClassName("ordering-container")[0];
 
@@ -227,27 +199,7 @@ fetch('m')
             else{
                 var submitButton = document.getElementById("submitButton");
                 submitButton.style.visibility = "visible";
-            }
-
-            // //Gets selected movie, date and time
-            // var movies = document.getElementById("movielist");
-            // var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
-
-            // var dates = document.getElementById("datelist");
-            // var selectedDate = dates.options[dates.selectedIndex].text; //selected date
-
-            // var times = document.getElementById("timelist");
-            // var selectedTime = times.options[times.selectedIndex].text; //selected time
-
-            // xhttp.onreadystatechange = function() {
-            //     if(this.readyState == 4 && this.status == 200){
-            //         console.log("Progress saved");
-            //     }
-            // };
-            // xhttp.open("POST","iets.txt", true);
-            // xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            // xhttp.send(`movie=${selectedMovie}&date=${selectedDate}&time=${selectedTime}`);
-            
+            }            
         }
 
         // showSubmitButton();
@@ -279,32 +231,6 @@ fetch('m')
             createButton(location2,changeData);
 
             e.preventDefault();
-
-            //Gets selected movie, date and time
-            //var movies = document.getElementById("movielist");
-           // var selectedMovie = filmSelection.options[filmSelection.selectedIndex].value; // id of selected movie
-
-            // var dates = document.getElementById("datelist");
-            // var selectedDate = dates.options[dates.selectedIndex].text; //selected date
-
-            // var times = document.getElementById("timelist");
-            // var selectedTime = times.options[times.selectedIndex].text; //selected time
-
-            // var xhr = new XMLHttpRequest();
-            // xhr.open('POST', 'test.php');
-            // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-
-            // xhr.onload = function(){
-            //     console.log(this.responseText);
-            // }
-
-            // xhr.send('selectedMovie=' + encodeURIComponent(selectedMovie));
-            // xhr.open('GET', 'test.php', true);
-            // xhr.onload = function(){
-            //     console.log(this.responseText);
-            // }
-
-            // xhr.send();
         }
 
         function removeOptions(dropdownlist,submit,tickets) {
@@ -347,7 +273,7 @@ fetch('m')
             for(var i = 0; i < filmList[selectedMovie-1][nr].length; i++){
                 var option = document.createElement("option");
                 option.text = filmList[selectedMovie-1][nr][i];
-                option.value = filmList[selectedMovie-1][1];
+                option.value = filmList[selectedMovie-1][nr][i];
                 
                 if(datess!==null){
                     datess.add(option);
@@ -370,66 +296,66 @@ fetch('m')
 
         function deleteData(e){
             var id = e.target.parentElement.id;
-            console.log(id);
-            //var location = document.getElementsByClassName("ordering-container")[1];
             var element = document.getElementById(id);
+            allSelections.splice(id,1);
             element.remove();
-            //location.removeChild(document.getElementById(id));
         }
 
         function changeData(e){
-            var id = e.id;
+            var id = e.target.parentElement.id;
+
+            var movie_ID = allSelections[id].movie_ID;
+            var movie_date = allSelections[id].movie_date;
+            var movie_time = allSelections[id].movie_time;
+
+            console.log(movie_ID);
+            console.log(movie_date);
+            console.log(movie_time);
+
+            // var indexID = 0;
+            // var indexDate = 0;
+            // var indexTime = 0;
+
+            var indexID, indexDate, indexTime;
+
+            for(var i = 0; i<filmList.length; i++){
+                if(filmList[i][1] == movie_ID){
+                    indexID = i+1;
+                    var movielist = document.getElementById("movielist");
+                    movielist.selectedIndex = indexID;
+                    showMovieDates();
+
+                    for(var j = 0; j<filmList[i][2].length; j++){
+                        if(filmList[i][2][j] == movie_date){
+                            indexDate = j+1;
+                            var datelist = document.getElementById("datelist");
+                            datelist.selectedIndex = indexDate;
+                            showMovieTimes();
+                        }
+                    }
+                    for(var k = 0; k<filmList[i][3].length; k++){
+                        if(filmList[i][3][k] == movie_time){
+                            indexTime = k+1;
+                        }
+                    }
+                }
+            }
+
+            var timelist = document.getElementById("timelist");
+            timelist.selectedIndex = indexTime;
+
+            deleteData(e);
         }
 
-
+        //when placing adding to cart the server is alerted
         function submitAction(event){
+            // fetch('order-add', {     
+            //     method: 'POST',     
+            //     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+            //     body: JSON.stringify({username: username, password: password})})
+            // .then(response => response.json())
+            // .then(data => console.log(data))
             
-            //wat moet worden gebeurd bij submission
-
-        }
-
-        // function myLogin(e){
-        //     var movies = document.getElementById("movielist");
-        //     var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
-
-        //     // var dates = document.getElementById("datelist");
-        //     // var selectedDate = dates.options[dates.selectedIndex].text; //selected date
-
-        //     // var times = document.getElementById("timelist");
-        //     // var selectedTime = times.options[times.selectedIndex].text; //selected time
-        //     //+ "&dates=" + selectedDate + "&times=" + selectedTime
-
-        //     var url = "order.js?movies=" + selectedMovie;
-
-        //     get(url);
-        //     e.preventDefault();
-        // }
-        // myLogin();
-        // var con = document.getElementById('ordering');
-        // con.addEventListener('submit', myLogin);
-        // console.log(url);
-
-        // function get(url){
-        //     console.log(url);
-        //     var xhr = new XMLHttpRequest();
-        //     xhr.open('POST', url, true);
-        //     xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-
-        //     xhr.onload = function(){
-        //         console.log(this.responseText);
-        //     }
-
-        //     xhr.send();
-        // }
-        
+        }       
     })
     .catch(err => console.log(err));
-
-// var movies = document.getElementById("movielist");
-// var selectedMovie = movies.options[movies.selectedIndex].value; // id of selected movie
-
-// var dates = document.getElementById("datelist");
-// var selectedDate = dates.options[dates.selectedIndex].text; //selected date
-
-// var times = document.getElementById("timelist");
-// var selectedTime = times.options[times.selectedIndex].text; //selected time

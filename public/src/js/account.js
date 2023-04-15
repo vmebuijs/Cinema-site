@@ -33,10 +33,11 @@ let address = document.getElementsByClassName("account-information__data")[0].ch
 let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
 let poster = document.getElementsByClassName("order__film-poster")[0];
 let title = document.getElementsByClassName("order__data")[0].childNodes[1].childNodes[0];
-let date = document.getElementsByClassName("order_data")[0].childNodes[3].childNodes[0];
-let price = document.getElementsByClassName("order_data")[0].childNodes[5].childNodes[0];
-let orderID = document.getElementsByClassName("order_data")[0].childNodes[7].childNodes[0];
-console.log(title);
+let date = document.getElementsByClassName("order__data")[0].childNodes[3];
+let time = document.getElementsByClassName("order__data")[0].childNodes[5];
+let price = document.getElementsByClassName("order__data")[0].childNodes[7];
+let orderID = document.getElementsByClassName("order__data")[0].childNodes[9];
+console.log(date);
 var logoutButton = document.getElementsByClassName('logout-button')[0];
 var orderButton = document.getElementsByClassName('order-button')[0];
 /**<article class="order">
@@ -59,12 +60,19 @@ logoutButton.addEventListener('click', () => {
 fetch('orderHistory')
     .then(res => res.json())
     .then(data => {
-        console.log(data);
-        // poster.src = data[0].poster
-        // title.textContent
-        date.textContent = data[0].date;
-        price.textContent = data[0].price;
-        orderID.textContent = data[0].order_ID;
+        // console.log(data);
+        
+        for(let dat in data){
+            let user = dat.userR;
+            let movie = dat[0].movieR;
+            console.log(user);
+            poster.src = movie[0].poster;
+            title.textContent = movie[0].title;
+            date.textContent = dat.date;
+            time.textContent = user[0].timeslot;
+            price.textContent = user[0].price;
+            orderID.textContent = user[0].order_ID;
+        };
     })
     .catch(err => console.log(err));
 
