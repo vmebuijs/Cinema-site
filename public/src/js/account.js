@@ -61,18 +61,21 @@ fetch('orderHistory')
     .then(res => res.json())
     .then(data => {
         // console.log(data);
-        
-        for(let dat in data){
-            let user = dat.userR;
-            let movie = dat[0].movieR;
-            console.log(user);
-            poster.src = movie[0].poster;
-            title.textContent = movie[0].title;
-            date.textContent = dat.date;
-            time.textContent = user[0].timeslot;
-            price.textContent = user[0].price;
-            orderID.textContent = user[0].order_ID;
-        };
+
+            for(let i = 0; i < data.length; i++){
+                title[i].textContent = data[i].title;
+                poster[i].src = data[i].poster;
+                let user = data.userR;
+                let movie = data.movieR;
+                // console.log(user);
+                poster[i].src = movie[i].poster;
+                title[i].textContent = movie[i].title;
+                date[i].textContent = user[i].date;
+                time[i].textContent = user[i].timeslot;
+                price[i].textContent = user[i].price;
+                orderID[i].textContent = user[i].order_ID;
+        }
+
     })
     .catch(err => console.log(err));
 

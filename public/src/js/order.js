@@ -26,12 +26,11 @@ fetch('m')
         });
         
         var location = document.getElementsByClassName("ordering-container")[0];
-        
-        // //Creates the textlabel
-        // var movieLabel = document.createElement("label");
-        // movieLabel.setAttribute("id","label1");
-        // movieLabel.appendChild(document.createTextNode("Choose your movie: "));
-        // location.appendChild(movieLabel);
+        var cart = document.getElementsByClassName("ordering-container")[1];
+
+        var buyButton = document.createElement("button");
+        buyButton.addEventListener("click", order);
+        cart.appendChild(buyButton);
 
         //Creates the first dropdownmenu
         // var movies = document.createElement("select");
@@ -65,11 +64,9 @@ fetch('m')
         filmSelection.addEventListener("change", showMovieDates);
 
         function showMovieDates() {
-            //var location = document.getElementsByClassName("ordering-container")[0];
             createLabel(location,"Choose your date: ");
 
             //Gets the selected movie
-           // var movies = document.getElementById("movielist");
             var selectedMovie = filmSelection.selectedIndex;
 
             //Put the title and id of the selected movie in the session storage
@@ -81,8 +78,6 @@ fetch('m')
             //If there is no datelist dropdown it will be created and the dates will be added, 
             //Else the datelist will be cleared and the correct dates will be added 
             if(document.getElementById("datelist") == null){
-            //     var location = document.getElementsByClassName("ordering-container")[0];
-
                 var dates = document.createElement("select");
 
                 dates.setAttribute("name","datelist");
@@ -91,8 +86,6 @@ fetch('m')
                 addOptions(selectedMovie,dates,2);
             }
             else{
-                // var location = document.getElementsByClassName("ordering-container")[0];
-
                 var dates = document.getElementById("datelist");
 
                 if(document.getElementById("timelist") != null){
@@ -111,7 +104,6 @@ fetch('m')
 
         function showMovieTimes() {
             //Gets the selected movie
-            //var movies = document.getElementById("movielist");
             var selectedMovie = filmSelection.selectedIndex; 
 
             //Gets the selected date
@@ -122,18 +114,11 @@ fetch('m')
             var selectedMovieDate = filmList[filmSelection.selectedIndex-1][2][selectedDate-1];
             sessionStorage.setItem("movie_date",selectedMovieDate);
 
-            //var location = document.getElementsByClassName("ordering-container")[0];
             createLabel(location,"Choose your time: ");
 
             //If there is no timelist dropdown it will be created and the times will be added, 
             //Else the timelist will be cleared and the correct times will be added 
             if(document.getElementById("timelist") == null){
-
-            //If there is no timelist dropdown it will be created and the times will be added, 
-            //Else the timelist will be cleared and the correct times will be added 
-            //if(document.getElementById("timelist") == null){
-            //     var location = document.getElementsByClassName("ordering-container")[0];
-
                 var times = document.createElement("select");
 
                 times.setAttribute("name","timelist");
@@ -142,8 +127,6 @@ fetch('m')
                 addOptions(selectedMovie,times,3);
             }
             else{
-                // var location = document.getElementsByClassName("ordering-container")[0];
-
                 var times = document.getElementById("timelist");
 
                 removeOptions(times,document.getElementById("submitButton"),document.getElementById("numberOfTickets"));
@@ -156,8 +139,6 @@ fetch('m')
         }
 
         function showSubmitButton() {
-            //var location = document.getElementsByClassName("ordering-container")[0];
-
             //Gets the selected time
             var chosentime = document.getElementById("timelist");
             var selectedTime = chosentime.selectedIndex;
@@ -192,27 +173,14 @@ fetch('m')
                 submitButton.textContent = 'Add to cart';
                 location.appendChild(submitButton);
                 submitButton.addEventListener('click', postt, false);
-
-                //var location2 = document.getElementsByClassName("ordering-container");
-                //location.addEventListener("submit",submitAction);
             }
             else{
                 var submitButton = document.getElementById("submitButton");
                 submitButton.style.visibility = "visible";
             }            
-        }
-
-        // showSubmitButton();
-        
-        // console.log(submitButton);
-        // submitButton.addEventListener('click', post);
-        //var location = document.getElementsByClassName("ordering-container")[0].addEventListener('submit', postt);
-        // document.getElementById('button1').addEventListener('click', post);
-       
+        }       
 
         function postt(e){
-
-            var cart = document.getElementsByClassName("ordering-container")[1];
             var div = document.createElement("div");
             
             var i = allSelections.length - 1;
@@ -224,11 +192,12 @@ fetch('m')
             var location2 = document.getElementById(`${i}`);
             console.log(location2);
 
-            var text = `Movie: ${allSelections[i].movie_title}, Date: ${allSelections[i].movie_date}, Time: ${allSelections[i].movie_time} \n`;
+            var text = `Movie: ${allSelections[i].movie_title}, Date: ${allSelections[i].movie_date}, Time: ${allSelections[i].movie_time} <br>`;
             location2.innerHTML = text;
-            //createLabel(location2, text);
-            createButton(location2,deleteData);
-            createButton(location2,changeData);
+
+            createButton(location2, deleteData, 'Delete this ticket');
+            createButton(location2, changeData, 'Edit this ticket');
+
 
             e.preventDefault();
         }
@@ -288,10 +257,11 @@ fetch('m')
             location.appendChild(movieLabel);
         }
 
-        function createButton(location,deleteOrChange){
-            var deleteButton = document.createElement("button");
-            deleteButton.addEventListener("click", deleteOrChange);
-            location.appendChild(deleteButton);
+        function createButton(location, deleteOrChange, buttonText){
+            var button = document.createElement("button");
+            button.addEventListener("click", deleteOrChange);
+            button.textContent = buttonText;
+            location.appendChild(button);
         }
 
         function deleteData(e){
@@ -307,14 +277,6 @@ fetch('m')
             var movie_ID = allSelections[id].movie_ID;
             var movie_date = allSelections[id].movie_date;
             var movie_time = allSelections[id].movie_time;
-
-            console.log(movie_ID);
-            console.log(movie_date);
-            console.log(movie_time);
-
-            // var indexID = 0;
-            // var indexDate = 0;
-            // var indexTime = 0;
 
             var indexID, indexDate, indexTime;
 
@@ -348,14 +310,18 @@ fetch('m')
         }
 
         //when placing adding to cart the server is alerted
-        function submitAction(event){
+        function order(e){
+            //sending order to database
+            //allSelections contains objects of each ticket
+
             // fetch('order-add', {     
             //     method: 'POST',     
             //     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
-            //     body: JSON.stringify({username: username, password: password})})
+            //     body: JSON.stringify(allSelections)})
             // .then(response => response.json())
             // .then(data => console.log(data))
-            
-        }       
+        }
+
+     
     })
     .catch(err => console.log(err));
