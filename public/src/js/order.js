@@ -320,6 +320,36 @@ fetch('m')
             //     body: JSON.stringify(allSelections)})
             // .then(response => response.json())
             // .then(data => console.log(data))
+
+            // Assume your array of objects is stored in a variable called "movies"
+
+            // var completeSelection = {
+            //     "movie_title": sessionStorage.getItem('movie_title'),
+            //     "movie_ID": sessionStorage.getItem('movie_ID'),
+            //     "movie_date": sessionStorage.getItem('movie_date'),
+            //     "movie_time": sessionStorage.getItem('movie_time')
+            // }
+            
+            // server-side script
+            var url = "order.php";
+
+            var account = "pinocchio020"
+            
+            // Loop through the array and send an HTTP POST request for each object
+            for (var i = 0; i < allSelections.length; i++) {
+                var ticket = allSelections[i];
+                var xhtml = new XMLHttpRequest();
+                xhtml.open("POST", url, true);
+                xhtml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhtml.onreadystatechange = function() {
+                if (xhtml.readyState == 4 && xhtml.status == 200) {
+                    console.log(xhtml.responseText);
+                }
+                };
+                var data = "movie_ID=" + ticket.movie_ID +"&movie_date=" + ticket.movie_date + "&movie_time=" + ticket.movie_time + "&username=" + account;
+                xhtml.send(data);
+            }
+            
         }
 
      

@@ -31,12 +31,13 @@ let email = document.getElementsByClassName("account-information__data")[0].chil
 let password = document.getElementsByClassName("account-information__data")[0].childNodes[7].childNodes[5];
 let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
 let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
-let poster = document.getElementsByClassName("order__film-poster")[0];
-let title = document.getElementsByClassName("order__data")[0].childNodes[1].childNodes[0];
-let date = document.getElementsByClassName("order__data")[0].childNodes[3];
-let time = document.getElementsByClassName("order__data")[0].childNodes[5];
-let price = document.getElementsByClassName("order__data")[0].childNodes[7];
-let orderID = document.getElementsByClassName("order__data")[0].childNodes[9];
+let poster = document.getElementsByClassName("order__film-poster");
+let title = document.getElementsByClassName("order__title");
+let date = document.getElementsByClassName("order__date");
+let time = document.getElementsByClassName("order__time");
+let price = document.getElementsByClassName("order__price");
+let orderID = document.getElementsByClassName("order__orderID");
+
 console.log(date);
 var logoutButton = document.getElementsByClassName('logout-button')[0];
 var orderButton = document.getElementsByClassName('order-button')[0];
@@ -62,19 +63,40 @@ fetch('orderHistory')
     .then(data => {
         // console.log(data);
 
-            for(let i = 0; i < data.length; i++){
-                title[i].textContent = data[i].title;
-                poster[i].src = data[i].poster;
-                let user = data.userR;
-                let movie = data.movieR;
-                // console.log(user);
-                poster[i].src = movie[i].poster;
-                title[i].textContent = movie[i].title;
-                date[i].textContent = user[i].date;
-                time[i].textContent = user[i].timeslot;
-                price[i].textContent = user[i].price;
-                orderID[i].textContent = user[i].order_ID;
-        }
+        for(let a = 0; a < 2; a++){
+            let user = data.userR;
+            let movie = data.movieR;
+
+    for(let i = 0; i < user.length; i++){
+        console.log(date[i]);
+        date[i].textContent = user[i].date;
+        time[i].textContent = user[i].timeslot;
+        price[i].textContent = user[i].price;
+        orderID[i].textContent = user[i].order_ID;
+        console.log(date[i].textContent);
+
+    }
+
+    for(let i = 0; i < user.length; i++){
+            poster[i].src = movie[i].poster;
+            title[i].textContent = movie[i].title;
+            console.log(title[i].textContent);
+    }
+
+    }
+            // let itemPoster = document.createElement('img');
+            // itemPoster.classList.add('film__poster');
+
+            // let itemTitle = document.createElement('figcaption');
+            // itemTitle.classList.add('film__title');
+            // let title = document.createTextNode('');
+            // itemTitle.appendChild(title);
+
+            // itemElement.appendChild(itemPoster);
+            // itemElement.appendChild(itemTitle);
+            // overview.appendChild(itemElement);
+
+        
 
     })
     .catch(err => console.log(err));
