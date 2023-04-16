@@ -46,10 +46,12 @@ logoutButton.addEventListener('click', () => {
 fetch('orderHistory')
     .then(res => res.json())
     .then(data => {
-        // console.log(data);
+        // console.log(data)
         
         let user = data.userR;
         let movie = data.movieR;
+        
+        console.log(user);
         
         // Create x number of containers for the x number of orders
         for(var i = 0; i< user.length; i++){
@@ -108,7 +110,7 @@ fetch('orderHistory')
             price[i].textContent = "Price: €" + user[i].price;
             orderID[i].textContent = "Ticket: " + user[i].order_ID;
         }
-        for(let i = 0; i < user.length; i++){
+        for(let i = 0; i < 1; i++){
             poster[i].src = movie[i].poster;
             poster[i].setAttribute('alt', 'A poster for the film ' + movie[i].title);
             title[i].textContent = "Title: " + movie[i].title;

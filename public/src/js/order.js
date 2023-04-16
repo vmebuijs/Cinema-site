@@ -30,6 +30,7 @@ fetch('m')
 
         var buyButton = document.createElement("button");
         buyButton.addEventListener("click", order);
+        buyButton.textContent = 'Buy tickets';
         cart.appendChild(buyButton);
 
         //Creates the first dropdownmenu
@@ -333,7 +334,7 @@ fetch('m')
             // server-side script
             var url = "order.php";
 
-            var account = "pinocchio020"
+            var account = "pinocchio020";
             
             // Loop through the array and send an HTTP POST request for each object
             for (var i = 0; i < allSelections.length; i++) {

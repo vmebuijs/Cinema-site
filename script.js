@@ -161,7 +161,7 @@ app.post("/login.html", (req, res) =>{
       if(rij[0] != null){
         console.log("succes");
         let sesh = rij;
-        req.session.row = sesh
+        req.session.row = sesh;
         req.session.save();
         console.log(sesh);
         res.redirect('account.html'); 
