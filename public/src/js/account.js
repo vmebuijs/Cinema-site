@@ -31,13 +31,7 @@ let email = document.getElementsByClassName("account-information__data")[0].chil
 let password = document.getElementsByClassName("account-information__data")[0].childNodes[7].childNodes[5];
 let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
 let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
-// Find the components of the orders
-let poster = document.getElementsByClassName("order__film-poster");
-let title = document.getElementsByClassName("order__title");
-let date = document.getElementsByClassName("order__date");
-let time = document.getElementsByClassName("order__time");
-let price = document.getElementsByClassName("order__price");
-let orderID = document.getElementsByClassName("order__orderID");
+
 var logoutButton = document.getElementsByClassName('logout-button')[0];
 var orderButton = document.getElementsByClassName('order-button')[0];
 
@@ -48,9 +42,6 @@ logoutButton.addEventListener('click', () => {
 // orderButton.addEventListener('click', () => { 
 //     window.location.href = 'orderHistory';
 // });
-
-
-
 
 fetch('user')
     .then(res => res.json())
@@ -68,19 +59,11 @@ fetch('user')
     fetch('orderHistory')
     .then(res => res.json())
     .then(data => {
-        // console.log(data)
-        let user = data.userR;
-        let movie = data.movieR;
-        
-        console.log(user);
-        
+                
         // Create x number of containers for the x number of orders
-        for(var i = 0; i< user.length; i++){
+        for(var i = 0; i< data.length; i++){
             var order = document.createElement('article');
             order.classList.add('order');
-    
-            var orderPoster = document.createElement('img');
-            orderPoster.classList.add('order__film-poster');
     
             var orderData = document.createElement('section');
             orderData.classList.add('order__data');
@@ -112,24 +95,26 @@ fetch('user')
     
             orderData.append(orderDataTitle, orderDataDate, orderDataTime, orderDataPrice, orderDataID);
     
-            order.append(orderPoster, orderData);
+            order.appendChild(orderData);
             ordHistory.appendChild(order);
         }
 
-        
+        // Find the components of the orders
+        let title = document.getElementsByClassName("order__title");
+        let date = document.getElementsByClassName("order__date");
+        let time = document.getElementsByClassName("order__time");
+        let price = document.getElementsByClassName("order__price");
+        let orderID = document.getElementsByClassName("order__orderID");
 
         // Load the correct data into the order container(s)
-        for(let i = 0; i < user.length; i++){
-            date[i].textContent = "Date: " + user[i].date;
-            time[i].textContent = "Time: " + user[i].timeslot;
-            price[i].textContent = "Price: €" + user[i].price;
-            orderID[i].textContent = "Ticket: " + user[i].order_ID;
-        }
-        for(let i = 0; i < 1; i++){
-            poster[i].src = movie[i].poster;
-            poster[i].setAttribute('alt', 'A poster for the film ' + movie[i].title);
-            title[i].textContent = "Title: " + movie[i].title;
+        for(let i = 0; i < data.length; i++){
+            date[i].textContent = "Date: " + data[i].date;
+            time[i].textContent = "Time: " + data[i].timeslot;
+            price[i].textContent = "Price: €" + data[i].price;
+            orderID[i].textContent = "Ticket: " + data[i].order_ID;
+            title[i].textContent = "Title: " + data[i].title;
         }
     })
     .catch(err => console.log(err));
+
 sessionStorage.setItem('username', username.textContent);

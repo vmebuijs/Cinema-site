@@ -388,8 +388,6 @@ body{
 }
 
 .order{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
     background-color: rgb(62, 91, 143);
     border: none;
     border-radius: 1em;
@@ -397,11 +395,6 @@ body{
     margin: 1em auto;
     padding: 1em;
     justify-content: space-between;
-}
-
-.order__film-poster{
-    width: 100%;
-    min-width: 100px;
 }
 
 .order__data{

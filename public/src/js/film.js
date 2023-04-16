@@ -22,9 +22,9 @@ fetch('m')
         logoLink.setAttribute('href', 'index');
         var logoIMG = document.createElement('img');
         logoIMG.classList.add('logo-image');
-        logoIMG.setAttribute('src', 'src/img/exploding-kittens.jpg');
+        logoIMG.setAttribute('src', 'src/img/logo.png');
         logoIMG.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        logoIMG.setAttribute('width', '100px');
+        logoIMG.setAttribute('width', '200');
         logoLink.appendChild(logoIMG);
         logo.appendChild(logoLink);
 
@@ -49,7 +49,7 @@ fetch('m')
         userImage.classList.add('user-image');
         userImage.setAttribute('src', 'src/img/account.png');
         userImage.setAttribute('alt', 'A white icon consisting of a circle and the outline of a portrait of a person')
-        userImage.setAttribute('width', '50px');
+        userImage.setAttribute('width', '50');
         account.appendChild(userImage);
 
         //The elements are appended to the desktop header
@@ -64,12 +64,12 @@ fetch('m')
         var logo = document.createElement('div');
         logo.classList.add('logo-container');
         var logoLink = document.createElement('a');
-        logoLink.setAttribute('href', '#');
+        logoLink.setAttribute('href', 'index');
         var logoIMG = document.createElement('img');
         logoIMG.classList.add('logo-image');
-        logoIMG.setAttribute('src', 'src/img/exploding-kittens.jpg');
+        logoIMG.setAttribute('src', 'src/img/logo.png');
         logoIMG.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        logoIMG.setAttribute('width', '100px');
+        logoIMG.setAttribute('width', '200');
         logoLink.appendChild(logoIMG);
         logo.appendChild(logoLink);
 
@@ -80,9 +80,11 @@ fetch('m')
         var openMenu = document.createElement('img');
         openMenu.classList.add('open-menu');
         openMenu.setAttribute('src', 'src/svg/open.svg');
+        openMenu.setAttribute('alt', 'A white hamburger menu icon');
         var closeMenu = document.createElement('img');
         closeMenu.classList.add('close-menu');
         closeMenu.setAttribute('src', 'src/svg/close.svg');
+        closeMenu.setAttribute('alt', 'A white cross icon');
 
         //The eventlisteners are added to be able to open and close the menu
         var menuClasses = menu.classList;
@@ -100,9 +102,9 @@ fetch('m')
         menuNav.classList.add('menu');
         var menuNavLogo = document.createElement('img');
         menuNavLogo.classList.add('menu__item');
-        menuNavLogo.setAttribute('src', 'src/img/exploding-kittens.jpg');
+        menuNavLogo.setAttribute('src', 'src/img/logo.png');
         menuNavLogo.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        menuNavLogo.setAttribute('width', '100px');
+        menuNavLogo.setAttribute('width', '100');
 
         //The links within the menu
         var menuLink1 = document.createElement('a');
@@ -123,8 +125,8 @@ fetch('m')
         var menuAccount = document.createElement('img');
         menuAccount.classList.add('user-image');
         menuAccount.setAttribute('src', 'src/img/account.png');
-        menuAccount.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        menuAccount.setAttribute('width', '50px');
+        menuAccount.setAttribute('alt', 'A white icon consisting of a circle and the outline of a portrait of a person');
+        menuAccount.setAttribute('width', '50');
         menuLink4.appendChild(menuAccount);
 
         //Everything is appended to the mobile header in a hierarchical manner

@@ -1,5 +1,5 @@
 /*
-  
+  This is the server side script. Here we require our downloads and made our routes. We also added  a logger. The databse is connected in this file as well, and we send post and reqrest statements.    
 */
 
 const express = require('express');
@@ -122,20 +122,30 @@ app.get('/logout', (req, res) =>{
 });
 
 app.get('/orderHistory', (req, res) =>{
-  let user = req.cookies.user;
-  osql = 'SELECT order_ID, movie_ID, date, timeslot, price FROM Orders WHERE username = ?'
-  db.all(osql, ['bangtan#2'], (err, userRow) =>{
+  let username = req.cookies.user;
+  osql = 'SELECT order_ID, movie_ID, date, timeslot, price, title FROM Orders WHERE username = ?'
+  db.all(osql, [username], (err, userRow) =>{
     if(err) return console.error(err.message);
     userR = userRow;
   });
+  res.json(userR);
 
-  bsql = 'SELECT poster, title FROM Movies WHERE movie_ID = ?' 
-  db.all(bsql, ['12121'], (err, movieRow) =>{
-    if(err) return console.error(err.message);
-    movieR = movieRow;
-  });
-
-  res.json({userR, movieR})  
+  // let movieR = [];
+  // for (let i = 0; i < 2; i++){
+  //   bsql = 'SELECT poster, title FROM Movies WHERE movie_ID = ?' 
+  //   db.all(bsql, [userR[i].movie_ID], (err, movieRow) =>{
+  //     if(err) return console.error(err.message);
+  //     movieR[0].movieRow;
+  //   }); 
+  // }
+  // for (let i in movieID){
+  //   bsql = 'SELECT poster, title FROM Movies WHERE movie_ID = ?' 
+  //   db.all(bsql, [i], (err, movieRow) =>{
+  //     if(err) return console.error(err.message);
+  //     movieR = movieRow;
+  //   });
+    // films.push(movieR);
+  //}
 });
 
 app.post("/register", async (req, res) => {  
@@ -209,6 +219,36 @@ app.get('order.js', function (req, res) {
   res.send(req.body.value);
   console.log(staticPath);
 })
+
+
+
+app.post('/order', (req, res) => {
+  const { movie_title, movie_ID, movie_date, movie_time} = req.body;
+
+  let price = "7,50";
+  let username = req.cookies.user;
+
+  
+  usql = 'SELECT MAX(order_ID) as max_id FROM Orders'
+  db.all(usql, [], (err, names) => {
+    if(err) {
+      return console.error(err.message);
+    }
+    // let id = names[0].order_ID += 1
+    sql= 'INSERT INTO Orders(order_ID, title, movie_ID, date, timeslot, username, price) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    db.run(sql,[120, movie_title, movie_ID, movie_date, movie_time, username, price], (err) => {
+    if (err) {
+      res.send(err.message);
+      res.status(200).send('Order added NOT successfully.');
+    } else {
+      res.status(200).send('Order added successfully.');
+
+    }
+  });
+  });
+  
+
+});
 
 
 app.listen(port, () => {

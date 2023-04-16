@@ -11,6 +11,8 @@
 // const moviesSql = 'CREATE TABLE Movies(movie_ID INTEGER AUTO_INCREMENT NOT NULL, title varchar(50) NOT NULL,genre varchar(50) NOT NULL,year INTEGER NOT NULL,director char(50) NOT NULL,writers varchar(50) NOT NULL,stars varchar(50) NOT NULL,poster varchar(50) NOT NULL,trailer varchar(50) NOT NULL,plot varchar(50) NOT NULL,available_dates varchar(50) NOT NULL,available_times varchar(5) NOT NULL,CONSTRAINT Movies_pk PRIMARY KEY(movie_ID))';
 // db.run(moviesSql);
 
+// const ordersSql = 'CREATE TABLE Order(username varchar(100) NOT NULL, movie_ID INTEGER NOT NULL, title varchar(100) NOT NULL, date varchar(100) NOT NULL, timeslot varchar(100) NOT NULL, price varchar(100) NOT NULL)';
+// db.run(ordersSql);
 
 // Drop table
 // db.run('DROP TABLE Movies');
@@ -65,7 +67,6 @@
 // db.run(sql, (err) => {
 //         if (err) return console.error(err.message);
 // })
-
 
 // Update every film in movies
 // sql = "UPDATE Movies SET price = ? WHERE movie_ID = ?";

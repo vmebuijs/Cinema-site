@@ -1,7 +1,8 @@
-// if(sessionStorage.getItem('username') == ""){
-//     window.location.href = 'login.html';
-// }
-
+/*
+    This file contains the code which handles the ticket ordering.
+    First we create the dropdown menues which hold the films and their respective dates and times.
+    Then we create the functionality of adding a ticket to your cart and editing/ deleting that ticket/
+ */
 //in the assigment was noted in the technical requirements that we could use AJAX or Fetch, we chose fetch.
 
 fetch('m')
@@ -28,24 +29,13 @@ fetch('m')
         var location = document.getElementsByClassName("ordering-container")[0];
         var cart = document.getElementsByClassName("ordering-container")[1];
 
+
         var buyButton = document.createElement("input");
         buyButton.setAttribute("type","submit");
-        buyButton.addEventListener("click", order);
+
+        buyButton.addEventListener("click", order2);
         buyButton.textContent = 'Buy tickets';
         cart.appendChild(buyButton);
-
-        //Creates the first dropdownmenu
-        // var movies = document.createElement("select");
-        // movies.setAttribute("name","movielist");
-        // movies.setAttribute("id","movielist");
-        // location.appendChild(movies);
-
-        // var filmList = [   
-        //     ["movie1",1,["1 augustus","1 september"],["11:00","21:00"]],
-        //     ["movie2",2,["2 augustus","2 september"],["12:00","22:00"]],
-        //     ["movie3",3,["3 augustus","3 september"],["13:00","23:00"]],
-        //     ["movie4",4,["4 augustus","4 september"],["14:00","00:00"]]
-        // ]
 
         var filmSelection = document.getElementsByClassName('film-selection')[0];
 
@@ -229,9 +219,6 @@ fetch('m')
             if (submit!=null){
                 submit.style.visibility="hidden";
             }
-            // if(tickets!=null){
-            //     tickets.style.visibility="hidden";
-            // }
         }
 
         function addOptions(selectedMovie,datess,nr) {
@@ -311,49 +298,30 @@ fetch('m')
             deleteData(e);
         }
 
-        //when placing adding to cart the server is alerted
-        function order(e){
+
+        function order2() {
             //sending order to database
             //allSelections contains objects of each ticket
-
-            // fetch('order-add', {     
-            //     method: 'POST',     
-            //     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
-            //     body: JSON.stringify(allSelections)})
-            // .then(response => response.json())
-            // .then(data => console.log(data))
-
-            // Assume your array of objects is stored in a variable called "movies"
-
-            // var completeSelection = {
-            //     "movie_title": sessionStorage.getItem('movie_title'),
-            //     "movie_ID": sessionStorage.getItem('movie_ID'),
-            //     "movie_date": sessionStorage.getItem('movie_date'),
-            //     "movie_time": sessionStorage.getItem('movie_time')
-            // }
-            
-            // server-side script
-            var url = "order.php"
-
-            var account = "pinocchio020";
-            
+            var url = "order";
+          
             // Loop through the array and send an HTTP POST request for each object
             for (var i = 0; i < allSelections.length; i++) {
-                var ticket = allSelections[i];
-                var xhtml = new XMLHttpRequest();
-                xhtml.open("PUT", url, true);
-                xhtml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhtml.onreadystatechange = function() {
-                if (xhtml.readyState == 4 && xhtml.status == 200) {
-                    console.log(xhtml.responseText);
-                }
-                };
-                var data = "movie_ID=" + ticket.movie_ID +"&movie_date=" + ticket.movie_date + "&movie_time=" + ticket.movie_time + "&username=" + account;
-                xhtml.send(data);
+              var ticket = allSelections[i];
+          
+              fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    movie_title: ticket.movie_title,
+                    movie_ID: ticket.movie_ID,
+                    movie_date: ticket.movie_date,
+                    movie_time: ticket.movie_time,
+                })
+              })
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
             }
-            
-        }
-
-     
+          }     
     })
     .catch(err => console.log(err));
