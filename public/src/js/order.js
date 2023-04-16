@@ -28,7 +28,8 @@ fetch('m')
         var location = document.getElementsByClassName("ordering-container")[0];
         var cart = document.getElementsByClassName("ordering-container")[1];
 
-        var buyButton = document.createElement("button");
+        var buyButton = document.createElement("input");
+        buyButton.setAttribute("type","submit");
         buyButton.addEventListener("click", order);
         buyButton.textContent = 'Buy tickets';
         cart.appendChild(buyButton);
@@ -332,7 +333,7 @@ fetch('m')
             // }
             
             // server-side script
-            var url = "order.php";
+            var url = "order.php"
 
             var account = "pinocchio020";
             
@@ -340,7 +341,7 @@ fetch('m')
             for (var i = 0; i < allSelections.length; i++) {
                 var ticket = allSelections[i];
                 var xhtml = new XMLHttpRequest();
-                xhtml.open("POST", url, true);
+                xhtml.open("PUT", url, true);
                 xhtml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhtml.onreadystatechange = function() {
                 if (xhtml.readyState == 4 && xhtml.status == 200) {

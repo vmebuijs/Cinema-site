@@ -31,7 +31,13 @@ let email = document.getElementsByClassName("account-information__data")[0].chil
 let password = document.getElementsByClassName("account-information__data")[0].childNodes[7].childNodes[5];
 let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
 let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
-
+// Find the components of the orders
+let poster = document.getElementsByClassName("order__film-poster");
+let title = document.getElementsByClassName("order__title");
+let date = document.getElementsByClassName("order__date");
+let time = document.getElementsByClassName("order__time");
+let price = document.getElementsByClassName("order__price");
+let orderID = document.getElementsByClassName("order__orderID");
 var logoutButton = document.getElementsByClassName('logout-button')[0];
 var orderButton = document.getElementsByClassName('order-button')[0];
 
@@ -43,11 +49,26 @@ logoutButton.addEventListener('click', () => {
 //     window.location.href = 'orderHistory';
 // });
 
-fetch('orderHistory')
+
+
+
+fetch('user')
+    .then(res => res.json())
+    .then(data => {
+        nameN.textContent = data[0].name;
+        username.textContent = data[0].username;
+        email.textContent = data[0].email;
+        password.textContent = data[0].password;
+        address.textContent = data[0].adress;
+        card.textContent = data[0].creditcard;       
+        document.cookie
+    })
+    .catch(err => console.log(err));
+
+    fetch('orderHistory')
     .then(res => res.json())
     .then(data => {
         // console.log(data)
-        
         let user = data.userR;
         let movie = data.movieR;
         
@@ -95,13 +116,7 @@ fetch('orderHistory')
             ordHistory.appendChild(order);
         }
 
-        // Find the components of the orders
-        let poster = document.getElementsByClassName("order__film-poster");
-        let title = document.getElementsByClassName("order__title");
-        let date = document.getElementsByClassName("order__date");
-        let time = document.getElementsByClassName("order__time");
-        let price = document.getElementsByClassName("order__price");
-        let orderID = document.getElementsByClassName("order__orderID");
+        
 
         // Load the correct data into the order container(s)
         for(let i = 0; i < user.length; i++){
@@ -117,18 +132,4 @@ fetch('orderHistory')
         }
     })
     .catch(err => console.log(err));
-
-
-fetch('user')
-    .then(res => res.json())
-    .then(data => {
-        nameN.textContent = data[0].name;
-        username.textContent = data[0].username;
-        email.textContent = data[0].email;
-        password.textContent = data[0].password;
-        address.textContent = data[0].adress;
-        card.textContent = data[0].creditcard;       
-    })
-    .catch(err => console.log(err));
-
 sessionStorage.setItem('username', username.textContent);

@@ -19,7 +19,7 @@ fetch('m')
         var logo = document.createElement('div');
         logo.classList.add('logo-container');
         var logoLink = document.createElement('a');
-        logoLink.setAttribute('href', 'index.html');
+        logoLink.setAttribute('href', 'index');
         var logoIMG = document.createElement('img');
         logoIMG.classList.add('logo-image');
         logoIMG.setAttribute('src', 'src/img/exploding-kittens.jpg');
@@ -33,18 +33,18 @@ fetch('m')
         nav.classList.add('nav');
         var navLink1 = document.createElement('a');
         navLink1.classList.add('nav__link');
-        navLink1.setAttribute('href', 'order.html');
+        navLink1.setAttribute('href', 'order');
         navLink1.textContent = 'Tickets';
         var navLink2 = document.createElement('a');
         navLink2.classList.add('nav__link');
-        navLink2.setAttribute('href', 'login.html');
+        navLink2.setAttribute('href', 'login');
         navLink2.textContent = 'Log in';
         nav.appendChild(navLink1);
         nav.appendChild(navLink2);
         
         //The account button on the top-right
         var account = document.createElement('a');
-        account.setAttribute('href', 'account.html');
+        account.setAttribute('href', 'account');
         var userImage = document.createElement('img');
         userImage.classList.add('user-image');
         userImage.setAttribute('src', 'src/img/account.png');
@@ -107,19 +107,19 @@ fetch('m')
         //The links within the menu
         var menuLink1 = document.createElement('a');
         menuLink1.classList.add('menu__item');
-        menuLink1.setAttribute('href', 'index.html');
+        menuLink1.setAttribute('href', 'index');
         menuLink1.textContent = 'Home';
         var menuLink2 = document.createElement('a');
         menuLink2.classList.add('menu__item');
-        menuLink2.setAttribute('href', 'order.html');
+        menuLink2.setAttribute('href', 'order');
         menuLink2.textContent = 'Tickets';
         var menuLink3 = document.createElement('a');
         menuLink3.classList.add('menu__item');
-        menuLink3.setAttribute('href', 'login.html');
+        menuLink3.setAttribute('href', 'login');
         menuLink3.textContent = 'Log in';
         var menuLink4 = document.createElement('a');
         menuLink4.classList.add('menu__item');
-        menuLink4.setAttribute('href', 'account.html');
+        menuLink4.setAttribute('href', 'account');
         var menuAccount = document.createElement('img');
         menuAccount.classList.add('user-image');
         menuAccount.setAttribute('src', 'src/img/account.png');
@@ -142,15 +142,15 @@ fetch('m')
         footerLink1.textContent = 'Top of the page';
         var footerLink2 = document.createElement('a');
         footerLink2.classList.add('footer__link');
-        footerLink2.setAttribute('href', 'index.html');
+        footerLink2.setAttribute('href', 'index');
         footerLink2.textContent = 'Home';
         var footerLink3 = document.createElement('a');
         footerLink3.classList.add('footer__link');
-        footerLink3.setAttribute('href', 'account.html');
+        footerLink3.setAttribute('href', 'account');
         footerLink3.textContent = 'Account';
         var footerLink4 = document.createElement('a');
         footerLink4.classList.add('footer__link');
-        footerLink4.setAttribute('href', 'order.html');
+        footerLink4.setAttribute('href', 'order');
         footerLink4.textContent = 'Order';
 
         //The elements are appended to the footer

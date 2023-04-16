@@ -94,7 +94,7 @@ fetch('tp')
         //Changes the page to show a page with information about the clicked film
         function filmPage(e){
             var clickedFilm = e.target.parentElement;
-            window.location.href = 'film.html?id=' + clickedFilm.id;
+            window.location.href = 'film?id=' + clickedFilm.id;
         }
 
         //The buttons for pagination
