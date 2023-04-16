@@ -86,11 +86,6 @@ app.get('/user', (req, res) =>{
   let sessionuser = req.session.row;
   res.json(sessionuser);
 });
-  // usql = 'SELECT * FROM Account WHERE username = ?'
-  // udb.all(usql, [us.username], (err, sessionuser) =>{
-   //  if(err) return console.error(err.message);
-   //  res.json(sessionuser);
-  // });
 
 // Changing url and redirecting if not logged in
 app.get('/index', (req, res) => {res.sendFile(join(staticPath, "index.html"));})
@@ -129,23 +124,6 @@ app.get('/orderHistory', (req, res) =>{
     userR = userRow;
   });
   res.json(userR);
-
-  // let movieR = [];
-  // for (let i = 0; i < 2; i++){
-  //   bsql = 'SELECT poster, title FROM Movies WHERE movie_ID = ?' 
-  //   db.all(bsql, [userR[i].movie_ID], (err, movieRow) =>{
-  //     if(err) return console.error(err.message);
-  //     movieR[0].movieRow;
-  //   }); 
-  // }
-  // for (let i in movieID){
-  //   bsql = 'SELECT poster, title FROM Movies WHERE movie_ID = ?' 
-  //   db.all(bsql, [i], (err, movieRow) =>{
-  //     if(err) return console.error(err.message);
-  //     movieR = movieRow;
-  //   });
-    // films.push(movieR);
-  //}
 });
 
 app.post("/register", async (req, res) => {  
@@ -186,14 +164,6 @@ app.post("/login", (req, res) =>{
     isql = `SELECT * FROM Account WHERE username = ? AND password = ?`
     udb.all(isql, [user, pwd], (err, rij) => {
       if(err) return console.error(err.message);
-      // isql = `SELECT username FROM Account`
-      // udb.all(isql, [user, pwd], (err, usern) => {
-      // if(err) return console.error(err.message);
-      //   let sesh2 = usern;
-      //   req.session.user = usern;
-      //   req.session.save();
-      //   console.log(sesh2);
-    // });  
       if(rij[0] != null){
         console.log("succes");
         let sesh = rij;
@@ -214,13 +184,10 @@ app.post("/login", (req, res) =>{
   }
 })
 
-
 app.get('order.js', function (req, res) {
   res.send(req.body.value);
   console.log(staticPath);
 })
-
-
 
 app.post('/order', (req, res) => {
   const { movie_title, movie_ID, movie_date, movie_time} = req.body;
@@ -234,7 +201,7 @@ app.post('/order', (req, res) => {
     if(err) {
       return console.error(err.message);
     }
-    // let id = names[0].order_ID += 1
+
     sql= 'INSERT INTO Orders(order_ID, title, movie_ID, date, timeslot, username, price) VALUES (?, ?, ?, ?, ?, ?, ?)'
     db.run(sql,[120, movie_title, movie_ID, movie_date, movie_time, username, price], (err) => {
     if (err) {
@@ -246,8 +213,6 @@ app.post('/order', (req, res) => {
     }
   });
   });
-  
-
 });
 
 

@@ -1,9 +1,9 @@
 /*
     This file contains the code which handles the ticket ordering.
     First we create the dropdown menues which hold the films and their respective dates and times.
-    Then we create the functionality of adding a ticket to your cart and editing/ deleting that ticket/
+    Then we create the functionality of adding a ticket to your cart and editing/ deleting that ticket.
+    In the assigment was noted in the technical requirements that we could use AJAX or Fetch, we chose fetch.
  */
-//in the assigment was noted in the technical requirements that we could use AJAX or Fetch, we chose fetch.
 
 fetch('m')
     .then(res => res.json())

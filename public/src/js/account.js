@@ -2,8 +2,6 @@
     This file influences the account page. 
     Firstly, we get the two sections on the page and enable the functionality that when a button is clicked in the control panel, 
     a specific section is shown. 
-
-    ......
 */
 
 //The sections on the account page
@@ -38,10 +36,6 @@ var orderButton = document.getElementsByClassName('order-button')[0];
 logoutButton.addEventListener('click', () => { 
     window.location.href = 'logout';
 });
-
-// orderButton.addEventListener('click', () => { 
-//     window.location.href = 'orderHistory';
-// });
 
 fetch('user')
     .then(res => res.json())
