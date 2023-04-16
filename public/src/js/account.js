@@ -31,25 +31,10 @@ let email = document.getElementsByClassName("account-information__data")[0].chil
 let password = document.getElementsByClassName("account-information__data")[0].childNodes[7].childNodes[5];
 let address = document.getElementsByClassName("account-information__data")[0].childNodes[9].childNodes[5];
 let card = document.getElementsByClassName("account-information__data")[0].childNodes[11].childNodes[5];
-let poster = document.getElementsByClassName("order__film-poster");
-let title = document.getElementsByClassName("order__title");
-let date = document.getElementsByClassName("order__date");
-let time = document.getElementsByClassName("order__time");
-let price = document.getElementsByClassName("order__price");
-let orderID = document.getElementsByClassName("order__orderID");
 
-console.log(date);
 var logoutButton = document.getElementsByClassName('logout-button')[0];
 var orderButton = document.getElementsByClassName('order-button')[0];
-/**<article class="order">
-                    <img class="order__film-poster" src="src/img/poster.png">
-                    <section class="order__data">
-                        <p>Film title: The Intruder</p>
-                        <p>Date: 27/03/23</p>
-                        <p>Price: €12.50</p>
-                        <p>OrderID: 123465</p>
-                    </section>
-                </article> */
+
 logoutButton.addEventListener('click', () => { 
     window.location.href = 'logout';
 });
@@ -62,44 +47,75 @@ fetch('orderHistory')
     .then(res => res.json())
     .then(data => {
         // console.log(data);
-
-        for(let a = 0; a < 2; a++){
-            let user = data.userR;
-            let movie = data.movieR;
-
-    for(let i = 0; i < user.length; i++){
-        console.log(date[i]);
-        date[i].textContent = user[i].date;
-        time[i].textContent = user[i].timeslot;
-        price[i].textContent = user[i].price;
-        orderID[i].textContent = user[i].order_ID;
-        console.log(date[i].textContent);
-
-    }
-
-    for(let i = 0; i < user.length; i++){
-            poster[i].src = movie[i].poster;
-            title[i].textContent = movie[i].title;
-            console.log(title[i].textContent);
-    }
-
-    }
-            // let itemPoster = document.createElement('img');
-            // itemPoster.classList.add('film__poster');
-
-            // let itemTitle = document.createElement('figcaption');
-            // itemTitle.classList.add('film__title');
-            // let title = document.createTextNode('');
-            // itemTitle.appendChild(title);
-
-            // itemElement.appendChild(itemPoster);
-            // itemElement.appendChild(itemTitle);
-            // overview.appendChild(itemElement);
-
         
+        let user = data.userR;
+        let movie = data.movieR;
+        
+        // Create x number of containers for the x number of orders
+        for(var i = 0; i< user.length; i++){
+            var order = document.createElement('article');
+            order.classList.add('order');
+    
+            var orderPoster = document.createElement('img');
+            orderPoster.classList.add('order__film-poster');
+    
+            var orderData = document.createElement('section');
+            orderData.classList.add('order__data');
+            
+            var orderDataTitle = document.createElement('p');
+            orderDataTitle.classList.add('order__title');
+            var titleT = document.createTextNode('');
+            orderDataTitle.appendChild(titleT);
+    
+            var orderDataDate = document.createElement('p');
+            orderDataDate.classList.add('order__date');
+            var dateT = document.createTextNode('');
+            orderDataDate.appendChild(dateT);
+    
+            var orderDataTime = document.createElement('p');
+            orderDataTime.classList.add('order__time');
+            var timeT = document.createTextNode('');
+            orderDataTime.appendChild(timeT);
+    
+            var orderDataPrice = document.createElement('p');
+            orderDataPrice.classList.add('order__price');
+            var priceT = document.createTextNode('');
+            orderDataPrice.appendChild(priceT);
+    
+            var orderDataID = document.createElement('p');
+            orderDataID.classList.add('order__orderID');
+            var id = document.createTextNode('');
+            orderDataID.appendChild(id);
+    
+            orderData.append(orderDataTitle, orderDataDate, orderDataTime, orderDataPrice, orderDataID);
+    
+            order.append(orderPoster, orderData);
+            ordHistory.appendChild(order);
+        }
 
+        // Find the components of the orders
+        let poster = document.getElementsByClassName("order__film-poster");
+        let title = document.getElementsByClassName("order__title");
+        let date = document.getElementsByClassName("order__date");
+        let time = document.getElementsByClassName("order__time");
+        let price = document.getElementsByClassName("order__price");
+        let orderID = document.getElementsByClassName("order__orderID");
+
+        // Load the correct data into the order container(s)
+        for(let i = 0; i < user.length; i++){
+            date[i].textContent = "Date: " + user[i].date;
+            time[i].textContent = "Time: " + user[i].timeslot;
+            price[i].textContent = "Price: €" + user[i].price;
+            orderID[i].textContent = "Ticket: " + user[i].order_ID;
+        }
+        for(let i = 0; i < user.length; i++){
+            poster[i].src = movie[i].poster;
+            poster[i].setAttribute('alt', 'A poster for the film ' + movie[i].title);
+            title[i].textContent = "Title: " + movie[i].title;
+        }
     })
     .catch(err => console.log(err));
+
 
 fetch('user')
     .then(res => res.json())

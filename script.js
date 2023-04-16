@@ -97,19 +97,20 @@ app.get('/logout', (req, res) =>{
 });
 
 app.get('/orderHistory', (req, res) =>{
-  osql = 'SELECT timeslot, date, order_ID, price FROM Orders WHERE username = ?'
+  osql = 'SELECT order_ID, movie_ID, date, timeslot, price FROM Orders WHERE username = ?'
   db.all(osql, ['bangtan#2'], (err, userRow) =>{
     if(err) return console.error(err.message);
-     userR = userRow;
+    userR = userRow;
   });
+
   bsql = 'SELECT poster, title FROM Movies WHERE movie_ID = ?' 
   db.all(bsql, ['12121'], (err, movieRow) =>{
     if(err) return console.error(err.message);
-    movieR = movieRow
+    movieR = movieRow;
   });
-  res.json({userR, movieR})
-});
 
+  res.json({userR, movieR})  
+});
 
 app.post("/register.html", async (req, res) => {  
   try{
