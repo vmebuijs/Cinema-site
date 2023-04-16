@@ -16,60 +16,55 @@
         <link href="https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
-        <!-- log in should be gone, as a user can only access the account page when logged in -->
-        <!-- when not logged in, the account button will not be visible , for now it is -->
-        <!-- when logging in, replace 'log in' with account thing, through DOM -->
-        <!-- maybe add a logout button instead if that's easy enough -->
-
         <!-- Desktop header -->
         <header class="header--desktop">
             <div class="logo-container">
-                <a href="index.html">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                <a href="index">
+                    <img class="logo-image" src="src/img/logo.png" alt="The Starry Nights Cinemas logo" width="200">
                 </a>
             </div>
 
             <nav class="nav">
-                <a class="nav__link" href="order.html">Tickets</a>
-                <a class="nav__link" href="login.html">Log in</a>
+                <a class="nav__link" href="order">Tickets</a>
+                <a class="nav__link" href="login">Log in</a>
             </nav>
-            <a href="account.html">
-                <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
+            <a href="account">
+                <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50">
             </a>
         </header>
 
         <!-- Mobile header -->
         <header class="header--mobile">
             <div class="logo-container">
-                <a href="#">
-                    <img class="logo-image" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
+                <a href="index">
+                    <img class="logo-image" src="src/img/logo.png" alt="The Starry Nights Cinemas logo" width="200">
                 </a>
             </div>
-            <img class="open-menu" src="src/svg/open.svg">
+            <img class="open-menu" src="src/svg/open.svg" alt="A white hamburger menu icon">
             <div class="menu-container closed">
-                <img class="close-menu" src="src/svg/close.svg">
+                <img class="close-menu" src="src/svg/close.svg" alt="A white cross icon">
                 <nav class="menu">
-                    <img class="menu__item" src="src/img/exploding-kittens.jpg" alt="The Starry Nights Cinemas logo" width="100px">
-                    <a class="menu__item" href="#">Home</a>
-                    <a class="menu__item" href="order.html">Tickets</a>
-                    <a class="menu__item" href="login.html">Log in</a>
-                    <a class="menu__item" href="account.html">
-                        <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50px">
+                    <img class="menu__item" src="src/img/logo.png" alt="The Starry Nights Cinemas logo" width="200">
+                    <a class="menu__item" href="index">Home</a>
+                    <a class="menu__item" href="order">Tickets</a>
+                    <a class="menu__item" href="login">Log in</a>
+                    <a class="menu__item" href="account">
+                        <img class="user-image" src="src/img/account.png" alt="A white icon consisting of a circle and the outline of a portrait of a person" width="50">
                     </a>
                 </nav>
             </div>
-        </header>    
+        </header>   
         
         <main>
             <aside class="account-controls">
                 <button class="account-controls__button">Account Information</button>
-                <button class="account-controls__button">Order History</button>
+                <button class="account-controls__button order-button">Order History</button>
                 <button class="account-controls__button logout-button">Logout</button>
             </aside>
             <article class="account-information">
                 <h1>Account Information</h1>
                 <hr>
-                <section class="account-information__data">
+                <div class="account-information__data">
                     <div class="user-data">
                         <p class="user-data__type">Name</p>
                         <hr>
@@ -100,58 +95,19 @@
                         <hr>
                         <p></p>
                     </div>
-                </section>
+                </div>
             </article>
 
             <article class="order-history">
                 <h1>Order History</h1>
                 <hr>
-                <article class="order">
-                    <img class="order__film-poster" src="src/img/poster.png">
-                    <section class="order__data">
-                        <p>Film title: The Intruder</p>
-                        <p>Date: 27/03/23</p>
-                        <p>Price: €12.50</p>
-                        <p>OrderID: 123465</p>
-                    </section>
-                </article>
-
-                <article class="order">
-                    <img class="order__film-poster" src="src/img/poster.png">
-                    <section class="order__data">
-                        <p>Film title: The Intruder</p>
-                        <p>Date: 27/03/23</p>
-                        <p>Price: €12.50</p>
-                        <p>OrderID: 123465</p>
-                    </section>
-                </article>
-
-                <article class="order">
-                    <img class="order__film-poster" src="src/img/poster.png">
-                    <section class="order__data">
-                        <p>Film title: The Intruder</p>
-                        <p>Date: 27/03/23</p>
-                        <p>Price: €12.50</p>
-                        <p>OrderID: 123465</p>
-                    </section>
-                </article>
-
-                <article class="order">
-                    <img class="order__film-poster" src="src/img/poster.png">
-                    <section class="order__data">
-                        <p>Film title: The Intruder</p>
-                        <p>Date: 27/03/23</p>
-                        <p>Price: €12.50</p>
-                        <p>OrderID: 123465</p>
-                    </section>
-                </article>
             </article>
         </main>
 
         <footer class="footer">
             <a class="footer__link" href="#">Top of the page</a>
-            <a class="footer__link" href="index.html">Home</a>
-            <a class="footer__link" href="order.html">Tickets</a>
+            <a class="footer__link" href="index">Home</a>
+            <a class="footer__link" href="order">Tickets</a>
         </footer>
 
         <script src="src/js/menu.js"></script>

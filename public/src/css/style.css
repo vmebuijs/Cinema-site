@@ -388,8 +388,6 @@ body{
 }
 
 .order{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
     background-color: rgb(62, 91, 143);
     border: none;
     border-radius: 1em;
@@ -397,11 +395,6 @@ body{
     margin: 1em auto;
     padding: 1em;
     justify-content: space-between;
-}
-
-.order__film-poster{
-    width: 100%;
-    min-width: 100px;
 }
 
 .order__data{
@@ -451,6 +444,11 @@ body{
 
 
 /*ticket ordering page*/
+.select-and-cart{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .ordering-container{
     background-color: rgb(32, 56, 100);
     color: white;
@@ -480,11 +478,12 @@ body{
 
 #submitButton{
     padding: 1em 0.5em;
-    position: absolute;
+    /* position: absolute;
     right: 40%;
     left: 40%;
-    top: 38em;
+    top: 38em; */
 }
+
 
 /* media queries */
 /* dekstop specifications */

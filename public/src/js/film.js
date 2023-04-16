@@ -19,12 +19,12 @@ fetch('m')
         var logo = document.createElement('div');
         logo.classList.add('logo-container');
         var logoLink = document.createElement('a');
-        logoLink.setAttribute('href', 'index.html');
+        logoLink.setAttribute('href', 'index');
         var logoIMG = document.createElement('img');
         logoIMG.classList.add('logo-image');
-        logoIMG.setAttribute('src', 'src/img/exploding-kittens.jpg');
+        logoIMG.setAttribute('src', 'src/img/logo.png');
         logoIMG.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        logoIMG.setAttribute('width', '100px');
+        logoIMG.setAttribute('width', '200');
         logoLink.appendChild(logoIMG);
         logo.appendChild(logoLink);
 
@@ -33,23 +33,23 @@ fetch('m')
         nav.classList.add('nav');
         var navLink1 = document.createElement('a');
         navLink1.classList.add('nav__link');
-        navLink1.setAttribute('href', 'order.html');
+        navLink1.setAttribute('href', 'order');
         navLink1.textContent = 'Tickets';
         var navLink2 = document.createElement('a');
         navLink2.classList.add('nav__link');
-        navLink2.setAttribute('href', 'login.html');
+        navLink2.setAttribute('href', 'login');
         navLink2.textContent = 'Log in';
         nav.appendChild(navLink1);
         nav.appendChild(navLink2);
         
         //The account button on the top-right
         var account = document.createElement('a');
-        account.setAttribute('href', 'account.html');
+        account.setAttribute('href', 'account');
         var userImage = document.createElement('img');
         userImage.classList.add('user-image');
         userImage.setAttribute('src', 'src/img/account.png');
         userImage.setAttribute('alt', 'A white icon consisting of a circle and the outline of a portrait of a person')
-        userImage.setAttribute('width', '50px');
+        userImage.setAttribute('width', '50');
         account.appendChild(userImage);
 
         //The elements are appended to the desktop header
@@ -64,12 +64,12 @@ fetch('m')
         var logo = document.createElement('div');
         logo.classList.add('logo-container');
         var logoLink = document.createElement('a');
-        logoLink.setAttribute('href', '#');
+        logoLink.setAttribute('href', 'index');
         var logoIMG = document.createElement('img');
         logoIMG.classList.add('logo-image');
-        logoIMG.setAttribute('src', 'src/img/exploding-kittens.jpg');
+        logoIMG.setAttribute('src', 'src/img/logo.png');
         logoIMG.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        logoIMG.setAttribute('width', '100px');
+        logoIMG.setAttribute('width', '200');
         logoLink.appendChild(logoIMG);
         logo.appendChild(logoLink);
 
@@ -80,9 +80,11 @@ fetch('m')
         var openMenu = document.createElement('img');
         openMenu.classList.add('open-menu');
         openMenu.setAttribute('src', 'src/svg/open.svg');
+        openMenu.setAttribute('alt', 'A white hamburger menu icon');
         var closeMenu = document.createElement('img');
         closeMenu.classList.add('close-menu');
         closeMenu.setAttribute('src', 'src/svg/close.svg');
+        closeMenu.setAttribute('alt', 'A white cross icon');
 
         //The eventlisteners are added to be able to open and close the menu
         var menuClasses = menu.classList;
@@ -100,31 +102,31 @@ fetch('m')
         menuNav.classList.add('menu');
         var menuNavLogo = document.createElement('img');
         menuNavLogo.classList.add('menu__item');
-        menuNavLogo.setAttribute('src', 'src/img/exploding-kittens.jpg');
+        menuNavLogo.setAttribute('src', 'src/img/logo.png');
         menuNavLogo.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        menuNavLogo.setAttribute('width', '100px');
+        menuNavLogo.setAttribute('width', '100');
 
         //The links within the menu
         var menuLink1 = document.createElement('a');
         menuLink1.classList.add('menu__item');
-        menuLink1.setAttribute('href', 'index.html');
+        menuLink1.setAttribute('href', 'index');
         menuLink1.textContent = 'Home';
         var menuLink2 = document.createElement('a');
         menuLink2.classList.add('menu__item');
-        menuLink2.setAttribute('href', 'order.html');
+        menuLink2.setAttribute('href', 'order');
         menuLink2.textContent = 'Tickets';
         var menuLink3 = document.createElement('a');
         menuLink3.classList.add('menu__item');
-        menuLink3.setAttribute('href', 'login.html');
+        menuLink3.setAttribute('href', 'login');
         menuLink3.textContent = 'Log in';
         var menuLink4 = document.createElement('a');
         menuLink4.classList.add('menu__item');
-        menuLink4.setAttribute('href', 'account.html');
+        menuLink4.setAttribute('href', 'account');
         var menuAccount = document.createElement('img');
         menuAccount.classList.add('user-image');
         menuAccount.setAttribute('src', 'src/img/account.png');
-        menuAccount.setAttribute('alt', 'The Starry Nights Cinemas logo');
-        menuAccount.setAttribute('width', '50px');
+        menuAccount.setAttribute('alt', 'A white icon consisting of a circle and the outline of a portrait of a person');
+        menuAccount.setAttribute('width', '50');
         menuLink4.appendChild(menuAccount);
 
         //Everything is appended to the mobile header in a hierarchical manner
@@ -142,15 +144,15 @@ fetch('m')
         footerLink1.textContent = 'Top of the page';
         var footerLink2 = document.createElement('a');
         footerLink2.classList.add('footer__link');
-        footerLink2.setAttribute('href', 'index.html');
+        footerLink2.setAttribute('href', 'index');
         footerLink2.textContent = 'Home';
         var footerLink3 = document.createElement('a');
         footerLink3.classList.add('footer__link');
-        footerLink3.setAttribute('href', 'account.html');
+        footerLink3.setAttribute('href', 'account');
         footerLink3.textContent = 'Account';
         var footerLink4 = document.createElement('a');
         footerLink4.classList.add('footer__link');
-        footerLink4.setAttribute('href', 'order.html');
+        footerLink4.setAttribute('href', 'order');
         footerLink4.textContent = 'Order';
 
         //The elements are appended to the footer
